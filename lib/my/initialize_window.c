@@ -4,12 +4,13 @@
 ** File description:
 ** initialize_window
 */
-#include "../../include/my.h"
 
-void initialize_window(csfml *page)
+#include "../../include/my_rpg.h"
+
+void initialize_window(csfml_t *page)
 {
-    page->mode.width = 1920;
-    page->mode.height = 1080;
+    page->mode.width = BASE_WIDTH;
+    page->mode.height = BASE_HEIGHT;
     page->mode.bitsPerPixel = 32;
 
     page->window = sfRenderWindow_create(page->mode,

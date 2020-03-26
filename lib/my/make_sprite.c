@@ -4,7 +4,7 @@
 ** File description:
 ** make_sprite
 */
-#include "../../include/my.h"
+#include "my.h"
 
 sfSprite *make_sprite(sfTexture *texture)
 {
