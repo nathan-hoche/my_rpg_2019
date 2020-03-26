@@ -15,7 +15,7 @@
 typedef struct csfml_s csfml_t; // For implicit declaration
 
 //-> scene tab <-//
-typedef struct scene_tab_d {
+typedef struct scene_tab_t {
     int id_scene;
     void (* scene)(csfml_t *);
 }scene_tab_t;

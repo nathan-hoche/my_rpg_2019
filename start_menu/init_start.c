@@ -17,8 +17,10 @@ static void init_pos_button_txt(start_menu_t *start)
     start->back.pos_title.y = 140;
     start->menu_buttons[1].sp_pos = (sfVector2f) {1920/2 -142, 1080/2 -50};
     start->menu_buttons[1].txt_pos = (sfVector2f) {1920/2 -50, 1080/2 -35};
-    sfSprite_setPosition(start->menu_buttons[0].sprite, start->menu_buttons[0].sp_pos);
-    sfSprite_setPosition(start->menu_buttons[1].sprite, start->menu_buttons[1].sp_pos);
+    sfSprite_setPosition(start->menu_buttons[0].sprite, \
+    start->menu_buttons[0].sp_pos);
+    sfSprite_setPosition(start->menu_buttons[1].sprite, \
+    start->menu_buttons[1].sp_pos);
 }
 
 static void init_text(start_menu_t *start, csfml_t *page)

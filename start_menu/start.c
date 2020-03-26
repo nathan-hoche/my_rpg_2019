@@ -15,7 +15,8 @@ static void start_event(csfml_t *page, start_menu_t *start)
     start->menu_buttons[1].sp_pos, page->size_button, page->window) == 0) \
     && page->event.key.code == sfMouseLeft)
         page->act_scene = ID_CLOSE;
-    if (page->event.type == sfEvtMouseButtonPressed && page->event.key.code == sfMouseLeft) {
+    if (page->event.type == sfEvtMouseButtonPressed \
+    && page->event.key.code == sfMouseLeft) {
         if (button_is_clicked(start->menu_buttons[0].sp_pos, \
         page->size_button, page->window) == 0)
             page->act_scene = ID_GAME;
@@ -37,11 +38,12 @@ static void start_display(start_menu_t *start, sfRenderWindow *window)
 static void start_destroy(start_menu_t *start)
 {
     sfText_destroy(start->menu_buttons[0].text);
+    sfText_destroy(start->menu_buttons[1].text);
     sfText_destroy(start->back.title);
     sfSprite_destroy(start->back.sp_back);
+    sfSprite_destroy(start->menu_buttons[0].sprite);
     sfSprite_destroy(start->menu_buttons[1].sprite);
     sfTexture_destroy(start->back.tx_back);
-    // INCOMPLET !
 }
 
 void start_menu(csfml_t *page)

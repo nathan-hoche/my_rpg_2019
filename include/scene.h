@@ -8,7 +8,6 @@
 #ifndef SCENE_H_
 #define SCENE_H_
 
-#include "struct.h"
 #include "my_rpg.h"
 
 scene_tab_t scene_tab[] = {

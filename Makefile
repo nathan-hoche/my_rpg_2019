@@ -9,13 +9,13 @@ SRC	=	main.c \
 		game_menu/game.c \
 		start_menu/start.c \
 		start_menu/init_start.c \
-		pause_menu/pause.c		
+		pause_menu/pause.c
 
 NAME	=		my_rpg
 
 OBJ		=		$(SRC:.c=.o)
 
-CFLAGS		+=	-Wextra -W -pedantic -I./include 
+CFLAGS		+=	-Wextra -W -pedantic -I./include
 
 LDFLAGS		=	-L./lib/my -lmy
 

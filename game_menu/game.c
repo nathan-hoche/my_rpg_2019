@@ -44,7 +44,7 @@ void game_menu(csfml_t *page)
     game_initialize(&game);
     while (page->act_scene == ID_GAME) {
         game_display(&game, page->window);
-        if (sfRenderWindow_pollEvent(page->window, &page->event))
+        while (sfRenderWindow_pollEvent(page->window, &page->event))
             game_event(page);
     }
     game_destroy(&game);
