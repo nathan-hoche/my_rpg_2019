@@ -11,7 +11,7 @@ SRC	=	initialize_window.c \
 		make_text.c \
 		button_is_clicked.c \
 		my_getstr.c \
-		my_revstr.c		
+		my_revstr.c
 
 OBJ	=	$(SRC:.c=.o)
 

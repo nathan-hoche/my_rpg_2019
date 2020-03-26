@@ -4,7 +4,9 @@
 ** File description:
 ** initialize_window
 */
+
 #include "../../include/my.h"
+#include "../../include/my_rpg.h"
 
 void initialize_window(csfml *page)
 {

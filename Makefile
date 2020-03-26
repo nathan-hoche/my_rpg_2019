@@ -6,13 +6,14 @@
 ##
 
 SRC	=	main.c \
-		destroy/destroy.c \
-		initialization/main_initialize.c \
-		display/main_display.c
+		game_menu/game.c \
+		start_menu/start.c \
+		start_menu/init_start.c \
+		pause_menu/pause.c
 
 OBJ	=	$(SRC:.c=.o)
 
-NAME	=	a.out
+NAME	=	my_rpg
 
 all:	NAME
 
