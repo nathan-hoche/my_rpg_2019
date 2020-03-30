@@ -4,7 +4,6 @@
 ** File description:
 ** main
 */
-
 #include "struct.h"
 #include "scene.h"
 #include "my_rpg.h"
