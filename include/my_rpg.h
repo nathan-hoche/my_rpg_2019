@@ -12,6 +12,7 @@
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "struct.h"
 
 #define BASE_WIDTH (1920)
@@ -27,5 +28,7 @@ void start_menu(csfml_t *page);
 void start_initialize(start_menu_t *start, csfml_t *page);
 void pause_menu(csfml_t *page);
 void initialize_window(csfml_t *page);
+void init_game_scene(game_scene_t *scene);
+void map_display(game_scene_t *scene, sfSprite *tile, sfRenderWindow *window);
 
 #endif /* !MY_RPG_H_ */

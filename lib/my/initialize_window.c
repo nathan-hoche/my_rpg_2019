@@ -14,6 +14,6 @@ void initialize_window(csfml_t *page)
     page->mode.bitsPerPixel = 32;
 
     page->window = sfRenderWindow_create(page->mode,
-                            NULL, sfDefaultStyle, NULL);
+                            NULL, sfTitlebar | sfClose, NULL);
     sfRenderWindow_setFramerateLimit(page->window, 30);
 }

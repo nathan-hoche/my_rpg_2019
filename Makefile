@@ -9,7 +9,8 @@ SRC	=	main.c \
 		game_menu/game.c \
 		start_menu/start.c \
 		start_menu/init_start.c \
-		pause_menu/pause.c
+		pause_menu/pause.c \
+		game_menu/tile_mapping.c
 
 NAME	=		my_rpg
 

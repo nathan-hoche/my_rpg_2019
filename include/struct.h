@@ -31,13 +31,16 @@ typedef struct pause_menu_t {
 }pause_menu_t;
 
 //-> game menu <-//
-typedef struct game_back_t {
-    sfTexture *t_back;
-    sfSprite *s_back;
-}game_back_t;
+typedef struct game_scene_t {
+    char *map_file;
+    char *map;
+    sfVector2f starting_pos;
+}game_scene_t;
 
 typedef struct game_menu_t {
-    game_back_t back;
+    game_scene_t first_scene;
+    sfTexture *texture_tile;
+    sfSprite *tile;
 }game_menu_t;
 
 //-> simple button struct <-//
