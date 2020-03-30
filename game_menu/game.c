@@ -2,52 +2,53 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_rpg_2019
 ** File description:
-**  play menu game
+** play game
 */
 
-#include "../include/my_rpg.h"
-#include "../include/my.h"
+#include "my_rpg.h"
+#include "my.h"
+#include "struct.h"
 
-static int game_event(csfml *page, int x)
+static void game_event(csfml_t *page)
 {
     if (page->event.type == sfEvtClosed)
-        return (-1);
+        page->act_scene = ID_CLOSE;
     else if (page->event.key.code == sfKeyEscape && \
     page->event.type == sfEvtKeyPressed)
-        return (pause_menu(page));
-    return (0);
+        pause_menu(page);
 }
 
 static void game_display(game_menu_t *game, sfRenderWindow *window)
 {
     sfRenderWindow_clear(window, sfWhite);
-    sfRenderWindow_drawSprite(window, game->back.s_back, NULL);
+    sfRenderWindow_drawSprite(window, game->back_grass, NULL);
+    map_display(&game->first_scene, game->tile, window);
     sfRenderWindow_display(window);
 }
 
 static void game_initialize(game_menu_t *game)
 {
-    game->back.t_back = make_texture("src/test.png");
-    game->back.s_back = make_sprite(game->back.t_back);
+    game->first_scene.map_file = "map/map.txt";
+    init_game_scene(&game->first_scene);
+    game->texture_tile = make_texture("src/tile.png");
+    game->tile = make_sprite(game->texture_tile);
+    game->grass = make_texture("src/grass.png");
+    game->back_grass = make_sprite(game->grass);
 }
 
 static void game_destroy(game_menu_t *game)
 {
-    sfSprite_destroy(game->back.s_back);
-    sfTexture_destroy(game->back.t_back);
 }
 
-int game_menu(csfml *page)
+void game_menu(csfml_t *page)
 {
     game_menu_t game;
-    int x = 0;
 
     game_initialize(&game);
-    while (x == 0) {
+    while (page->act_scene == ID_GAME) {
         game_display(&game, page->window);
         while (sfRenderWindow_pollEvent(page->window, &page->event))
-            x = game_event(page, x);
+            game_event(page);
     }
     game_destroy(&game);
-    return (x);
 }

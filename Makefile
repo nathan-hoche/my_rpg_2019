@@ -9,23 +9,37 @@ SRC	=	main.c \
 		game_menu/game.c \
 		start_menu/start.c \
 		start_menu/init_start.c \
-		pause_menu/pause.c
+		pause_menu/pause.c \
+		game_menu/tile_mapping.c
 
-OBJ	=	$(SRC:.c=.o)
+NAME	=		my_rpg
 
-NAME	=	my_rpg
+OBJ		=		$(SRC:.c=.o)
 
-all:	NAME
+CFLAGS		+=	-Wextra -W -pedantic -I./include
 
-NAME:
-	cd lib/my/ && make
-	gcc $(SRC) -o $(NAME) -l csfml-graphics -l csfml-audio -l csfml-system -L ./lib/my -lmy
+LDFLAGS		=	-L./lib/my -lmy
+
+CSFMLF		=	-l csfml-audio -l csfml-system -l csfml-graphics
+
+MAKE_LIB	=	make -C ./lib/my/
+
+DEMAKE_LIB	=	make -C ./lib/my/ fclean
+
+all:	$(OBJ)
+		$(MAKE_LIB)
+		gcc $(OBJ) -o $(NAME) $(LDFLAGS) $(CSFMLF)
 
 clean:
-	rm -f $(OBJ)
-	cd lib/my/ && rm *.o
+		$(DEMAKE_LIB)
+		rm -f $(OBJ)
+		rm -f *~
+		rm -f *\#
+		rm -f *.o
 
-fclean: clean
-	rm $(NAME)
+fclean:	clean
+		rm -f $(NAME)
 
-re : fclean all
+re: 	fclean all
+
+.PHONY: clean, fclean, re, all

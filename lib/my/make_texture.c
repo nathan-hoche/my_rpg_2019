@@ -4,7 +4,7 @@
 ** File description:
 ** make_texture
 */
-#include "../../include/my.h"
+#include "my.h"
 
 sfTexture *make_texture(char *link_texture)
 {

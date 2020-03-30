@@ -4,7 +4,7 @@
 ** File description:
 ** button_is_clicked
 */
-#include "../../include/my.h"
+#include "my.h"
 
 int button_is_clicked(sfVector2f pos_sprite, \
 sfVector2f sprite_size, sfRenderWindow *window)

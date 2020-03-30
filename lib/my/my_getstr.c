@@ -4,13 +4,15 @@
 ** File description:
 ** getstr from int
 */
+
 #include <stdlib.h>
-#include "../../include/my.h"
+#include "my.h"
 
 static char *except(int nb)
 {
-    char *result = malloc(sizeof(int)* nb + 2);
+    char *result = NULL;
 
+    result = malloc(sizeof(int)* (nb + 2));
     if (nb == 0)
         result[0] = '0';
     result[1] = '\0';

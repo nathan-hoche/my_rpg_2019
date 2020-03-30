@@ -2,16 +2,19 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_rpg_2019
 ** File description:
-**  play menu pause
+** play menu pause
 */
 
-#include "../include/my_rpg.h"
-#include "../include/my.h"
+#include "my_rpg.h"
+#include "my.h"
+#include "struct.h"
 
-static int pause_event(csfml *page, int x)
+static int pause_event(csfml_t *page)
 {
-    if (page->event.type == sfEvtClosed)
-        return (-1);
+    if (page->event.type == sfEvtClosed) {
+        page->act_scene = ID_CLOSE;
+        return (0);
+    }
     else if (page->event.key.code == sfKeyEscape && \
     page->event.type == sfEvtKeyPressed)
         return (0);
@@ -37,17 +40,16 @@ static void pause_destroy(pause_menu_t *pause)
     sfTexture_destroy(pause->back.t_back);
 }
 
-int pause_menu(csfml *page)
+void pause_menu (csfml_t *page)
 {
     pause_menu_t pause;
-    int x = 1;
+    int active = 1;
 
     pause_initialize(&pause);
-    while (x == 1) {
+    while (active != 0) {
         pause_display(&pause, page->window);
-        while (sfRenderWindow_pollEvent(page->window, &page->event) && x != 0)
-            x = pause_event(page, x);
+        if (sfRenderWindow_pollEvent(page->window, &page->event))
+            active = pause_event(page);
     }
     pause_destroy(&pause);
-    return (x);
 }

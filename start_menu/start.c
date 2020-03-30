@@ -5,54 +5,56 @@
 ** start
 */
 
-#include "../include/my_rpg.h"
-#include "../include/my.h"
+#include "my_rpg.h"
+#include "my.h"
+#include "struct.h"
 
-static int start_event(csfml *page, start_menu_t *start)
+static void start_event(csfml_t *page, start_menu_t *start)
 {
     if (page->event.type == sfEvtClosed || (button_is_clicked( \
-    start->but.pos_but_exit, page->size_button, page->window) == 0) \
+    start->menu_buttons[1].sp_pos, page->size_button, page->window) == 0) \
     && page->event.key.code == sfMouseLeft)
-        return (-1);
-    if (page->event.key.code == sfMouseLeft)
-        if (button_is_clicked(start->but.pos_but_play, \
+        page->act_scene = ID_CLOSE;
+    if (page->event.type == sfEvtMouseButtonPressed \
+    && page->event.key.code == sfMouseLeft) {
+        if (button_is_clicked(start->menu_buttons[0].sp_pos, \
         page->size_button, page->window) == 0)
-            return (1);
-    return (0);
+            page->act_scene = ID_GAME;
+    }
 }
 
 static void start_display(start_menu_t *start, sfRenderWindow *window)
 {
     sfRenderWindow_clear(window, sfWhite);
-    sfRenderWindow_drawSprite(window, start->back.s_back, NULL);
-    sfRenderWindow_drawSprite(window, start->but.play_button, NULL);
-    sfRenderWindow_drawSprite(window, start->but.exit_button, NULL);
+    sfRenderWindow_drawSprite(window, start->back.sp_back, NULL);
+    sfRenderWindow_drawSprite(window, start->menu_buttons[0].sprite, NULL);
+    sfRenderWindow_drawSprite(window, start->menu_buttons[1].sprite, NULL);
     sfRenderWindow_drawText(window, start->back.title, NULL);
-    sfRenderWindow_drawText(window, start->but.start_txt, NULL);
-    sfRenderWindow_drawText(window, start->but.exit_txt, NULL);
+    sfRenderWindow_drawText(window, start->menu_buttons[0].text, NULL);
+    sfRenderWindow_drawText(window, start->menu_buttons[1].text, NULL);
     sfRenderWindow_display(window);
 }
 
 static void start_destroy(start_menu_t *start)
 {
-    sfText_destroy(start->but.start_txt);
+    sfText_destroy(start->menu_buttons[0].text);
+    sfText_destroy(start->menu_buttons[1].text);
     sfText_destroy(start->back.title);
-    sfSprite_destroy(start->back.s_back);
-    sfSprite_destroy(start->but.play_button);
-    sfTexture_destroy(start->back.t_back);
+    sfSprite_destroy(start->back.sp_back);
+    sfSprite_destroy(start->menu_buttons[0].sprite);
+    sfSprite_destroy(start->menu_buttons[1].sprite);
+    sfTexture_destroy(start->back.tx_back);
 }
 
-int start_menu(csfml *page)
+void start_menu(csfml_t *page)
 {
     start_menu_t start;
-    int x = 0;
 
     start_initialize(&start, page);
-    while (x == 0) {
+    while (page->act_scene == 1) {
         start_display(&start, page->window);
         while (sfRenderWindow_pollEvent(page->window, &page->event))
-            x = start_event(page, &start);
+            start_event(page, &start);
     }
     start_destroy(&start);
-    return (x);
 }

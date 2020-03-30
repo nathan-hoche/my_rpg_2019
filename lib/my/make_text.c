@@ -4,7 +4,7 @@
 ** File description:
 ** make_text
 */
-#include "../../include/my.h"
+#include "my.h"
 
 sfText *make_text(sfFont* font, char *str, sfVector2f pos, int size)
 {
