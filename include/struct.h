@@ -45,6 +45,8 @@ typedef struct game_menu_t {
     sfSprite *back_grass;
 }game_menu_t;
 
+typedef struct button_s button_t; // implicit declar
+
 //-> simple button struct <-//
 typedef struct button_s {
     sfSprite *sprite;
@@ -54,6 +56,7 @@ typedef struct button_s {
     sfVector2f txt_pos;
     unsigned char state;
     void (* action)(csfml_t *);
+    void (* hover)(button_t *, csfml_t *);
 }button_t;
 
 typedef struct start_back_t {

@@ -37,6 +37,8 @@ static void init_sprite(start_menu_t *start, csfml_t *page)
 {
     start->menu_buttons[0].sprite = make_sprite(page->button);
     start->menu_buttons[1].sprite = make_sprite(page->button);
+    start->menu_buttons[0].sp_rect = (sfIntRect) {0, 0, 285, 110};
+    start->menu_buttons[1].sp_rect = (sfIntRect) {0, 0, 285, 110};
 }
 
 void start_initialize(start_menu_t *start, csfml_t *page)
@@ -46,6 +48,12 @@ void start_initialize(start_menu_t *start, csfml_t *page)
     init_sprite(start, page);
     init_pos_button_txt(start);
     init_text(start, page);
+    start->menu_buttons[0].action = &action_start_button;
+    start->menu_buttons[1].action = &action_quit_button;
+    start->menu_buttons[0].state = 0;
+    start->menu_buttons[1].state = 0;
+    start->menu_buttons[0].hover = &action_button_hover;
+    start->menu_buttons[1].hover = &action_button_hover;
     start->back.tx_back = make_texture("./src/space.png");
     start->back.sp_back = make_sprite(start->back.tx_back);
     sfSprite_setTexture(start->back.sp_back, start->back.tx_back, sfFalse);
