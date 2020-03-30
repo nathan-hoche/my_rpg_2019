@@ -21,6 +21,7 @@ static void game_event(csfml_t *page)
 static void game_display(game_menu_t *game, sfRenderWindow *window)
 {
     sfRenderWindow_clear(window, sfWhite);
+    sfRenderWindow_drawSprite(window, game->back_grass, NULL);
     map_display(&game->first_scene, game->tile, window);
     sfRenderWindow_display(window);
 }
@@ -31,6 +32,8 @@ static void game_initialize(game_menu_t *game)
     init_game_scene(&game->first_scene);
     game->texture_tile = make_texture("src/tile.png");
     game->tile = make_sprite(game->texture_tile);
+    game->grass = make_texture("src/grass.png");
+    game->back_grass = make_sprite(game->grass);
 }
 
 static void game_destroy(game_menu_t *game)

@@ -41,6 +41,8 @@ typedef struct game_menu_t {
     game_scene_t first_scene;
     sfTexture *texture_tile;
     sfSprite *tile;
+    sfTexture *grass;
+    sfSprite *back_grass;
 }game_menu_t;
 
 //-> simple button struct <-//
