@@ -39,8 +39,8 @@ void init_game_scene(game_scene_t *scene)
 void map_display(game_scene_t *scene, sfSprite *tile, sfRenderWindow *window)
 {
     sfVector2f tile_pos;
-    int rows[2] = {0, 32*5};
-    int cols[2] = {0, 32*5};
+    int rows[3] = {0, 32, 32*5};
+    int cols[3] = {0, 0, 32*5};
     char tmp = 0;
 
     tile_pos = (sfVector2f) {0, 0};
@@ -48,7 +48,7 @@ void map_display(game_scene_t *scene, sfSprite *tile, sfRenderWindow *window)
         tmp = scene->map[i];
         if (scene->map[i] == '\n')
             tile_pos = (sfVector2f) {-32, tile_pos.y + 32};
-        else {
+        else if (scene->map[i] != ' ') {
             sfSprite_setPosition(tile, tile_pos);
             sfSprite_setTextureRect(tile, (sfIntRect) {rows[tmp-48], \
             cols[tmp-48], 32, 32});
