@@ -53,8 +53,10 @@ void start_menu(csfml_t *page)
     start_initialize(&start, page);
     while (page->act_scene == 1) {
         start_display(&start, page->window);
-        while (sfRenderWindow_pollEvent(page->window, &page->event))
+        while (sfRenderWindow_pollEvent(page->window, &page->event)) {
             start_event(page, &start);
+            puts("test");
+        }
     }
     start_destroy(&start);
 }

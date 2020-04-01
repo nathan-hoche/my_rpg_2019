@@ -30,5 +30,10 @@ void pause_menu(csfml_t *page);
 void initialize_window(csfml_t *page);
 void init_game_scene(game_scene_t *scene);
 void map_display(game_scene_t *scene, sfSprite *tile, sfRenderWindow *window);
+void init_player(player_t *player);
+void init_destroy(player_t *player);
+void clock_player_animation(player_t *player);
+void destroy_player(player_t *player);
+void player_orientation(sfEvent event, player_t *player);
 
 #endif /* !MY_RPG_H_ */
