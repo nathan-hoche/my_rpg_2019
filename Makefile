@@ -13,7 +13,9 @@ SRC	=	main.c \
 		start_menu/buttons_actions.c \
 		start_menu/buttons_hover.c \
 		pause_menu/pause.c \
-		game_menu/tile_mapping.c
+		game_menu/tile_mapping.c \
+		player/init_destroy.c \
+		player/player_movement.c
 
 NAME	=		my_rpg
 

@@ -45,9 +45,9 @@ typedef struct game_menu_t {
     sfSprite *back_grass;
 }game_menu_t;
 
-typedef struct button_s button_t; // implicit declar
-
 //-> simple button struct <-//
+typedef struct button_s button_t;
+
 typedef struct button_s {
     sfSprite *sprite;
     sfVector2f sp_pos;
@@ -72,6 +72,17 @@ typedef struct start_menu_t {
 }start_menu_t;
 
 //-> principal info <-//
+
+typedef struct player_t {
+    sfTexture *texture_player;
+    sfSprite *player;
+    sfIntRect player_rect;
+    sfClock *animation;
+    //ici valeur pb
+    sfVector2f move_direction;
+    //ici valeur pb
+}player_t;
+
 typedef struct csfml_s {
     sfVideoMode mode;
     sfRenderWindow *window;
@@ -79,6 +90,7 @@ typedef struct csfml_s {
     sfTexture *button;
     sfVector2f size_button;
     sfFont *font_itim;
+    player_t player;
     int act_scene;
 }csfml_t;
 

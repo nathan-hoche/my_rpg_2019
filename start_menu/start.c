@@ -51,11 +51,12 @@ void start_menu(csfml_t *page)
     start_menu_t start;
 
     start_initialize(&start, page);
-    while (page->act_scene == 1) {
+    while (page->act_scene == ID_START_MENU) {
         start_display(&start, page->window);
         check_buttons_hover(&start, page);
-        while (sfRenderWindow_pollEvent(page->window, &page->event))
+        while (sfRenderWindow_pollEvent(page->window, &page->event)) {
             start_event(page, &start);
+        }
     }
     start_destroy(&start);
 }
