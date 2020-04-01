@@ -16,13 +16,17 @@ static void game_event(csfml_t *page)
     else if (page->event.key.code == sfKeyEscape && \
     page->event.type == sfEvtKeyPressed)
         pause_menu(page);
+    player_orientation(page->event, &page->player);
 }
 
-static void game_display(game_menu_t *game, sfRenderWindow *window)
+static void game_display(game_menu_t *game, sfRenderWindow *window, \
+player_t *player)
 {
     sfRenderWindow_clear(window, sfWhite);
     sfRenderWindow_drawSprite(window, game->back_grass, NULL);
     map_display(&game->first_scene, game->tile, window);
+    clock_player_animation(player);
+    sfRenderWindow_drawSprite(window, player->player, NULL);
     sfRenderWindow_display(window);
 }
 
@@ -38,6 +42,10 @@ static void game_initialize(game_menu_t *game)
 
 static void game_destroy(game_menu_t *game)
 {
+    sfTexture_destroy(game->grass);
+    sfTexture_destroy(game->texture_tile);
+    sfSprite_destroy(game->tile);
+    sfSprite_destroy(game->back_grass);
 }
 
 void game_menu(csfml_t *page)
@@ -46,7 +54,7 @@ void game_menu(csfml_t *page)
 
     game_initialize(&game);
     while (page->act_scene == ID_GAME) {
-        game_display(&game, page->window);
+        game_display(&game, page->window, &page->player);
         while (sfRenderWindow_pollEvent(page->window, &page->event))
             game_event(page);
     }

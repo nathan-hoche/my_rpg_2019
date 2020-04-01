@@ -11,15 +11,15 @@
 
 static void start_event(csfml_t *page, start_menu_t *start)
 {
-    if (page->event.type == sfEvtClosed || (button_is_clicked( \
-    start->menu_buttons[1].sp_pos, page->size_button, page->window) == 0) \
-    && page->event.key.code == sfMouseLeft)
-        page->act_scene = ID_CLOSE;
+    if (page->event.type == sfEvtClosed || button_obj_is_hover \
+    (&start->menu_buttons[1], page->window) && \
+    page->event.key.code == sfMouseLeft)
+        start->menu_buttons[1].action(page);
     if (page->event.type == sfEvtMouseButtonPressed \
     && page->event.key.code == sfMouseLeft) {
-        if (button_is_clicked(start->menu_buttons[0].sp_pos, \
-        page->size_button, page->window) == 0)
-            page->act_scene = ID_GAME;
+        if (button_obj_is_hover(&start->menu_buttons[0], page->window) && \
+        page->event.key.code == sfMouseLeft)
+            start->menu_buttons[0].action(page);
     }
 }
 
@@ -51,10 +51,12 @@ void start_menu(csfml_t *page)
     start_menu_t start;
 
     start_initialize(&start, page);
-    while (page->act_scene == 1) {
+    while (page->act_scene == ID_START_MENU) {
         start_display(&start, page->window);
-        while (sfRenderWindow_pollEvent(page->window, &page->event))
+        check_buttons_hover(&start, page);
+        while (sfRenderWindow_pollEvent(page->window, &page->event)) {
             start_event(page, &start);
+        }
     }
     start_destroy(&start);
 }

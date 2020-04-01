@@ -46,6 +46,8 @@ typedef struct game_menu_t {
 }game_menu_t;
 
 //-> simple button struct <-//
+typedef struct button_s button_t;
+
 typedef struct button_s {
     sfSprite *sprite;
     sfVector2f sp_pos;
@@ -54,6 +56,7 @@ typedef struct button_s {
     sfVector2f txt_pos;
     unsigned char state;
     void (* action)(csfml_t *);
+    void (* hover)(button_t *, csfml_t *);
 }button_t;
 
 typedef struct start_back_t {
@@ -69,6 +72,15 @@ typedef struct start_menu_t {
 }start_menu_t;
 
 //-> principal info <-//
+
+typedef struct player_t {
+    sfTexture *texture_player;
+    sfSprite *player;
+    sfIntRect player_rect;
+    sfClock *animation;
+    sfVector2f move_direction;
+}player_t;
+
 typedef struct csfml_s {
     sfVideoMode mode;
     sfRenderWindow *window;
@@ -76,6 +88,7 @@ typedef struct csfml_s {
     sfTexture *button;
     sfVector2f size_button;
     sfFont *font_itim;
+    player_t player;
     int act_scene;
 }csfml_t;
 

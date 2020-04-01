@@ -30,5 +30,15 @@ void pause_menu(csfml_t *page);
 void initialize_window(csfml_t *page);
 void init_game_scene(game_scene_t *scene);
 void map_display(game_scene_t *scene, sfSprite *tile, sfRenderWindow *window);
+void init_player(player_t *player);
+void init_destroy(player_t *player);
+void clock_player_animation(player_t *player);
+void destroy_player(player_t *player);
+void player_orientation(sfEvent event, player_t *player);
+void action_start_button(csfml_t *page);
+void action_quit_button(csfml_t *page);
+void action_button_hover(button_t *button, csfml_t *core);
+void check_buttons_hover(start_menu_t *start, csfml_t *page);
+int button_obj_is_hover(button_t *button, sfRenderWindow *window);
 
 #endif /* !MY_RPG_H_ */
