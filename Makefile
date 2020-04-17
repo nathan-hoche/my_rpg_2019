@@ -13,7 +13,10 @@ SRC	=	main.c \
 		start_menu/buttons_actions.c \
 		start_menu/buttons_hover.c \
 		pause_menu/pause.c \
+		settings_menu/settings.c \
+		howtoplay_menu/how_to_play.c \
 		game_menu/tile_mapping.c \
+		player/player_movement.c\
 		player/init_destroy.c \
 		player/player_movement.c \
 		player/player_collision.c

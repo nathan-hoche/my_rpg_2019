@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_rpg_2019
 ** File description:
-** play menu pause
+** settings menu
 */
 
 #include "my_rpg.h"
@@ -40,16 +40,16 @@ static void pause_destroy(pause_menu_t *pause)
     sfTexture_destroy(pause->back.tx_back);
 }
 
-void pause_menu(csfml_t *page)
+void settings(csfml_t *page)
 {
-    pause_menu_t pause;
+    pause_menu_t settings;
     int active = 1;
 
-    pause_initialize(&pause);
+    pause_initialize(&settings);
     while (active != 0) {
-        pause_display(&pause, page->window);
+        pause_display(&settings, page->window);
         if (sfRenderWindow_pollEvent(page->window, &page->event))
             active = pause_event(page);
     }
-    pause_destroy(&pause);
+    pause_destroy(&settings);
 }

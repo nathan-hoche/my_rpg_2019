@@ -15,29 +15,29 @@
 typedef struct csfml_s csfml_t; // For implicit declaration
 
 //-> scene tab <-//
-typedef struct scene_tab_t {
+typedef struct scene_tab_s {
     int id_scene;
     void (* scene)(csfml_t *);
 }scene_tab_t;
 
 //-> pause menu <-//
-typedef struct pause_back_t {
-    sfTexture *t_back;
-    sfSprite *s_back;
-}pause_back_t;
+typedef struct background_s {
+    sfTexture *tx_back;
+    sfSprite *sp_back;
+}background_t;
 
-typedef struct pause_menu_t {
-    pause_back_t back;
+typedef struct pause_menu_s {
+    background_t back;
 }pause_menu_t;
 
 //-> game menu <-//
-typedef struct game_scene_t {
+typedef struct game_scene_s {
     char *map_file;
     char *map;
     sfVector2f starting_pos;
 }game_scene_t;
 
-typedef struct game_menu_t {
+typedef struct game_menu_s {
     game_scene_t first_scene;
     sfTexture *texture_tile;
     sfSprite *tile;
@@ -59,16 +59,11 @@ typedef struct button_s {
     void (* hover)(button_t *, csfml_t *);
 }button_t;
 
-typedef struct start_back_t {
-    sfTexture *tx_back;
-    sfSprite *sp_back;
+typedef struct start_menu_s {
+    background_t back;
+    button_t *menu_buttons;
     sfText *title;
     sfVector2f pos_title;
-}start_back_t;
-
-typedef struct start_menu_t {
-    start_back_t back;
-    button_t *menu_buttons;
 }start_menu_t;
 
 //-> principal info <-//
@@ -84,6 +79,15 @@ typedef struct player_t {
     int collision;
 }player_t;
 
+typedef struct settings_s {
+    float fx_lvl;
+    float music_lvl;
+}settings_t;
+
+typedef struct settings_menu_s {
+    background_t back;
+}settings_menu_t;
+
 typedef struct csfml_s {
     sfVideoMode mode;
     sfRenderWindow *window;
@@ -93,6 +97,7 @@ typedef struct csfml_s {
     sfFont *font_itim;
     player_t player;
     int act_scene;
+    settings_t settings;
 }csfml_t;
 
 #endif /* !SCENE_H_ */

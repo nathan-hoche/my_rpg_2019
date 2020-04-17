@@ -18,3 +18,13 @@ void action_quit_button(csfml_t *page)
 {
     page->act_scene = ID_CLOSE;
 }
+
+void action_settings_button(csfml_t *page)
+{
+    settings(page);
+}
+
+void action_howtoplay_button(csfml_t *page)
+{
+    how_to_play(page);
+}
