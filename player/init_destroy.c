@@ -16,6 +16,11 @@ void init_player(player_t *player)
     player->animation = sfClock_create();
     player->player_rect = (sfIntRect) {0, 0, 64, 64};
     player->move_direction = (sfVector2f) {0, 0};
+    sfSprite_setPosition(player->player, player->move_direction);
+    sfSprite_setTextureRect(player->player, player->player_rect);
+    player->nb_move = 0;
+    player->move_ways = 0;
+    player->collision = -1;
 }
 
 void destroy_player(player_t *player)

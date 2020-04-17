@@ -24,7 +24,7 @@ player_t *player)
 {
     sfRenderWindow_clear(window, sfWhite);
     sfRenderWindow_drawSprite(window, game->back_grass, NULL);
-    map_display(&game->first_scene, game->tile, window);
+    map_display(&game->first_scene, game->tile, player, window);
     clock_player_animation(player);
     sfRenderWindow_drawSprite(window, player->player, NULL);
     sfRenderWindow_display(window);

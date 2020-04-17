@@ -15,7 +15,8 @@ SRC	=	main.c \
 		pause_menu/pause.c \
 		game_menu/tile_mapping.c \
 		player/init_destroy.c \
-		player/player_movement.c
+		player/player_movement.c \
+		player/player_collision.c
 
 NAME	=		my_rpg
 

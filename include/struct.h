@@ -79,6 +79,9 @@ typedef struct player_t {
     sfIntRect player_rect;
     sfClock *animation;
     sfVector2f move_direction;
+    int nb_move;
+    int move_ways;
+    int collision;
 }player_t;
 
 typedef struct csfml_s {
