@@ -11,7 +11,6 @@
 
 static void start_event(csfml_t *page, start_menu_t *start)
 {
-
     for (int i = 0; page->event.type == sfEvtMouseButtonPressed && \
     i < NB_START_MENU_B; i++) {
         if (button_obj_is_hover(&start->menu_buttons[i], page->window) && \

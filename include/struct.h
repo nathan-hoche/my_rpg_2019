@@ -68,7 +68,7 @@ typedef struct start_menu_s {
 
 //-> principal info <-//
 
-typedef struct player_s {
+typedef struct player_t {
     sfTexture *texture_player;
     sfSprite *player;
     sfIntRect player_rect;
@@ -86,6 +86,12 @@ typedef struct settings_s {
 typedef struct settings_menu_s {
     background_t back;
 }settings_menu_t;
+
+    sfVector2f move_direction;
+    int nb_move;
+    int move_ways;
+    int collision;
+}player_t;
 
 typedef struct csfml_s {
     sfVideoMode mode;
