@@ -21,7 +21,7 @@
 #define ID_CLOSE (0)
 #define ID_START_MENU (1)
 #define ID_GAME (2)
-#define NB_START_MENU_B (2)
+#define NB_START_MENU_B (4)
 
 void game_menu(csfml_t *page);
 void start_menu(csfml_t *page);
@@ -37,8 +37,12 @@ void destroy_player(player_t *player);
 void player_orientation(sfEvent event, player_t *player);
 void action_start_button(csfml_t *page);
 void action_quit_button(csfml_t *page);
+void action_settings_button(csfml_t *page);
+void action_howtoplay_button(csfml_t *page);
 void action_button_hover(button_t *button, csfml_t *core);
 void check_buttons_hover(start_menu_t *start, csfml_t *page);
 int button_obj_is_hover(button_t *button, sfRenderWindow *window);
+void settings(csfml_t *general);
+void how_to_play(csfml_t *general);
 
 #endif /* !MY_RPG_H_ */

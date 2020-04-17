@@ -16,6 +16,8 @@ static void main_initialization(csfml_t *page)
     page->button = make_texture("src/button.png");
     page->size_button.x = 285;
     page->size_button.y = 110;
+    page->settings.fx_lvl = 60;
+    page->settings.fx_lvl = 60;
     page->font_itim = sfFont_createFromFile("src/font_itim.ttf");
     page->act_scene = 1;
     init_player(&page->player);
@@ -30,7 +32,7 @@ static void main_destroy(csfml_t *page)
     destroy_player(&page->player);
 }
 
-static int game_loop(void)
+static int main_loop(void)
 {
     csfml_t page;
 
@@ -48,6 +50,6 @@ static int game_loop(void)
 
 int main(int ac, char **av)
 {
-    game_loop();
+    main_loop();
     return (0);
 }
