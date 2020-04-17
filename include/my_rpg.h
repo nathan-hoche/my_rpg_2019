@@ -45,9 +45,6 @@ void check_buttons_hover(start_menu_t *start, csfml_t *page);
 int button_obj_is_hover(button_t *button, sfRenderWindow *window);
 void settings(csfml_t *general);
 void how_to_play(csfml_t *general);
-void action_button_hover(button_t *button, csfml_t *core);
-void check_buttons_hover(start_menu_t *start, csfml_t *page);
-int button_obj_is_hover(button_t *button, sfRenderWindow *window);
 void player_check_collision(player_t *player, sfVector2f pos_block);
 
 #endif /* !MY_RPG_H_ */

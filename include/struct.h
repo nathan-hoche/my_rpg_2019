@@ -73,9 +73,10 @@ typedef struct player_t {
     sfSprite *player;
     sfIntRect player_rect;
     sfClock *animation;
-    //ici valeur pb
     sfVector2f move_direction;
-    //ici valeur pb
+    int nb_move;
+    int move_ways;
+    int collision;
 }player_t;
 
 typedef struct settings_s {
@@ -86,12 +87,6 @@ typedef struct settings_s {
 typedef struct settings_menu_s {
     background_t back;
 }settings_menu_t;
-
-    sfVector2f move_direction;
-    int nb_move;
-    int move_ways;
-    int collision;
-}player_t;
 
 typedef struct csfml_s {
     sfVideoMode mode;

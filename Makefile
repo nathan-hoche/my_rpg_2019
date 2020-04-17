@@ -16,11 +16,8 @@ SRC	=	main.c \
 		settings_menu/settings.c \
 		howtoplay_menu/how_to_play.c \
 		game_menu/tile_mapping.c \
+		player/player_movement.c\
 		player/init_destroy.c \
-		player/player_movement.c
-		game_menu/tile_mapping.c \
-		player/init_destroy.c \
-		player/player_movement.c \
 		player/player_collision.c
 
 NAME	=		my_rpg
