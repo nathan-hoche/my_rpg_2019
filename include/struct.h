@@ -66,18 +66,13 @@ typedef struct start_menu_s {
     sfVector2f pos_title;
 }start_menu_t;
 
-//-> principal info <-//
+//-> how to play <-//
 
-typedef struct player_t {
-    sfTexture *texture_player;
-    sfSprite *player;
-    sfIntRect player_rect;
-    sfClock *animation;
-    sfVector2f move_direction;
-    int nb_move;
-    int move_ways;
-    int collision;
-}player_t;
+typedef struct htp_menu_t {
+    background_t back;
+}htp_menu_t;
+
+//-> settings <-//
 
 typedef struct settings_s {
     float fx_lvl;
@@ -87,6 +82,27 @@ typedef struct settings_s {
 typedef struct settings_menu_s {
     background_t back;
 }settings_menu_t;
+
+//-> skin <-//
+
+typedef struct skin_menu_t {
+    background_t back;
+}skin_menu_t;
+
+//-> principal info <-//
+
+
+typedef struct player_t {
+    sfTexture *texture_male;
+    sfTexture *texture_female;
+    sfSprite *player;
+    sfIntRect player_rect;
+    sfClock *animation;
+    sfVector2f move_direction;
+    int nb_move;
+    int move_ways;
+    int collision;
+}player_t;
 
 typedef struct csfml_s {
     sfVideoMode mode;

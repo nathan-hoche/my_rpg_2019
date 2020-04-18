@@ -40,8 +40,8 @@ void map_display(game_scene_t *scene, sfSprite *tile, \
 player_t *player, sfRenderWindow *window)
 {
     sfVector2f tile_pos;
-    int rows[3] = {0, 32, 32*5};
-    int cols[3] = {0, 0, 32*5};
+    int rows[3] = {0, 32, 32 * 5};
+    int cols[3] = {0, 0, 32 * 5};
     char tmp = 0;
 
     tile_pos = (sfVector2f) {0, 0};
@@ -51,8 +51,8 @@ player_t *player, sfRenderWindow *window)
             tile_pos = (sfVector2f) {-32, tile_pos.y + 32};
         else if (tmp != ' ') {
             sfSprite_setPosition(tile, tile_pos);
-            sfSprite_setTextureRect(tile, (sfIntRect) {rows[tmp-48], \
-            cols[tmp-48], 32, 32});
+            sfSprite_setTextureRect(tile, (sfIntRect) {rows[tmp - 48], \
+            cols[tmp - 48], 32, 32});
             sfRenderWindow_drawSprite(window, tile, NULL);
             if (tmp == '1')
                 player_check_collision(player, tile_pos);

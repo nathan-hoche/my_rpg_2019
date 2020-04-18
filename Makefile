@@ -18,7 +18,9 @@ SRC	=	main.c \
 		game_menu/tile_mapping.c \
 		player/player_movement.c\
 		player/init_destroy.c \
-		player/player_collision.c
+		player/player_collision.c \
+		choose_skin/choose_skin.c \
+		choose_skin/event_skin.c
 
 NAME	=		my_rpg
 

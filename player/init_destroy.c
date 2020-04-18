@@ -11,8 +11,9 @@
 
 void init_player(player_t *player)
 {
-    player->texture_player = make_texture("src/perso.png");
-    player->player = make_sprite(player->texture_player);
+    player->texture_male = make_texture("src/male.png");
+    player->texture_male = make_texture("src/female.png");
+    player->player = make_sprite(player->texture_male);
     player->animation = sfClock_create();
     player->player_rect = (sfIntRect) {0, 0, 64, 64};
     player->move_direction = (sfVector2f) {0, 0};
@@ -27,5 +28,6 @@ void destroy_player(player_t *player)
 {
     sfClock_destroy(player->animation);
     sfSprite_destroy(player->player);
-    sfTexture_destroy(player->texture_player);
+    sfTexture_destroy(player->texture_female);
+    sfTexture_destroy(player->texture_male);
 }

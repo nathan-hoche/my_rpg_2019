@@ -22,6 +22,7 @@
 #define ID_START_MENU (1)
 #define ID_GAME (2)
 #define NB_START_MENU_B (4)
+#define NB_TEXTURE_PLAYER (2)
 
 void game_menu(csfml_t *page);
 void start_menu(csfml_t *page);
@@ -46,5 +47,7 @@ int button_obj_is_hover(button_t *button, sfRenderWindow *window);
 void player_check_collision(player_t *player, sfVector2f pos_block);
 void settings(csfml_t *page);
 void how_to_play(csfml_t *page);
+void event_skin(csfml_t *page);
+void skin(csfml_t *page);
 
 #endif /* !MY_RPG_H_ */

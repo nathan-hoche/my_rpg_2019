@@ -35,7 +35,7 @@ void player_orientation(sfEvent event, player_t *player)
     int key[4] = {sfKeyS, sfKeyQ, sfKeyD, sfKeyZ};
     int way[4] = {0, 64, 128, 192};
 
-    for (int i = 0; i != 4;i++)
+    for (int i = 0; i != 4; i++)
         if (event.key.code == key[i] && \
         event.type == sfEvtKeyPressed) {
             player->player_rect.top = way[i];

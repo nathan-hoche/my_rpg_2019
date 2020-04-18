@@ -9,7 +9,7 @@
 #include "my.h"
 #include "struct.h"
 
-static int pause_event(csfml_t *page)
+static int htp_event(csfml_t *page)
 {
     if (page->event.type == sfEvtClosed) {
         page->act_scene = ID_CLOSE;
@@ -21,35 +21,35 @@ static int pause_event(csfml_t *page)
     return (1);
 }
 
-static void pause_display(pause_menu_t *pause, sfRenderWindow *window)
+static void htp_display(htp_menu_t *htp, sfRenderWindow *window)
 {
     sfRenderWindow_clear(window, sfWhite);
-    sfRenderWindow_drawSprite(window, pause->back.sp_back, NULL);
+    sfRenderWindow_drawSprite(window, htp->back.sp_back, NULL);
     sfRenderWindow_display(window);
 }
 
-static void pause_initialize(pause_menu_t *pause)
+static void htp_initialize(htp_menu_t *htp)
 {
-    pause->back.tx_back = make_texture("src/space.png");
-    pause->back.sp_back = make_sprite(pause->back.tx_back);
+    htp->back.tx_back = make_texture("src/space.png");
+    htp->back.sp_back = make_sprite(htp->back.tx_back);
 }
 
-static void pause_destroy(pause_menu_t *pause)
+static void htp_destroy(htp_menu_t *htp)
 {
-    sfSprite_destroy(pause->back.sp_back);
-    sfTexture_destroy(pause->back.tx_back);
+    sfSprite_destroy(htp->back.sp_back);
+    sfTexture_destroy(htp->back.tx_back);
 }
 
 void how_to_play(csfml_t *page)
 {
-    pause_menu_t htp;
+    htp_menu_t htp;
     int active = 1;
 
-    pause_initialize(&htp);
+    htp_initialize(&htp);
     while (active != 0) {
-        pause_display(&htp, page->window);
+        htp_display(&htp, page->window);
         if (sfRenderWindow_pollEvent(page->window, &page->event))
-            active = pause_event(page);
+            active = htp_event(page);
     }
-    pause_destroy(&htp);
+    htp_destroy(&htp);
 }
