@@ -36,24 +36,27 @@ void init_game_scene(game_scene_t *scene)
     init_map(scene);
 }
 
-void map_display(game_scene_t *scene, sfSprite *tile, sfRenderWindow *window)
+void map_display(game_scene_t *scene, sfSprite *tile, \
+player_t *player, sfRenderWindow *window)
 {
     sfVector2f tile_pos;
-    int rows[3] = {0, 32, 32*5};
-    int cols[3] = {0, 0, 32*5};
+    int rows[3] = {0, 32, 32 * 5};
+    int cols[3] = {0, 0, 32 * 5};
     char tmp = 0;
 
     tile_pos = (sfVector2f) {0, 0};
     for (int i = 0; scene->map != NULL && scene->map[i] != '\0'; i++) {
         tmp = scene->map[i];
-        if (scene->map[i] == '\n')
-            tile_pos = (sfVector2f) {-32, tile_pos.y + 32};
-        else if (scene->map[i] != ' ') {
+        if (tmp == '\n')
+            tile_pos = (sfVector2f) {-MAP_BLOC_SIZE_X, tile_pos.y + MAP_BLOC_SIZE_Y};
+        else if (tmp != ' ') {
             sfSprite_setPosition(tile, tile_pos);
-            sfSprite_setTextureRect(tile, (sfIntRect) {rows[tmp-48], \
-            cols[tmp-48], 32, 32});
+            sfSprite_setTextureRect(tile, (sfIntRect) \
+                {rows[tmp - 48], cols[tmp - 48], MAP_BLOC_SIZE_X, MAP_BLOC_SIZE_Y});
             sfRenderWindow_drawSprite(window, tile, NULL);
+            if (tmp == '1')
+                player_check_collision(player, tile_pos);
         }
-        tile_pos.x += 32;
+        tile_pos.x += MAP_BLOC_SIZE_X;
     }
 }

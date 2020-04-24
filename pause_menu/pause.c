@@ -15,8 +15,8 @@ static int pause_event(csfml_t *page)
         page->act_scene = ID_CLOSE;
         return (0);
     }
-    else if (page->event.key.code == sfKeyEscape && \
-    page->event.type == sfEvtKeyPressed)
+    else if (page->event.type == sfEvtKeyPressed && \
+    page->event.key.code == sfKeyEscape)
         return (0);
     return (1);
 }
@@ -24,23 +24,23 @@ static int pause_event(csfml_t *page)
 static void pause_display(pause_menu_t *pause, sfRenderWindow *window)
 {
     sfRenderWindow_clear(window, sfWhite);
-    sfRenderWindow_drawSprite(window, pause->back.s_back, NULL);
+    sfRenderWindow_drawSprite(window, pause->back.sp_back, NULL);
     sfRenderWindow_display(window);
 }
 
 static void pause_initialize(pause_menu_t *pause)
 {
-    pause->back.t_back = make_texture("src/space.png");
-    pause->back.s_back = make_sprite(pause->back.t_back);
+    pause->back.tx_back = make_texture(BACKGROUND_1);
+    pause->back.sp_back = make_sprite(pause->back.tx_back);
 }
 
 static void pause_destroy(pause_menu_t *pause)
 {
-    sfSprite_destroy(pause->back.s_back);
-    sfTexture_destroy(pause->back.t_back);
+    sfSprite_destroy(pause->back.sp_back);
+    sfTexture_destroy(pause->back.tx_back);
 }
 
-void pause_menu (csfml_t *page)
+void pause_menu(csfml_t *page)
 {
     pause_menu_t pause;
     int active = 1;
@@ -48,7 +48,8 @@ void pause_menu (csfml_t *page)
     pause_initialize(&pause);
     while (active != 0) {
         pause_display(&pause, page->window);
-        if (sfRenderWindow_pollEvent(page->window, &page->event))
+        while (sfRenderWindow_pollEvent(page->window, &page->event) && \
+        active != 0)
             active = pause_event(page);
     }
     pause_destroy(&pause);

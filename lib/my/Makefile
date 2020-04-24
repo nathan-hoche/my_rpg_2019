@@ -12,6 +12,7 @@ SRC	=	initialize_window.c \
 		button_is_clicked.c \
 		my_getstr.c \
 		my_revstr.c \
+		my_getnbr.c \
 		my_strcat.c
 
 OBJ	=	$(SRC:.c=.o)
