@@ -45,6 +45,7 @@ void pause_menu(csfml_t *page)
     pause_menu_t pause;
     int active = 1;
 
+    sfRenderWindow_setView(page->window, page->views.default_view);
     pause_initialize(&pause);
     while (active != 0) {
         pause_display(&pause, page->window);
@@ -53,4 +54,5 @@ void pause_menu(csfml_t *page)
             active = pause_event(page);
     }
     pause_destroy(&pause);
+    sfRenderWindow_setView(page->window, page->views.actual_view);
 }
