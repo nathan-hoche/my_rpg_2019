@@ -20,6 +20,7 @@ SRC	=	main.c \
 		settings_menu/buttons_actions.c \
 		settings_menu/init_settings.c \
 		howtoplay_menu/how_to_play.c \
+		fight_system/fight_core.c \
 		player/player_movement.c\
 		player/init_destroy.c \
 		player/player_collision.c \
