@@ -93,4 +93,6 @@ void how_to_play(csfml_t *page);
 void event_skin(csfml_t *page);
 void skin(csfml_t *page);
 
+void fight_core(csfml_t *page, game_menu_t *game);
+
 #endif /* !MY_RPG_H_ */
