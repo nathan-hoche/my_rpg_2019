@@ -29,7 +29,8 @@
 
 #define MAP_SP_SHEET "src/tile.png"
 
-#define MAP_FILE_1 "map/map.txt"
+#define MAP_L01_FILE "map/map_layer01.txt"
+#define MAP_L02_FILE "map/map_layer02.txt"
 
 #define MAP_GROUND_1 "src/grass.png"
 
@@ -56,6 +57,7 @@
 #define MAP_BLOC_SIZE_X 32
 #define MAP_BLOC_SIZE_Y 32
 
+#define CAM_DEFAULT_ZOOM 0.6
 
 void game_menu(csfml_t *page);
 void start_menu(csfml_t *page);
@@ -63,8 +65,7 @@ void start_initialize(start_menu_t *start, csfml_t *page);
 void pause_menu(csfml_t *page);
 void initialize_window(csfml_t *page);
 void init_game_scene(game_scene_t *scene);
-void map_display(game_scene_t *scene, sfSprite *tile, \
-player_t *player, sfRenderWindow *window);
+void map_display(char *map, game_scene_t *scene, sfSprite *tile, csfml_t *general);
 void init_player(player_t *player);
 void init_destroy(player_t *player);
 void clock_player_animation(player_t *player);

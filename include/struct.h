@@ -56,13 +56,15 @@ typedef struct pause_menu_s {
 
 //-> GAME SCENE <-///////////////////////////////
 typedef struct game_scene_s {
-    char *map_file;
-    char *map;
+    char *map_layer01_file;
+    char *map_layer02_file;
+    char *map_layer01;
+    char *map_layer02;
     sfVector2f starting_pos;
 }game_scene_t;
 
 typedef struct game_menu_s {
-    int on_fight;
+    int on_fight_zoom;
     sfClock *cam_clock;
     game_scene_t first_scene;
     sfTexture *texture_tile;
@@ -126,9 +128,16 @@ typedef struct player_t {
     int collision;
 }player_t;
 
+typedef struct views_s {
+    sfView const *default_view;
+    sfView *default_player_view;
+    sfView *actual_view;
+}views_t;
+
+
 typedef struct csfml_s {
     sfVideoMode mode;
-    sfView *view;
+    views_t views;
     sfRenderWindow *window;
     sfEvent event;
     sfTexture *button_1;

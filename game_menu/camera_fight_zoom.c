@@ -19,16 +19,16 @@ void camera_fight_zoom(game_menu_t *game, csfml_t *page)
         game->cam_clock = sfClock_create();
     state = 2;
     time = sfClock_getElapsedTime(game->cam_clock);
-    if (time.microseconds >= 100) {
-        page->view = sfRenderWindow_getView(page->window);
-        sfView_zoom(page->view, 0.99);
-        sfRenderWindow_setView(page->window, page->view);
+    if (time.microseconds >= 50) {
+        sfView_zoom(page->views.actual_view, 0.98);
+        sfRenderWindow_setView(page->window, page->views.actual_view);
         times++;
     }
-    if (times == 180) {
+    if (times == 60) {
         times = 0;
-        game->on_fight = 0;
+        state = 1;
+        game->on_fight_zoom = 0;
         sfClock_destroy(game->cam_clock);
-        state = 0;
+        page->views.actual_view = sfView_copy(page->views.default_player_view);
     }
 }

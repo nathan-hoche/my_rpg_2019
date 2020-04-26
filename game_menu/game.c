@@ -18,27 +18,29 @@ static void game_event(csfml_t *page, game_menu_t *game)
         pause_menu(page);
     else if (page->event.key.code == sfKeyE && \
     page->event.type == sfEvtKeyPressed)
-        game->on_fight = 1;
-
+        game->on_fight_zoom = 1;
     player_orientation(page->event, &page->player);
 }
 
 static void camera_view(game_menu_t *game, csfml_t *page)
 {
-    sfVector2f test = sfSprite_getPosition(page->player.player);
+    sfVector2f player_pos = sfSprite_getPosition(page->player.player);
 
-    sfView_setCenter(page->view, test);
-    sfRenderWindow_setView(page->window, page->view);
+    sfView_setCenter(page->views.actual_view, player_pos);
+    sfRenderWindow_setView(page->window, page->views.actual_view);
 }
 
 static void game_display(game_menu_t *game, csfml_t *page)
 {
     sfRenderWindow_clear(page->window, sfBlack);
     sfRenderWindow_drawSprite(page->window, game->back_grass, NULL);
-    map_display(&game->first_scene, game->tile, &page->player, page->window);
+    map_display(game->first_scene.map_layer01, &game->first_scene, \
+        game->tile, page);
+    map_display(game->first_scene.map_layer02, &game->first_scene, \
+        game->tile, page);
     clock_player_animation(&page->player);
     sfRenderWindow_drawSprite(page->window, page->player.player, NULL);
-    if (game->on_fight == 0)
+    if (game->on_fight_zoom == 0)
         camera_view(game, page);
     else
         camera_fight_zoom(game, page);
@@ -47,16 +49,19 @@ static void game_display(game_menu_t *game, csfml_t *page)
 
 static void game_initialize(game_menu_t *game, csfml_t *page)
 {
-    game->first_scene.map_file = MAP_FILE_1;
+    game->first_scene.map_layer01_file = MAP_L01_FILE;
+    game->first_scene.map_layer02_file = MAP_L02_FILE;
     init_game_scene(&game->first_scene);
     game->texture_tile = make_texture(MAP_SP_SHEET);
     game->tile = make_sprite(game->texture_tile);
     game->grass = make_texture(MAP_GROUND_1);
     game->back_grass = make_sprite(game->grass);
-    page->view = sfRenderWindow_getView(page->window);
-    sfView_zoom(page->view, 0.8);
-    sfRenderWindow_setView(page->window, page->view);
-    game->on_fight = 0;
+    page->views.default_view = sfRenderWindow_getDefaultView(page->window);
+    page->views.actual_view = sfView_copy(page->views.default_view);
+    sfView_zoom(page->views.actual_view, CAM_DEFAULT_ZOOM);
+    page->views.default_player_view = sfView_copy(page->views.actual_view);
+    sfRenderWindow_setView(page->window, page->views.actual_view);
+    game->on_fight_zoom = 0;
 }
 
 void game_menu(csfml_t *page)
