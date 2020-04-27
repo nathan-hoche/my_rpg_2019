@@ -29,13 +29,17 @@ static void skin_display(skin_menu_t *skin, sfRenderWindow *window)
     sfRenderWindow_drawSprite(window, skin->back.sp_back, NULL);
     sfRenderWindow_drawSprite(window, skin->male, NULL);
     sfRenderWindow_drawSprite(window, skin->female, NULL);
+    sfRenderWindow_drawText(window, skin->title, NULL);
     sfRenderWindow_display(window);
 }
 
-static void skin_initialize(skin_menu_t *skin, player_t *player)
+static void skin_initialize(skin_menu_t *skin, player_t *player, \
+sfFont *font)
 {
     skin->back.tx_back = make_texture("src/space.png");
     skin->back.sp_back = make_sprite(skin->back.tx_back);
+    skin->title = make_text(font, "Choose your skin!", \
+    (sfVector2f) {640, 40} , 80);
     skin->female = make_sprite(player->texture_female);
     skin->male = make_sprite(player->texture_male);
     sfSprite_setTextureRect(skin->female, player->player_rect);
@@ -59,7 +63,7 @@ void skin(csfml_t *page)
     skin_menu_t skin;
     int active = 1;
 
-    skin_initialize(&skin, &page->player);
+    skin_initialize(&skin, &page->player, page->font_itim);
     while (active != 0) {
         skin_display(&skin, page->window);
         while (sfRenderWindow_pollEvent(page->window, &page->event) \

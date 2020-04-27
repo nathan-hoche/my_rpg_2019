@@ -107,6 +107,7 @@ typedef struct skin_menu_t {
     background_t back;
     sfSprite *female;
     sfSprite *male;
+    sfText *title;
 }skin_menu_t;
 
 //-> PRINCIPAL INFORMATION <-////////////////////
