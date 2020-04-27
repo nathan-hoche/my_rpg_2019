@@ -105,6 +105,8 @@ typedef struct settings_menu_s {
 
 typedef struct skin_menu_t {
     background_t back;
+    sfSprite *female;
+    sfSprite *male;
 }skin_menu_t;
 
 //-> PRINCIPAL INFORMATION <-////////////////////
@@ -119,6 +121,7 @@ typedef struct player_t {
     int nb_move;
     int move_ways;
     int collision;
+    int gender;
 }player_t;
 
 typedef struct views_s {

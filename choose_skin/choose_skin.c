@@ -17,8 +17,9 @@ static int skin_event(csfml_t *page)
     } else if (page->event.key.code == sfKeyEscape && \
     page->event.type == sfEvtKeyPressed)
         return (0);
-    else
-        event_skin(page);
+    if (page->event.key.code == sfMouseLeft && \
+        page->event.type == sfEvtMouseButtonPressed)
+        return (event_skin(page));
     return (1);
 }
 
@@ -26,18 +27,30 @@ static void skin_display(skin_menu_t *skin, sfRenderWindow *window)
 {
     sfRenderWindow_clear(window, sfWhite);
     sfRenderWindow_drawSprite(window, skin->back.sp_back, NULL);
+    sfRenderWindow_drawSprite(window, skin->male, NULL);
+    sfRenderWindow_drawSprite(window, skin->female, NULL);
     sfRenderWindow_display(window);
 }
 
-static void skin_initialize(skin_menu_t *skin)
+static void skin_initialize(skin_menu_t *skin, player_t *player)
 {
     skin->back.tx_back = make_texture("src/space.png");
     skin->back.sp_back = make_sprite(skin->back.tx_back);
+    skin->female = make_sprite(player->texture_female);
+    skin->male = make_sprite(player->texture_male);
+    sfSprite_setTextureRect(skin->female, player->player_rect);
+    sfSprite_setTextureRect(skin->male, player->player_rect);
+    sfSprite_setPosition(skin->female, (sfVector2f) {600, 300});
+    sfSprite_setPosition(skin->male, (sfVector2f) {1050, 300});
+    sfSprite_setScale(skin->male, (sfVector2f) {4, 4});
+    sfSprite_setScale(skin->female, (sfVector2f) {4, 4});
 }
 
 static void skin_destroy(skin_menu_t *skin)
 {
     sfSprite_destroy(skin->back.sp_back);
+    sfSprite_destroy(skin->male);
+    sfSprite_destroy(skin->female);
     sfTexture_destroy(skin->back.tx_back);
 }
 
@@ -46,10 +59,11 @@ void skin(csfml_t *page)
     skin_menu_t skin;
     int active = 1;
 
-    skin_initialize(&skin);
+    skin_initialize(&skin, &page->player);
     while (active != 0) {
         skin_display(&skin, page->window);
-        if (sfRenderWindow_pollEvent(page->window, &page->event))
+        while (sfRenderWindow_pollEvent(page->window, &page->event) \
+        && active != 0)
             active = skin_event(page);
     }
     skin_destroy(&skin);
