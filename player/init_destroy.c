@@ -17,7 +17,8 @@ void init_player(player_t *player)
     player->animation = sfClock_create();
     player->player_rect = (sfIntRect)
         {0, 0, PLAYER_SP_SIZ_X, PLAYER_SP_SIZ_Y};
-    player->move_direction = (sfVector2f) {0, 0};
+    player->move_direction = (sfVector2f) \
+        {PLAYER_SPAWN_POS_X, PLAYER_SPAWN_POS_Y};
     sfSprite_setPosition(player->player, player->move_direction);
     sfSprite_setTextureRect(player->player, player->player_rect);
     player->nb_move = 0;
