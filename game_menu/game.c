@@ -18,7 +18,7 @@ static void game_event(csfml_t *page, game_menu_t *game)
         pause_menu(page);
     else if (page->event.key.code == sfKeyE && \
     page->event.type == sfEvtKeyPressed)
-        game->on_fight_zoom = 1;
+        game->on_fight = 1;
     player_orientation(page->event, &page->player);
 }
 
@@ -40,10 +40,10 @@ static void game_display(game_menu_t *game, csfml_t *page)
         game->tile, page);
     clock_player_animation(&page->player);
     sfRenderWindow_drawSprite(page->window, page->player.player, NULL);
-    if (game->on_fight_zoom == 0)
+    if (game->on_fight == 0)
         camera_view(game, page);
     else
-        camera_fight_zoom(game, page);
+        start_fight(game, page);
     sfRenderWindow_display(page->window);
 }
 
@@ -61,7 +61,7 @@ static void game_initialize(game_menu_t *game, csfml_t *page)
     sfView_zoom(page->views.actual_view, CAM_DEFAULT_ZOOM);
     page->views.default_player_view = sfView_copy(page->views.actual_view);
     sfRenderWindow_setView(page->window, page->views.actual_view);
-    game->on_fight_zoom = 0;
+    game->on_fight = 0;
 }
 
 void game_menu(csfml_t *page)

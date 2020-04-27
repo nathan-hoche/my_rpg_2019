@@ -10,6 +10,7 @@ SRC	=	main.c \
 		game_menu/game.c \
 		game_menu/tile_mapping.c \
 		game_menu/free_game_res.c \
+		game_menu/fight_start.c \
 		game_menu/camera_fight_zoom.c \
 		start_menu/start.c \
 		start_menu/init_start.c \
@@ -21,6 +22,8 @@ SRC	=	main.c \
 		settings_menu/init_settings.c \
 		howtoplay_menu/how_to_play.c \
 		fight_system/fight_core.c \
+		fight_system/fight_init.c \
+		fight_system/fight_destroy.c \
 		player/player_movement.c\
 		player/init_destroy.c \
 		player/player_collision.c \

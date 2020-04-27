@@ -34,7 +34,7 @@
 
 #define MAP_GROUND_1 "src/grass.png"
 
-#define FIGHT_BACK_1 "src/background.png"
+#define FIGHT_BACK_1 "src/set_fight/background.png"
 
 #define PLAYER_SPAWN_POS_X (0)
 #define PLAYER_SPAWN_POS_Y (0)
@@ -63,6 +63,8 @@
 #define BLOCK_SIZE_Y (32)
 
 #define CAM_DEFAULT_ZOOM (0.6)
+
+#define FIGHT_BUTTONS_TEXTR "src/set_fight/buttons.png"
 
 void initialize_window(csfml_t *page);
 void start_menu(csfml_t *page);
@@ -101,7 +103,12 @@ int action_return(csfml_t *page);
 
 void how_to_play(csfml_t *page);
 
-void camera_fight_zoom(game_menu_t *game, csfml_t *page);
+void start_fight(game_menu_t *game, csfml_t *page);
+int camera_fight_zoom(game_menu_t *game, csfml_t *page);
+
+void fight_initialize(fight_scene_t *fight, csfml_t *general);
+void fight_core(csfml_t *general, game_menu_t *game);
+void fight_destroy(fight_scene_t *fight);
 
 void event_skin(csfml_t *page);
 

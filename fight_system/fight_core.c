@@ -9,50 +9,65 @@
 #include "my.h"
 #include "struct.h"
 
-static int fight_event(csfml_t *page)
+static int fight_event(csfml_t *general)
 {
-    if (page->event.type == sfEvtClosed) {
-        page->act_scene = ID_CLOSE;
+    if (general->event.type == sfEvtClosed) {
+        general->act_scene = ID_CLOSE;
         return (0);
     }
-    else if (page->event.type == sfEvtKeyPressed && \
-    page->event.key.code == sfKeyEscape)
+    else if (general->event.type == sfEvtKeyPressed && \
+    general->event.key.code == sfKeyEscape)
         return (0);
     return (1);
 }
 
-static void fight_display(pause_menu_t *pause, sfRenderWindow *window)
+static void display_life_area(info_area_t *area, sfRenderWindow *window)
+{
+    sfRenderWindow_drawText(window, area->player_life_area.life_txt, NULL);
+    sfRenderWindow_drawText(window, area->enemy_life_area.life_txt, NULL);
+    sfRenderWindow_drawText(window, area->player_life_area.name, NULL);
+    sfRenderWindow_drawText(window, area->enemy_life_area.name, NULL);
+    sfRenderWindow_drawText(window, area->player_life_area.life_val, NULL);
+    sfRenderWindow_drawText(window, area->enemy_life_area.life_val, NULL);
+}
+
+static void display_stats_area(info_area_t *area, sfRenderWindow *window)
+{
+    sfRenderWindow_drawText(window, area->player_stats_area.name, NULL);
+    sfRenderWindow_drawText(window, area->player_stats_area.atk_txt, NULL);
+    sfRenderWindow_drawText(window, area->player_stats_area.atk_val, NULL);
+    sfRenderWindow_drawText(window, area->player_stats_area.shld_txt, NULL);
+    sfRenderWindow_drawText(window, area->player_stats_area.shld_val, NULL);
+    sfRenderWindow_drawText(window, area->enemy_stats_area.name, NULL);
+    sfRenderWindow_drawText(window, area->enemy_stats_area.atk_txt, NULL);
+    sfRenderWindow_drawText(window, area->enemy_stats_area.atk_val, NULL);
+    sfRenderWindow_drawText(window, area->enemy_stats_area.shld_txt, NULL);
+    sfRenderWindow_drawText(window, area->enemy_stats_area.shld_val, NULL);
+}
+
+static void fight_display(fight_scene_t *fight, sfRenderWindow *window, \
+csfml_t *general)
 {
     sfRenderWindow_clear(window, sfWhite);
-    sfRenderWindow_drawSprite(window, pause->back.sp_back, NULL);
+    sfRenderWindow_drawSprite(window, fight->back.sp_back, NULL);
+    display_life_area(&fight->info_area, window);
+    display_stats_area(&fight->info_area, window);
     sfRenderWindow_display(window);
 }
 
-static void fight_initialize(pause_menu_t *pause)
+void fight_core(csfml_t *general, game_menu_t *game)
 {
-    pause->back.tx_back = make_texture(BACKGROUND_1);
-    pause->back.sp_back = make_sprite(pause->back.tx_back);
-}
-
-static void fight_destroy(pause_menu_t *pause)
-{
-    sfSprite_destroy(pause->back.sp_back);
-    sfTexture_destroy(pause->back.tx_back);
-}
-
-void fight_core(csfml_t *page, game_menu_t *game)
-{
-    pause_menu_t pause;
+    fight_scene_t fight;
     int active = 1;
 
-    sfRenderWindow_setView(page->window, page->views.default_view);
-    fight_initialize(&pause);
+    sfRenderWindow_setView(general->window, general->views.default_view);
+    fight_initialize(&fight, general);
     while (active != 0) {
-        fight_display(&pause, page->window);
-        while (sfRenderWindow_pollEvent(page->window, &page->event) && \
-        active != 0 && page->act_scene != ID_CLOSE)
-            active = fight_event(page);
+        fight_display(&fight, general->window, general);
+        while (sfRenderWindow_pollEvent(general->window, &general->event) && \
+        active != 0 && general->act_scene != ID_CLOSE)
+            active = fight_event(general);
     }
-    fight_destroy(&pause);
-    sfRenderWindow_setView(page->window, page->views.actual_view);
+    fight_destroy(&fight);
+    sfRenderWindow_setView(general->window, general->views.actual_view);
 }

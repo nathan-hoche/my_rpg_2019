@@ -13,6 +13,7 @@
 #include <SFML/Audio.h>
 
 typedef struct csfml_s csfml_t;
+typedef struct fight_scene_s fight_scene_t;
 
 typedef struct basic_text_s {
     sfText *text;
@@ -24,7 +25,7 @@ typedef struct background_s {
     sfSprite *sp_back;
 }background_t;
 
-//-> BASIC BUTTON <-/////////////////////////////
+//-> BASIC OBJECT BUTTON <-/////////////////////////////
 
 typedef struct button_s {
     sfSprite *sprite;
@@ -36,6 +37,7 @@ typedef struct button_s {
     int (* action)(csfml_t *);
     void (* hover)(struct button_s *, csfml_t *);
 }button_t;
+
 
 //-> SCENE TAB <-////////////////////////////////
 
@@ -61,7 +63,7 @@ typedef struct game_scene_s {
 }game_scene_t;
 
 typedef struct game_menu_s {
-    int on_fight_zoom;
+    int on_fight;
     sfClock *cam_clock;
     game_scene_t first_scene;
     sfTexture *texture_tile;
@@ -69,6 +71,45 @@ typedef struct game_menu_s {
     sfTexture *grass;
     sfSprite *back_grass;
 }game_menu_t;
+
+
+//-> FIGHT SCENE <-///////////////////////////////
+
+typedef struct life_area_s {
+    sfText *name;
+    sfText *life_txt;
+    sfText *life_val;
+}life_area_t;
+
+typedef struct stats_area_s {
+    sfText *name;
+    sfText *atk_txt;
+    sfText *atk_val;
+    sfText *shld_txt;
+    sfText *shld_val;
+}stats_area_t;
+
+typedef struct fight_buttons_s {
+    sfTexture *texture;
+    sfSprite *buttons[2];
+    int buttons_states[2];
+}fight_buttons_t;
+
+typedef struct info_area_s {
+    life_area_t player_life_area;
+    life_area_t enemy_life_area;
+    stats_area_t player_stats_area;
+    stats_area_t enemy_stats_area;
+}info_area_t;
+
+typedef struct fight_scene_s {
+    background_t back;
+    info_area_t info_area;
+    fight_buttons_t fights_buttons;
+    sfSprite *player_sp;
+    sfSprite *enemy_sp;
+}fight_scene_t;
+
 
 //-> START SCENE <-//////////////////////////////
 
@@ -79,11 +120,13 @@ typedef struct start_menu_s {
     sfVector2f pos_title;
 }start_menu_t;
 
+
 //-> HOW TO PLAY MENU <-/////////////////////////
 
 typedef struct htp_menu_t {
     background_t back;
 }htp_menu_t;
+
 
 //-> SETTINGS MENU <-////////////////////////////
 
