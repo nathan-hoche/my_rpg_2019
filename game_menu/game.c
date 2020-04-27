@@ -34,11 +34,11 @@ static void game_display(game_menu_t *game, csfml_t *page)
 {
     sfRenderWindow_clear(page->window, sfBlack);
     sfRenderWindow_drawSprite(page->window, game->back_grass, NULL);
+    clock_player_animation(&page->player);
     map_display(game->first_scene.map_layer01, &game->first_scene, \
         game->tile, page);
     map_display(game->first_scene.map_layer02, &game->first_scene, \
         game->tile, page);
-    clock_player_animation(&page->player);
     sfRenderWindow_drawSprite(page->window, page->player.player, NULL);
     if (game->on_fight_zoom == 0)
         camera_view(game, page);
