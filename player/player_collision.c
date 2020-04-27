@@ -14,7 +14,7 @@ void player_check_collision(player_t *player, sfVector2f pos_block)
     sfVector2f size;
 
     pos = player->move_direction;
-    if ((pos_block.x) <= pos.x && pos.x <= (pos_block.x + 32) && \
-    (pos_block.y) <= pos.y && pos.y <= (pos_block.y + 32))
-        player->collision = 0;
+    if ((pos.x + 16) < (pos_block.x + 32) && (pos.x + 64 - 16) > pos_block.x \
+    && (pos.y + 48 + 8) < (pos_block.y + 32) && (64 + pos.y) > pos_block.y)
+        player->collision = player->move_ways;
 }

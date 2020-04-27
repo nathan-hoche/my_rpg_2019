@@ -18,7 +18,7 @@ void clock_player_animation(player_t *player)
     if (time >= 25000 && player->nb_move != 0 && \
     player->collision != player->move_ways) {
         player->player_rect.left += 64;
-        if (player->player_rect.left >= 256)
+        if (player->player_rect.left >= 256 || player->nb_move == 1)
             player->player_rect.left = 0;
         player->move_direction.x += direction[player->move_ways][0];
         player->move_direction.y += direction[player->move_ways][1];
@@ -40,7 +40,6 @@ void player_orientation(sfEvent event, player_t *player)
         event.type == sfEvtKeyPressed) {
             player->player_rect.top = way[i];
             player->move_ways = i;
-            puts("il passe");
             player->nb_move = 4;
         }
 }

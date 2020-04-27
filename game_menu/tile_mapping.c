@@ -37,6 +37,12 @@ void init_game_scene(game_scene_t *scene)
     scene->map_layer02 = init_map(scene, MAP_L02_FILE);
 }
 
+static void block_collider(int tmp, csfml_t *general, sfVector2f tile_pos)
+{
+    if (tmp == '2')
+        player_check_collision(&general->player, tile_pos);
+}
+
 void map_display(char *map, game_scene_t *scene, sfSprite *tile, \
 csfml_t *general)
 {
@@ -55,8 +61,7 @@ csfml_t *general)
             sfSprite_setTextureRect(tile, (sfIntRect) \
 {rows[tmp - 48], cols[tmp - 48], BLOCK_SIZE_X, BLOCK_SIZE_Y});
             sfRenderWindow_drawSprite(general->window, tile, NULL);
-            if (tmp == '1')
-                player_check_collision(&general->player, tile_pos);
+            block_collider(tmp, general, tile_pos);
         }
         tile_pos.x += BLOCK_SIZE_X;
     }
