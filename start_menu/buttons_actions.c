@@ -11,7 +11,7 @@
 
 int action_start_button(csfml_t *page)
 {
-    page->act_scene = ID_GAME;
+    skin(page);
     return (0);
 }
 
