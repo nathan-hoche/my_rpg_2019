@@ -37,7 +37,8 @@ void init_game_scene(game_scene_t *scene)
     scene->map_layer02 = init_map(scene, MAP_L02_FILE);
 }
 
-void map_display(char *map, game_scene_t *scene, sfSprite *tile, csfml_t *general)
+void map_display(char *map, game_scene_t *scene, sfSprite *tile, \
+csfml_t *general)
 {
     sfVector2f tile_pos;
     int rows[7] = {0, 32, 32 * 5, 0, 32, 0, 32};
@@ -48,15 +49,15 @@ void map_display(char *map, game_scene_t *scene, sfSprite *tile, csfml_t *genera
     for (int i = 0; map != NULL && map[i] != '\0'; i++) {
         tmp = map[i];
         if (tmp == '\n')
-            tile_pos = (sfVector2f) {-MAP_BLOC_SIZE_X, tile_pos.y + MAP_BLOC_SIZE_Y};
+            tile_pos = (sfVector2f) {-BLOCK_SIZE_X, tile_pos.y + BLOCK_SIZE_Y};
         else if (tmp != ' ') {
             sfSprite_setPosition(tile, tile_pos);
             sfSprite_setTextureRect(tile, (sfIntRect) \
-                {rows[tmp - 48], cols[tmp - 48], MAP_BLOC_SIZE_X, MAP_BLOC_SIZE_Y});
+{rows[tmp - 48], cols[tmp - 48], BLOCK_SIZE_X, BLOCK_SIZE_Y});
             sfRenderWindow_drawSprite(general->window, tile, NULL);
             if (tmp == '1')
                 player_check_collision(&general->player, tile_pos);
         }
-        tile_pos.x += MAP_BLOC_SIZE_X;
+        tile_pos.x += BLOCK_SIZE_X;
     }
 }

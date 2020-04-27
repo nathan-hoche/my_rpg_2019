@@ -24,7 +24,6 @@ typedef struct background_s {
     sfSprite *sp_back;
 }background_t;
 
-
 //-> BASIC BUTTON <-/////////////////////////////
 
 typedef struct button_s {
@@ -38,7 +37,6 @@ typedef struct button_s {
     void (* hover)(struct button_s *, csfml_t *);
 }button_t;
 
-
 //-> SCENE TAB <-////////////////////////////////
 
 typedef struct scene_tab_s {
@@ -46,15 +44,14 @@ typedef struct scene_tab_s {
     void (* scene)(csfml_t *);
 }scene_tab_t;
 
-
 //-> PAUSE MENU <-///////////////////////////////
 
 typedef struct pause_menu_s {
     background_t back;
 }pause_menu_t;
 
-
 //-> GAME SCENE <-///////////////////////////////
+
 typedef struct game_scene_s {
     char *map_layer01_file;
     char *map_layer02_file;
@@ -73,7 +70,6 @@ typedef struct game_menu_s {
     sfSprite *back_grass;
 }game_menu_t;
 
-
 //-> START SCENE <-//////////////////////////////
 
 typedef struct start_menu_s {
@@ -83,13 +79,11 @@ typedef struct start_menu_s {
     sfVector2f pos_title;
 }start_menu_t;
 
-
 //-> HOW TO PLAY MENU <-/////////////////////////
 
 typedef struct htp_menu_t {
     background_t back;
 }htp_menu_t;
-
 
 //-> SETTINGS MENU <-////////////////////////////
 
@@ -106,7 +100,6 @@ typedef struct settings_menu_s {
     basic_text_t txt_music;
     basic_text_t txt_fx;
 }settings_menu_t;
-
 
 //-> SKIN MENU <-////////////////////////////////
 
@@ -133,7 +126,6 @@ typedef struct views_s {
     sfView *default_player_view;
     sfView *actual_view;
 }views_t;
-
 
 typedef struct csfml_s {
     sfVideoMode mode;

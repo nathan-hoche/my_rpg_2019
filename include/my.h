@@ -19,5 +19,6 @@ sfVector2f sprite_size, sfRenderWindow *window);
 sfText *make_text(sfFont* font, char *str, sfVector2f pos, int size);
 char *my_revstr(char *str);
 char *my_getnbr(int nb);
+char *my_strcat(char *dest, char *src);
 
 #endif /* !MY_H_ */

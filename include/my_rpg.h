@@ -19,8 +19,8 @@
 #define PLAYER_TEXTURE_2 "src/female.png"
 
 #define BUT_1_TXTR "src/button.png"
-#define BUT_1_SIZ_X 285
-#define BUT_1_SIZ_Y 110
+#define BUT_1_SIZ_X (285)
+#define BUT_1_SIZ_Y (110)
 
 #define BUT_2_TXTR "src/button_set.png"
 
@@ -34,30 +34,30 @@
 
 #define MAP_GROUND_1 "src/grass.png"
 
-#define DEFAULT_FX_LEVEL 60
-#define DEFAULT_MUSIC_LEVEL 60
+#define DEFAULT_FX_LEVEL (60)
+#define DEFAULT_MUSIC_LEVEL (60)
 
-#define BASE_WIDTH 1920
-#define BASE_HEIGHT 1080
+#define BASE_WIDTH (1920)
+#define BASE_HEIGHT (1080)
 
-#define NB_SCENE 2
-#define ID_CLOSE 0
-#define ID_START_MENU 1
-#define ID_GAME 2
+#define NB_SCENE (2)
+#define ID_CLOSE (0)
+#define ID_START_MENU (1)
+#define ID_GAME (2)
 
-#define NB_START_MENU_B 4
+#define NB_START_MENU_B (4)
 
-#define NB_SET_MENU_B 5
+#define NB_SET_MENU_B (5)
 
-#define NB_TEXTURE_PLAYER 2
+#define NB_TEXTURE_PLAYER (2)
 
-#define PLAYER_SP_SIZ_X 64
-#define PLAYER_SP_SIZ_Y 64
+#define PLAYER_SP_SIZ_X (64)
+#define PLAYER_SP_SIZ_Y (64)
 
-#define MAP_BLOC_SIZE_X 32
-#define MAP_BLOC_SIZE_Y 32
+#define BLOCK_SIZE_X (32)
+#define BLOCK_SIZE_Y (32)
 
-#define CAM_DEFAULT_ZOOM 0.6
+#define CAM_DEFAULT_ZOOM (0.6)
 
 void game_menu(csfml_t *page);
 void start_menu(csfml_t *page);
@@ -65,7 +65,8 @@ void start_initialize(start_menu_t *start, csfml_t *page);
 void pause_menu(csfml_t *page);
 void initialize_window(csfml_t *page);
 void init_game_scene(game_scene_t *scene);
-void map_display(char *map, game_scene_t *scene, sfSprite *tile, csfml_t *general);
+void map_display(char *map, game_scene_t *scene, sfSprite *tile, \
+csfml_t *general);
 void init_player(player_t *player);
 void init_destroy(player_t *player);
 void clock_player_animation(player_t *player);
