@@ -98,12 +98,9 @@ int action_minus_music(csfml_t *page);
 int action_return(csfml_t *page);
 
 void how_to_play(csfml_t *page);
-
-void camera_fight_zoom(game_menu_t *game, csfml_t *page);
-
-void event_skin(csfml_t *page);
-
+int event_skin(csfml_t *page);
 void skin(csfml_t *page);
+void camera_fight_zoom(game_menu_t *game, csfml_t *page);
 
 void fight_core(csfml_t *page, game_menu_t *game);
 
