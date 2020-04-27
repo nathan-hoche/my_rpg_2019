@@ -34,6 +34,8 @@
 
 #define MAP_GROUND_1 "src/grass.png"
 
+#define FIGHT_BACK_1 "src/background.png"
+
 #define PLAYER_SPAWN_POS_X (0)
 #define PLAYER_SPAWN_POS_Y (0)
 

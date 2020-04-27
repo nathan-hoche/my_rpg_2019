@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_rpg_2019
 ** File description:
-** play menu pause
+** fight system core
 */
 
 #include "my_rpg.h"
