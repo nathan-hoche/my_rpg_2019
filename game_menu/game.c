@@ -19,13 +19,16 @@ static void game_event(csfml_t *page, game_menu_t *game)
     else if (page->event.key.code == sfKeyE && \
     page->event.type == sfEvtKeyPressed)
         game->on_fight = 1;
-    player_orientation(page->event, &page->player);
+    if (game->on_fight == 0)
+        player_orientation(page->event, &page->player);
 }
 
 static void camera_view(game_menu_t *game, csfml_t *page)
 {
     sfVector2f player_pos = sfSprite_getPosition(page->player.player);
 
+    player_pos.x += 32;
+    player_pos.y += 32;
     sfView_setCenter(page->views.actual_view, player_pos);
     sfRenderWindow_setView(page->window, page->views.actual_view);
 }

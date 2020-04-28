@@ -115,5 +115,8 @@ void event_skin(csfml_t *page);
 void skin(csfml_t *page);
 
 void fight_core(csfml_t *page, game_menu_t *game);
+void display_infos_areas(fight_scene_t *fight, sfRenderWindow *window);
+void turn_core(fight_scene_t *fight, sfRenderWindow *window);
+
 
 #endif /* !MY_RPG_H_ */

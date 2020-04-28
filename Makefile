@@ -24,6 +24,8 @@ SRC	=	main.c \
 		fight_system/fight_core.c \
 		fight_system/fight_init.c \
 		fight_system/fight_destroy.c \
+		fight_system/display_infos_areas.c \
+		fight_system/turn_core.c \
 		player/player_movement.c\
 		player/init_destroy.c \
 		player/player_collision.c \

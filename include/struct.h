@@ -91,8 +91,11 @@ typedef struct stats_area_s {
 
 typedef struct fight_buttons_s {
     sfTexture *texture;
-    sfSprite *buttons[2];
-    int buttons_states[2];
+    sfSprite *button_atk;
+    sfText *txt_atk;
+    int state_butt_atk;
+    sfSprite *button_def;
+    sfText *txt_def;
 }fight_buttons_t;
 
 typedef struct info_area_s {
@@ -100,12 +103,14 @@ typedef struct info_area_s {
     life_area_t enemy_life_area;
     stats_area_t player_stats_area;
     stats_area_t enemy_stats_area;
+    sfText *txt_wait;
 }info_area_t;
 
 typedef struct fight_scene_s {
+    int turn_state;
     background_t back;
     info_area_t info_area;
-    fight_buttons_t fights_buttons;
+    fight_buttons_t fight_buttons;
     sfSprite *player_sp;
     sfSprite *enemy_sp;
 }fight_scene_t;
