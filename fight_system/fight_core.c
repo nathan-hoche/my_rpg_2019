@@ -21,15 +21,31 @@ static int fight_event(csfml_t *general)
     return (1);
 }
 
+static void defence_mode(fight_scene_t *fight, sfRenderWindow *window)
+{
+    if (fight->player.def == sfTrue) {
+        sfSprite_setPosition(fight->shield, fight->player.pos);
+        sfRenderWindow_drawSprite(window, fight->shield, NULL);
+    }
+    if (fight->enemy.def == sfTrue) {
+        sfSprite_setPosition(fight->shield, fight->enemy.pos);
+        sfRenderWindow_drawSprite(window, fight->shield, NULL);
+    }
+}
+
 static void fight_display(fight_scene_t *fight, sfRenderWindow *window, \
 csfml_t *general)
 {
     sfRenderWindow_clear(window, sfWhite);
     sfRenderWindow_drawSprite(window, fight->back.sp_back, NULL);
     display_infos_areas(fight, window);
+    sfRenderWindow_drawSprite(general->window, fight->player.sp, NULL);
+    sfRenderWindow_drawSprite(general->window, fight->enemy.sp, NULL);
     turn_core(fight, window);
-    sfRenderWindow_drawSprite(general->window, fight->player_sp, NULL);
-    sfRenderWindow_drawSprite(general->window, fight->enemy_sp, NULL);
+    defence_mode(fight, window);
+    if (fight->atk_step != 0) {
+        fight_attack_animation(&fight->player, &fight->enemy, fight, window);
+    }
     sfRenderWindow_display(window);
 }
 

@@ -37,7 +37,7 @@ void display_infos_areas(fight_scene_t *fight, sfRenderWindow *window)
 {
     if (fight->updater == 1) {
         display_stats_valors(&fight->info_area, \
-            &fight->player_stats, &fight->enemy_stats);
+            &fight->player.stats, &fight->enemy.stats);
         fight->updater = 0;
     }
     display_life_area(&fight->info_area, window);

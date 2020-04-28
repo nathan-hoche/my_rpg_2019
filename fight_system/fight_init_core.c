@@ -40,32 +40,47 @@ void fight_initialize(fight_scene_t *fight, csfml_t *general)
 
     fight->updater = 1;
     fight->turn_state = 0;
+    fight->atk_step = 0;
     fight->back.tx_back = make_texture(FIGHT_BACK_1);
     fight->back.sp_back = make_sprite(fight->back.tx_back);
     initialize_areas(general, fight);
     init_buttons(&fight->fight_buttons, general);
     fight->info_area.txt_wait = \
         make_text(general->font_itim, "Enemy turn ...", pos_txt_msg, 80);
-    fight->player_sp = sfSprite_copy(general->player.player);
-    sfSprite_setTextureRect(fight->player_sp, (sfIntRect) {0, 128, 64, 64});
-    sfSprite_setScale(fight->player_sp, (sfVector2f) {4, 4});
-    sfSprite_setPosition(fight->player_sp, (sfVector2f) {500, 420});
+    fight->player.sp = sfSprite_copy(general->player.player);
+    sfSprite_setTextureRect(fight->player.sp, (sfIntRect) {0, 128, 64, 64});
+    sfSprite_setScale(fight->player.sp, (sfVector2f) {4, 4});
+    fight->player.pos = (sfVector2f) {500, 420};
+    sfSprite_setPosition(fight->player.sp, fight->player.pos);
 
     ///// TEST /////
 
     sfTexture *txtr_enemy = sfTexture_createFromFile("src/corona.png", NULL);
-    fight->enemy_sp = make_sprite(txtr_enemy);
-    sfSprite_setTexture(fight->enemy_sp, txtr_enemy, sfTrue);
-    sfSprite_setScale(fight->enemy_sp, (sfVector2f) {0.2, 0.2});
-    sfSprite_setPosition(fight->enemy_sp, (sfVector2f) {1200, 480});
+    fight->enemy.sp = make_sprite(txtr_enemy);
+    sfSprite_setTexture(fight->enemy.sp, txtr_enemy, sfTrue);
+    sfSprite_setScale(fight->enemy.sp, (sfVector2f) {0.2, 0.2});
+    fight->enemy.pos = (sfVector2f) {1200, 480};
+    sfSprite_setPosition(fight->enemy.sp, fight->enemy.pos);
+    fight->player.stats.hp = 42;
+    fight->player.stats.atk = 2;
+    fight->player.stats.armor = 24;
+    fight->player.stats.speed = 1;
+    fight->player.def = sfFalse;
+    fight->enemy.stats.hp = 66;
+    fight->enemy.stats.atk = 6;
+    fight->enemy.stats.armor = 12;
+    fight->enemy.stats.speed = 1;
+    fight->enemy.def = sfFalse;
 
-    fight->player_stats.hp = 42;
-    fight->player_stats.atk = 2;
-    fight->player_stats.armor = 24;
-    fight->player_stats.speed = 1;
+    fight->sword_slash = sfSprite_create();
+    sfTexture *txtr = sfTexture_createFromFile("src/set_fight/cut_01.png", NULL); // A DESTROY
+    fight->sword_slash = make_sprite(txtr);
+    fight->sword_slash_rect = (sfIntRect) {0, 0, 192, 192};
+    sfSprite_setScale(fight->sword_slash, (sfVector2f) {2, 2});
+    sfSprite_setTextureRect(fight->sword_slash, fight->sword_slash_rect);
 
-    fight->enemy_stats.hp = 66;
-    fight->enemy_stats.atk = 6;
-    fight->enemy_stats.armor = 12;
-    fight->enemy_stats.speed = 1;
+    fight->shield = sfSprite_create();
+    sfTexture *txtr_shield = sfTexture_createFromFile("src/set_fight/shield.png", NULL); // A DESTROY
+    fight->shield = make_sprite(txtr_shield);
+    sfSprite_setScale(fight->shield, (sfVector2f) {1, 1});
 }

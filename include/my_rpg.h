@@ -120,6 +120,7 @@ void display_infos_areas(fight_scene_t *fight, sfRenderWindow *window);
 void turn_core(fight_scene_t *fight, sfRenderWindow *window);
 void initialize_areas(csfml_t *general, fight_scene_t *fight);
 void display_stats_valors(info_area_t *area, stats_t *player, stats_t *enemy);
-
+void fight_attack_animation(fighter_t *striker, fighter_t *target, \
+fight_scene_t *fight, sfRenderWindow *window);
 
 #endif /* !MY_RPG_H_ */

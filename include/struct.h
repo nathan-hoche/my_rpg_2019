@@ -109,26 +109,34 @@ typedef struct info_area_s {
     sfText *txt_wait;
 }info_area_t;
 
-typedef struct stats_t {
+typedef struct stats_s {
     int hp;
     int atk;
     int armor;
     int speed;
 }stats_t;
 
+typedef struct fighter_s {
+    sfSprite *sp;
+    sfVector2f pos;
+    stats_t stats;
+    sfBool def;
+}fighter_t;
+
 typedef struct fight_scene_s {
-    int turn_state;
-    int updater;
+    char turn_state;
+    char atk_step;
+    char updater;
     background_t back;
     info_area_t info_area;
     fight_buttons_t fight_buttons;
-    sfSprite *player_sp;
-    sfSprite *enemy_sp;
-    stats_t player_stats;
-    stats_t enemy_stats;
-    sfClock *clock_atk;
+    fighter_t enemy;
+    fighter_t player;
     sfClock *clock_move;
+    sfClock *clock_atk;
     sfSprite *sword_slash;
+    sfIntRect sword_slash_rect;
+    sfSprite *shield;
 }fight_scene_t;
 
 
