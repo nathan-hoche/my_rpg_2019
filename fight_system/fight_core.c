@@ -23,8 +23,13 @@ static int fight_event(csfml_t *general)
 
 static void defence_mode(fight_scene_t *fight, sfRenderWindow *window)
 {
+    sfVector2f pos;
+
     if (fight->player.def == sfTrue) {
-        sfSprite_setPosition(fight->shield, fight->player.pos);
+        pos = fight->player.pos;
+        pos.x += 70;
+        pos.y += 90;
+        sfSprite_setPosition(fight->shield, pos);
         sfRenderWindow_drawSprite(window, fight->shield, NULL);
     }
     if (fight->enemy.def == sfTrue) {

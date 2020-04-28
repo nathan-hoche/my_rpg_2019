@@ -82,5 +82,5 @@ void fight_initialize(fight_scene_t *fight, csfml_t *general)
     fight->shield = sfSprite_create();
     sfTexture *txtr_shield = sfTexture_createFromFile("src/set_fight/shield.png", NULL); // A DESTROY
     fight->shield = make_sprite(txtr_shield);
-    sfSprite_setScale(fight->shield, (sfVector2f) {1, 1});
+    sfSprite_setScale(fight->shield, (sfVector2f) {1.2, 1.2});
 }
