@@ -28,6 +28,8 @@ csfml_t *general)
     sfRenderWindow_drawSprite(window, fight->back.sp_back, NULL);
     display_infos_areas(fight, window);
     turn_core(fight, window);
+    sfRenderWindow_drawSprite(general->window, fight->player_sp, NULL);
+    sfRenderWindow_drawSprite(general->window, fight->enemy_sp, NULL);
     sfRenderWindow_display(window);
 }
 

@@ -11,6 +11,7 @@
 #include <SFML/System.h>
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
+#include <SFML/Window.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include "struct.h"
@@ -117,6 +118,8 @@ void skin(csfml_t *page);
 void fight_core(csfml_t *page, game_menu_t *game);
 void display_infos_areas(fight_scene_t *fight, sfRenderWindow *window);
 void turn_core(fight_scene_t *fight, sfRenderWindow *window);
+void initialize_areas(csfml_t *general, fight_scene_t *fight);
+void display_stats_valors(info_area_t *area, stats_t *player, stats_t *enemy);
 
 
 #endif /* !MY_RPG_H_ */

@@ -22,10 +22,11 @@ SRC	=	main.c \
 		settings_menu/init_settings.c \
 		howtoplay_menu/how_to_play.c \
 		fight_system/fight_core.c \
-		fight_system/fight_init.c \
+		fight_system/fight_init_core.c \
 		fight_system/fight_destroy.c \
 		fight_system/display_infos_areas.c \
 		fight_system/turn_core.c \
+		fight_system/fight_init_areas.c \
 		player/player_movement.c\
 		player/init_destroy.c \
 		player/player_collision.c \
@@ -40,7 +41,7 @@ CFLAGS		+=	-Wextra -W -pedantic -I./include
 
 LDFLAGS		=	-L./lib/my -lmy
 
-CSFMLF		=	-l csfml-audio -l csfml-system -l csfml-graphics
+CSFMLF		=	-l csfml-audio -l csfml-system -l csfml-graphics -l csfml-window
 
 MAKE_LIB	=	make -C ./lib/my/
 

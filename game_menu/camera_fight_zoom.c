@@ -9,7 +9,14 @@
 #include "my.h"
 #include "struct.h"
 
-int camera_fight_zoom(game_menu_t *game, csfml_t *page)
+static void camera_effects(csfml_t *general)
+{
+    sfView_zoom(general->views.actual_view, 0.98);
+    sfView_rotate(general->views.actual_view, 0.14);
+    sfRenderWindow_setView(general->window, general->views.actual_view);
+}
+
+int camera_fight_zoom(game_menu_t *game, csfml_t *general)
 {
     sfTime time;
     static int times[2] = {1, 0};
@@ -19,8 +26,7 @@ int camera_fight_zoom(game_menu_t *game, csfml_t *page)
     times[0] = 2;
     time = sfClock_getElapsedTime(game->cam_clock);
     if (time.microseconds >= 50) {
-        sfView_zoom(page->views.actual_view, 0.98);
-        sfRenderWindow_setView(page->window, page->views.actual_view);
+        camera_effects(general);
         times[1]++;
     }
     if (times[1] == 60) {
@@ -28,7 +34,8 @@ int camera_fight_zoom(game_menu_t *game, csfml_t *page)
         times[0] = 1;
         game->on_fight = 0;
         sfClock_destroy(game->cam_clock);
-        page->views.actual_view = sfView_copy(page->views.default_player_view);
+        general->views.actual_view = \
+            sfView_copy(general->views.default_player_view);
         return (1);
     }
     return (0);
