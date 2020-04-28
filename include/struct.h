@@ -12,6 +12,28 @@
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
 
+typedef struct items_s {
+    sfTexture *sword_tx;
+    sfSprite *sword_sp;
+    sfTexture *shield_tx;
+    sfSprite *shield_sp;
+    sfTexture *helmet_tx;
+    sfSprite *helmet_sp;
+    sfTexture *armor_tx;
+    sfSprite *armor_sp;
+    sfTexture *pants_tx;
+    sfSprite *pants_sp;
+}items_t;
+
+typedef struct inventory_s {
+    int *obj_id;
+    char **obj_name;
+    int status;
+    sfTexture *tx_bar;
+    sfSprite *sp_bar;
+    items_t items;
+}inventory_t;
+
 typedef struct csfml_s csfml_t;
 
 typedef struct basic_text_s {

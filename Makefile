@@ -25,7 +25,9 @@ SRC	=	main.c \
 		player/init_destroy.c \
 		player/player_collision.c \
 		choose_skin/choose_skin.c \
-		choose_skin/event_skin.c
+		choose_skin/event_skin.c \
+		inventory/inventory.c \
+		inventory/set_items.c
 
 NAME	=		my_rpg
 

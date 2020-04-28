@@ -9,7 +9,7 @@
 #include "my.h"
 #include "struct.h"
 
-static void game_event(csfml_t *page, game_menu_t *game)
+static void game_event(csfml_t *page, game_menu_t *game, inventory_t *inventory)
 {
     if (page->event.type == sfEvtClosed)
         page->act_scene = ID_CLOSE;
@@ -19,6 +19,7 @@ static void game_event(csfml_t *page, game_menu_t *game)
     else if (page->event.key.code == sfKeyE && \
     page->event.type == sfEvtKeyPressed)
         game->on_fight_zoom = 1;
+    manage_inventory_event(page, inventory);
     player_orientation(page->event, &page->player);
 }
 
@@ -30,7 +31,8 @@ static void camera_view(game_menu_t *game, csfml_t *page)
     sfRenderWindow_setView(page->window, page->views.actual_view);
 }
 
-static void game_display(game_menu_t *game, csfml_t *page)
+static void game_display(game_menu_t *game, csfml_t *page, \
+inventory_t *inventory)
 {
     sfRenderWindow_clear(page->window, sfBlack);
     sfRenderWindow_drawSprite(page->window, game->back_grass, NULL);
@@ -44,6 +46,10 @@ static void game_display(game_menu_t *game, csfml_t *page)
         camera_view(game, page);
     else
         camera_fight_zoom(game, page);
+    if (inventory->status == 1) {
+        sfRenderWindow_drawSprite(page->window, inventory->sp_bar, NULL);
+        display_items(page->window, &inventory->items);
+    }
     sfRenderWindow_display(page->window);
 }
 
@@ -67,12 +73,14 @@ static void game_initialize(game_menu_t *game, csfml_t *page)
 void game_menu(csfml_t *page)
 {
     game_menu_t game;
+    inventory_t inventory;
 
+    initialize_inventory(&inventory);
     game_initialize(&game, page);
     while (page->act_scene == ID_GAME) {
-        game_display(&game, page);
+        game_display(&game, page, &inventory);
         while (sfRenderWindow_pollEvent(page->window, &page->event))
-            game_event(page, &game);
+            game_event(page, &game, &inventory);
     }
     free_game_ressources(&game);
 }
