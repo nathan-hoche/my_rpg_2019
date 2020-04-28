@@ -47,6 +47,7 @@ inventory_t *inventory)
     else
         camera_fight_zoom(game, page);
     if (inventory->status == 1) {
+        set_inventory_pos(page, inventory);
         sfRenderWindow_drawSprite(page->window, inventory->sp_bar, NULL);
         display_items(page->window, &inventory->items);
     }
@@ -83,4 +84,5 @@ void game_menu(csfml_t *page)
             game_event(page, &game, &inventory);
     }
     free_game_ressources(&game);
+    free_inventory(&inventory);
 }

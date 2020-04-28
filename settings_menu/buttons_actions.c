@@ -37,7 +37,7 @@ int action_minus_music(csfml_t *page)
     return (0);
 }
 
-int action_return(csfml_t *page)
+int action_returning(csfml_t *page)
 {
     return (1);
 }

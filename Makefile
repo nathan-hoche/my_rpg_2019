@@ -27,7 +27,8 @@ SRC	=	main.c \
 		choose_skin/choose_skin.c \
 		choose_skin/event_skin.c \
 		inventory/inventory.c \
-		inventory/set_items.c
+		inventory/set_items.c \
+		inventory/free_inventory.c
 
 NAME	=		my_rpg
 

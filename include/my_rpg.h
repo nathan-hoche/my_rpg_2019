@@ -35,6 +35,15 @@
 
 #define MAP_GROUND_1 "src/grass.png"
 
+#define CONFIG_INVENTORY_FILE "src/config.txt"
+
+#define INVENTORY_FILE "src/inventory.png"
+#define SWORD_FILE "src/items/weapons/sword_start.png"
+#define SHIELD_FILE "src/items/armor/shield_start.png"
+#define HELMET_FILE "src/items/armor/helmet_start.png"
+#define ARMOR_FILE "src/items/armor/bust_start.png"
+#define PANTS_FILE "src/items/armor/pants_start.png"
+
 #define DEFAULT_FX_LEVEL (60)
 #define DEFAULT_MUSIC_LEVEL (60)
 
@@ -61,7 +70,17 @@
 #define CAM_DEFAULT_ZOOM (0.6)
 
 #define INVENTORY_ID_SIZE (7)
-#define INVENTORY_SIZE (7)
+
+#define SWORD_POS_X (5)
+#define SWORD_POS_Y (2)
+#define SHIELD_POS_X (65)
+#define SHIELD_POS_Y (6)
+#define HELMET_POS_X (115)
+#define HELMET_POS_Y (4)
+#define ARMOR_POS_X (162)
+#define ARMOR_POS_Y (1)
+#define PANTS_POS_X (216)
+
 
 void game_menu(csfml_t *page);
 void start_menu(csfml_t *page);
@@ -92,7 +111,7 @@ int action_plus_fx(csfml_t *page);
 int action_minus_fx(csfml_t *page);
 int action_plus_music(csfml_t *page);
 int action_minus_music(csfml_t *page);
-int action_return(csfml_t *page);
+int action_returning(csfml_t *page);
 void settings(csfml_t *page);
 void how_to_play(csfml_t *page);
 int event_skin(csfml_t *page);
@@ -108,4 +127,6 @@ int initialize_inventory(inventory_t *inventory);
 void initialize_items(items_t *items);
 void manage_inventory_event(csfml_t *page, inventory_t *inventory);
 void display_items(sfRenderWindow *window, items_t *items);
+void free_inventory(inventory_t *inventory);
+void set_inventory_pos(csfml_t *page, inventory_t *inventory);
 #endif /* !MY_RPG_H_ */

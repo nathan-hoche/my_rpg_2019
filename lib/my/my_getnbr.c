@@ -1,50 +1,37 @@
 /*
-** EPITECH PROJECT, 2020
-** SHOW_NUMBER
+** EPITECH PROJECT, 2019
+** my_getnbr
 ** File description:
-** Show number
+** my_getnbr
 */
-
-#include <stddef.h>
-#include <stdlib.h>
 #include "my.h"
 
-static int sizer(int nb)
+int select_number(char const *str, int sign, int i, int result)
 {
-    int count = 0;
-    int rest = nb;
-
-    if (nb == 0) {
-        count = 1;
-        return (count);
+    while (str[i] != '\0') {
+        if (str[i] >= 48 && str[i] <= 57) {
+            result = result * 10;
+            result = result + str[i] - 48;
+            i++;
+        } else {
+            result = result * sign;
+            return (result);
+        }
     }
-    while (rest != 0) {
-        rest = rest / 10;
-        count++;
-    }
-    return (count);
+    result = result * sign;
+    return (result);
 }
 
-char *my_getnbr(int nb)
+int my_getnbr(char const *str)
 {
-    char *number = NULL;
-    int negative = 0;
-    int size = 0;
-    int rest = 0;
+    int i = 0;
+    int sign = 1;
+    int result = 0;
 
-    if (nb < 0) {
-        nb = nb * (-1);
-        negative = 1;
+    while (str[i] == 43 || str[i] == 45) {
+        if (str[i] == 45)
+            sign = sign * -1;
+        i++;
     }
-    rest = nb;
-    size = sizer(nb) + negative;
-    number = malloc(sizeof(char) * (size + 1));
-    number[size] = '\0';
-    for (int i = size - 1; i >= negative; i--) {
-        number[i] = rest % 10 + '0';
-        rest = rest / 10;
-    }
-    if (negative == 1)
-        number[0] = '-';
-    return (number);
+    select_number(str, sign, i, result);
 }

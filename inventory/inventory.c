@@ -9,6 +9,26 @@
 #include "struct.h"
 #include "my.h"
 
+void set_inventory_pos(csfml_t *page, inventory_t *inventory)
+{
+    sfVector2f pos;
+
+    pos = sfSprite_getPosition(page->player.player);
+    pos.x -= 135;
+    pos.y += 215;
+    sfSprite_setPosition(inventory->sp_bar, pos);
+    sfSprite_setPosition(inventory->items.sword_sp, \
+    (sfVector2f) {pos.x + SWORD_POS_X, pos.y + SWORD_POS_Y});
+    sfSprite_setPosition(inventory->items.shield_sp, \
+    (sfVector2f) {pos.x + SHIELD_POS_X, pos.y + SHIELD_POS_Y});
+    sfSprite_setPosition(inventory->items.helmet_sp, \
+    (sfVector2f) {pos.x + HELMET_POS_X, pos.y + HELMET_POS_Y});
+    sfSprite_setPosition(inventory->items.armor_sp, \
+    (sfVector2f) {pos.x + ARMOR_POS_X, pos.y + ARMOR_POS_Y});
+    sfSprite_setPosition(inventory->items.pants_sp, \
+    (sfVector2f) {pos.x + PANTS_POS_X, pos.y});
+}
+
 void manage_inventory_event(csfml_t *page, inventory_t *inventory)
 {
     if (page->event.key.code == sfKeyI && page->event.type == sfEvtKeyPressed \
@@ -60,7 +80,7 @@ int initialize_inventory(inventory_t *inventory)
     items_t items;
     FILE *fp;
 
-    fp = fopen("src/config.txt", "r");
+    fp = fopen(CONFIG_INVENTORY_FILE, "r");
     if (!fp)
         return (84);
     inventory->obj_id = malloc(sizeof(int) * INVENTORY_ID_SIZE);
@@ -68,10 +88,9 @@ int initialize_inventory(inventory_t *inventory)
         return (84);
     inventory->obj_id = put_obj_id(inventory->obj_id, fp);
     put_obj_name(inventory, fp);
-    inventory->tx_bar = make_texture("src/inventory.png");
+    inventory->tx_bar = make_texture(INVENTORY_FILE);
     inventory->sp_bar = make_sprite(inventory->tx_bar);
     inventory->status = 0;
-    sfSprite_setPosition(inventory->sp_bar, (sfVector2f) {770, 965});
     initialize_items(&inventory->items);
     return (0);
 }

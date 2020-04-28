@@ -34,8 +34,8 @@ static int settings_event(csfml_t *page, settings_menu_t *set)
 static void sounds_level_display(settings_menu_t *set, \
 sfRenderWindow *window, csfml_t *page)
 {
-    char *str_lvl_music = my_getnbr(page->settings.music_lvl);
-    char *str_lvl_fx = my_getnbr(page->settings.fx_lvl);
+    char *str_lvl_music = my_getstr(page->settings.music_lvl);
+    char *str_lvl_fx = my_getstr(page->settings.fx_lvl);
 
     sfRenderWindow_drawText(window, set->txt_music.text, NULL);
     sfRenderWindow_drawText(window, set->txt_fx.text, NULL);
