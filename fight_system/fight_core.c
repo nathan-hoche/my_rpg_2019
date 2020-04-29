@@ -49,7 +49,10 @@ csfml_t *general)
     turn_core(fight, window);
     defence_mode(fight, window);
     if (fight->atk_step != 0) {
-        fight_attack_animation(&fight->player, &fight->enemy, fight, window);
+        if (fight->turn_state == 0)
+            fight_attack_animation(&fight->player, &fight->enemy, fight, general);
+        else
+            fight_attack_animation(&fight->enemy, &fight->player, fight, general);
     }
     sfRenderWindow_display(window);
 }

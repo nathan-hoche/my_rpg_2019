@@ -43,7 +43,7 @@ fight_scene_t *fight)
 }
 
 void fight_attack_animation(fighter_t *striker, fighter_t *target, 
-fight_scene_t *fight, sfRenderWindow *window)
+fight_scene_t *fight, csfml_t *general)
 {
     sfVector2f pos_target;
 
@@ -55,7 +55,7 @@ fight_scene_t *fight, sfRenderWindow *window)
         pos_target.y -= 110;
         sfSprite_setPosition(fight->sword_slash, pos_target);
     }
-    sfRenderWindow_drawSprite(window, fight->sword_slash, NULL);
+    sfRenderWindow_drawSprite(general->window, fight->sword_slash, NULL);
     if (fight->atk_step == 2)
         slash_animation(fight);
     if (fight->atk_step == 3)

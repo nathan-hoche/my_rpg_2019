@@ -47,6 +47,9 @@ void turn_core(fight_scene_t *fight, sfRenderWindow *window)
         fight->player.def = sfFalse;
         buttons_management(fight, window);
     }
-    if (fight->turn_state == 1)
+    if (fight->turn_state == 1 && fight->atk_step == 0) {
         sfRenderWindow_drawText(window, fight->info_area.txt_wait, NULL);
+        fight->atk_step = 1;
+    }
+
 }
