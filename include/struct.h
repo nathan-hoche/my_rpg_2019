@@ -123,6 +123,14 @@ typedef struct fighter_s {
     sfBool def;
 }fighter_t;
 
+typedef struct attacks_s {
+    sfSprite *sword_slash;
+    sfIntRect sword_slash_rect;
+    sfTexture *txtr_sword;
+    sfSprite *shield;
+    sfTexture *txtr_shield;
+}attaks_t;
+
 typedef struct fight_scene_s {
     char turn_state;
     char atk_step;
@@ -132,11 +140,9 @@ typedef struct fight_scene_s {
     fight_buttons_t fight_buttons;
     fighter_t enemy;
     fighter_t player;
+    attaks_t attacks;
     sfClock *clock_move;
     sfClock *clock_atk;
-    sfSprite *sword_slash;
-    sfIntRect sword_slash_rect;
-    sfSprite *shield;
 }fight_scene_t;
 
 

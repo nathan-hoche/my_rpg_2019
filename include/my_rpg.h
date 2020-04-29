@@ -35,7 +35,7 @@
 
 #define MAP_GROUND_1 "src/grass.png"
 
-#define FIGHT_BACK_1 "src/set_fight/background.png"
+#define FIGHT_BACK_1 "src/fight/background.png"
 
 #define PLAYER_SPAWN_POS_X (0)
 #define PLAYER_SPAWN_POS_Y (0)
@@ -65,7 +65,7 @@
 
 #define CAM_DEFAULT_ZOOM (0.6)
 
-#define FIGHT_BUTTONS_TEXTR "src/set_fight/buttons.png"
+#define FIGHT_BUTTONS_TEXTR "src/fight/buttons.png"
 
 void initialize_window(csfml_t *page);
 void start_menu(csfml_t *page);

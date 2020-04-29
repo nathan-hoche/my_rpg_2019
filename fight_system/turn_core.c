@@ -43,13 +43,22 @@ static void buttons_management(fight_scene_t *fight, sfRenderWindow *window)
 
 void turn_core(fight_scene_t *fight, sfRenderWindow *window)
 {
+    int ai_choice = 0;
+
     if (fight->turn_state == 0 && fight->atk_step == 0) {
         fight->player.def = sfFalse;
         buttons_management(fight, window);
     }
-    if (fight->turn_state == 1 && fight->atk_step == 0) {
+    if (fight->turn_state == 1)
         sfRenderWindow_drawText(window, fight->info_area.txt_wait, NULL);
-        fight->atk_step = 1;
+    if (fight->turn_state == 1 && fight->atk_step == 0) {
+        fight->enemy.def = sfFalse;
+        ai_choice = (rand() + 1) % 2;
+        if (ai_choice == 1) {
+            fight->enemy.def = sfTrue;
+            fight->turn_state = 0;
+        } else {
+            fight->atk_step = 1;
+        }
     }
-
 }

@@ -9,6 +9,52 @@
 #include "my.h"
 #include "struct.h"
 
+static void init_fight_enemy(fight_scene_t *fight, csfml_t *general)
+{
+    sfTexture *txtr_enemy = sfTexture_createFromFile("src/corona.png", NULL);
+
+    fight->enemy.sp = make_sprite(txtr_enemy);
+    sfSprite_setTexture(fight->enemy.sp, txtr_enemy, sfTrue);
+    sfSprite_setScale(fight->enemy.sp, (sfVector2f) {0.2, 0.2});
+    fight->enemy.pos = (sfVector2f) {1200, 480};
+    sfSprite_setPosition(fight->enemy.sp, fight->enemy.pos);
+    fight->enemy.stats.hp = 66;
+    fight->enemy.stats.atk = 6;
+    fight->enemy.stats.armor = 12;
+    fight->enemy.stats.speed = 1;
+    fight->enemy.def = sfFalse;
+}
+
+static void init_fight_player(fight_scene_t *fight, csfml_t *general)
+{
+    fight->player.sp = sfSprite_copy(general->player.player);
+    sfSprite_setTextureRect(fight->player.sp, (sfIntRect) {0, 128, 64, 64});
+    sfSprite_setScale(fight->player.sp, (sfVector2f) {4, 4});
+    fight->player.pos = (sfVector2f) {500, 420};
+    sfSprite_setPosition(fight->player.sp, fight->player.pos);
+    fight->player.stats.hp = 42;
+    fight->player.stats.atk = 2;
+    fight->player.stats.armor = 24;
+    fight->player.stats.speed = 1;
+    fight->player.def = sfFalse;
+}
+
+static void init_attacks(fight_scene_t *fight, csfml_t *general)
+{
+    fight->attacks.txtr_shield = \
+        sfTexture_createFromFile("src/fight/shield.png", NULL);
+    fight->attacks.txtr_sword = \
+        sfTexture_createFromFile("src/fight/cut.png", NULL);
+    fight->attacks.sword_slash = sfSprite_create();
+    fight->attacks.sword_slash = make_sprite(fight->attacks.txtr_sword);
+    fight->attacks.sword_slash_rect = (sfIntRect) {0, 0, 192, 192};
+    sfSprite_setScale(fight->attacks.sword_slash, (sfVector2f) {2, 2});
+    sfSprite_setTextureRect(fight->attacks.sword_slash, \
+        fight->attacks.sword_slash_rect);
+    fight->attacks.shield = sfSprite_create();
+    fight->attacks.shield = make_sprite(fight->attacks.txtr_shield);
+    sfSprite_setScale(fight->attacks.shield, (sfVector2f) {1.2, 1.2});
+}
 
 static void init_buttons(fight_buttons_t *fight_but, csfml_t *general)
 {
@@ -47,40 +93,7 @@ void fight_initialize(fight_scene_t *fight, csfml_t *general)
     init_buttons(&fight->fight_buttons, general);
     fight->info_area.txt_wait = \
         make_text(general->font_itim, "Enemy turn ...", pos_txt_msg, 80);
-    fight->player.sp = sfSprite_copy(general->player.player);
-    sfSprite_setTextureRect(fight->player.sp, (sfIntRect) {0, 128, 64, 64});
-    sfSprite_setScale(fight->player.sp, (sfVector2f) {4, 4});
-    fight->player.pos = (sfVector2f) {500, 420};
-    sfSprite_setPosition(fight->player.sp, fight->player.pos);
-
-    ///// TEST /////
-
-    sfTexture *txtr_enemy = sfTexture_createFromFile("src/corona.png", NULL);
-    fight->enemy.sp = make_sprite(txtr_enemy);
-    sfSprite_setTexture(fight->enemy.sp, txtr_enemy, sfTrue);
-    sfSprite_setScale(fight->enemy.sp, (sfVector2f) {0.2, 0.2});
-    fight->enemy.pos = (sfVector2f) {1200, 480};
-    sfSprite_setPosition(fight->enemy.sp, fight->enemy.pos);
-    fight->player.stats.hp = 42;
-    fight->player.stats.atk = 2;
-    fight->player.stats.armor = 24;
-    fight->player.stats.speed = 1;
-    fight->player.def = sfFalse;
-    fight->enemy.stats.hp = 66;
-    fight->enemy.stats.atk = 6;
-    fight->enemy.stats.armor = 12;
-    fight->enemy.stats.speed = 1;
-    fight->enemy.def = sfFalse;
-
-    fight->sword_slash = sfSprite_create();
-    sfTexture *txtr = sfTexture_createFromFile("src/set_fight/cut_01.png", NULL); // A DESTROY
-    fight->sword_slash = make_sprite(txtr);
-    fight->sword_slash_rect = (sfIntRect) {0, 0, 192, 192};
-    sfSprite_setScale(fight->sword_slash, (sfVector2f) {2, 2});
-    sfSprite_setTextureRect(fight->sword_slash, fight->sword_slash_rect);
-
-    fight->shield = sfSprite_create();
-    sfTexture *txtr_shield = sfTexture_createFromFile("src/set_fight/shield.png", NULL); // A DESTROY
-    fight->shield = make_sprite(txtr_shield);
-    sfSprite_setScale(fight->shield, (sfVector2f) {1.2, 1.2});
+    init_fight_enemy(fight, general);
+    init_fight_player(fight, general);
+    init_attacks(fight, general);
 }

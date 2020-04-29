@@ -29,12 +29,22 @@ static void defence_mode(fight_scene_t *fight, sfRenderWindow *window)
         pos = fight->player.pos;
         pos.x += 70;
         pos.y += 90;
-        sfSprite_setPosition(fight->shield, pos);
-        sfRenderWindow_drawSprite(window, fight->shield, NULL);
+        sfSprite_setPosition(fight->attacks.shield, pos);
+        sfRenderWindow_drawSprite(window, fight->attacks.shield, NULL);
     }
     if (fight->enemy.def == sfTrue) {
-        sfSprite_setPosition(fight->shield, fight->enemy.pos);
-        sfRenderWindow_drawSprite(window, fight->shield, NULL);
+        sfSprite_setPosition(fight->attacks.shield, fight->enemy.pos);
+        sfRenderWindow_drawSprite(window, fight->attacks.shield, NULL);
+    }
+}
+
+static void fight_attacks(fight_scene_t *fight, csfml_t *general)
+{
+    if (fight->atk_step != 0) {
+        if (fight->turn_state == 0)
+            fight_attack_animation(&fight->player, &fight->enemy, fight, general);
+        else
+            fight_attack_animation(&fight->enemy, &fight->player, fight, general);
     }
 }
 
@@ -48,12 +58,7 @@ csfml_t *general)
     sfRenderWindow_drawSprite(general->window, fight->enemy.sp, NULL);
     turn_core(fight, window);
     defence_mode(fight, window);
-    if (fight->atk_step != 0) {
-        if (fight->turn_state == 0)
-            fight_attack_animation(&fight->player, &fight->enemy, fight, general);
-        else
-            fight_attack_animation(&fight->enemy, &fight->player, fight, general);
-    }
+    fight_attacks(fight, general);
     sfRenderWindow_display(window);
 }
 

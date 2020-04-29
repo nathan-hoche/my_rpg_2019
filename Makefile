@@ -11,7 +11,6 @@ SRC	=	main.c \
 		game_menu/tile_mapping.c \
 		game_menu/free_game_res.c \
 		game_menu/fight_start.c \
-		game_menu/camera_fight_zoom.c \
 		start_menu/start.c \
 		start_menu/init_start.c \
 		start_menu/buttons_actions.c \
