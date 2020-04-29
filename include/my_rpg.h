@@ -105,7 +105,6 @@ int action_return(csfml_t *page);
 void how_to_play(csfml_t *page);
 
 void start_fight(game_menu_t *game, csfml_t *page);
-int camera_fight_zoom(game_menu_t *game, csfml_t *page);
 
 void fight_initialize(fight_scene_t *fight, csfml_t *general);
 void fight_core(csfml_t *general, game_menu_t *game);
