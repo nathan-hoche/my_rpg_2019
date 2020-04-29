@@ -1,6 +1,6 @@
 /*
-** EPITECH PROJECT, 2019
-** my_revstr
+** EPITECH PROJECT, 2020
+** MUL_my_rpg_2019
 ** File description:
 ** my_revstr
 */
