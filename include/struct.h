@@ -110,7 +110,7 @@ typedef struct info_area_s {
 }info_area_t;
 
 typedef struct stats_s {
-    int hp;
+    char hp;
     int atk;
     int armor;
     int speed;
