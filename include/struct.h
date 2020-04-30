@@ -132,9 +132,9 @@ typedef struct attacks_s {
 }attaks_t;
 
 typedef struct sound_s {
-    sfSoundBuffer *sound_buf;
+    sfSoundBuffer *buf;
     sfSound *sound;
-}sounds_t;
+}sound_t;
 
 typedef struct fight_scene_s {
     char turn_state;
@@ -148,6 +148,7 @@ typedef struct fight_scene_s {
     attaks_t attacks;
     sfClock *clock_move;
     sfClock *clock_atk;
+    sound_t fx_sword_atk;
 }fight_scene_t;
 
 

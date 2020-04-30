@@ -96,4 +96,9 @@ void fight_initialize(fight_scene_t *fight, csfml_t *general)
     init_fight_enemy(fight, general);
     init_fight_player(fight, general);
     init_attacks(fight, general);
+    fight->fx_sword_atk.buf = \
+        sfSoundBuffer_createFromFile(FIGHT_SOUND_SWORD);
+    fight->fx_sword_atk.sound = sfSound_create();
+    sfSound_setBuffer(fight->fx_sword_atk.sound, fight->fx_sword_atk.buf);
+    sfSound_setVolume(fight->fx_sword_atk.sound, general->settings.fx_lvl);
 }

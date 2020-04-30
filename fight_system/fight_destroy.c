@@ -20,4 +20,8 @@ void fight_destroy(fight_scene_t *fight)
     sfSprite_destroy(fight->fight_buttons.button_def);
     sfSprite_destroy(fight->attacks.sword_slash);
     sfSprite_destroy(fight->attacks.shield);
+    if (sfSound_getStatus(fight->fx_sword_atk.sound))
+        sfSound_stop(fight->fx_sword_atk.sound);
+    sfSound_destroy(fight->fx_sword_atk.sound);
+    sfSoundBuffer_destroy(fight->fx_sword_atk.buf);
 }

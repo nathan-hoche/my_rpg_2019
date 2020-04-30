@@ -74,6 +74,10 @@ void fight_core(csfml_t *general, game_menu_t *game)
         while (sfRenderWindow_pollEvent(general->window, &general->event) && \
         active != 0 && general->act_scene != ID_CLOSE)
             active = fight_event(general);
+        if (fight.player.stats.hp == 0)
+            active = 0;
+        if (fight.enemy.stats.hp == 0)
+            active = 0;
     }
     fight_destroy(&fight);
     sfRenderWindow_setView(general->window, general->views.actual_view);

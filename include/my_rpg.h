@@ -37,6 +37,8 @@
 
 #define FIGHT_BACK_1 "src/fight/background.png"
 
+#define FIGHT_SOUND_SWORD "src/fight/sound_sword.ogg"
+
 #define PLAYER_SPAWN_POS_X (0)
 #define PLAYER_SPAWN_POS_Y (0)
 

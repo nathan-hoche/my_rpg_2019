@@ -12,16 +12,22 @@
 static void slash_animation(fight_scene_t *fight)
 {
     sfTime timer;
+    static char sound = 0;
 
     timer = sfClock_getElapsedTime(fight->clock_atk);
     if (timer.microseconds >= 5000) {
         fight->attacks.sword_slash_rect.left += 192;
         sfSprite_setTextureRect(fight->attacks.sword_slash, \
         fight->attacks.sword_slash_rect);
+        if (sound == 0) {
+            sfSound_play(fight->fx_sword_atk.sound);
+            sound = 1;
+        }
         if (fight->attacks.sword_slash_rect.left == 960) {
             fight->attacks.sword_slash_rect.left = 0;
             fight->atk_step = 3;
             sfClock_destroy(fight->clock_atk);
+            sound = 0;
         }
     }
 }
@@ -52,7 +58,7 @@ fight_scene_t *fight)
 
 static void waiting_time(fight_scene_t *fight)
 {
-    static int init = 0;
+    static char init = 0;
     sfTime timer;
 
     if (init == 0) {
@@ -72,7 +78,7 @@ static void waiting_time(fight_scene_t *fight)
     }
 }
 
-void fight_attack_animation(fighter_t *striker, fighter_t *target, 
+void fight_attack_animation(fighter_t *striker, fighter_t *target,
 fight_scene_t *fight, csfml_t *general)
 {
     switch (fight->atk_step) {
