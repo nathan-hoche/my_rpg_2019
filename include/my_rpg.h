@@ -19,6 +19,9 @@
 #define PLAYER_TEXTURE_1 "src/male.png"
 #define PLAYER_TEXTURE_2 "src/female.png"
 
+#define MUSIC_MENU "src/menu.ogg"
+#define MUSIC_MENU_PLAY (1)
+
 #define BUT_1_TXTR "src/button.png"
 #define BUT_1_SIZ_X (285)
 #define BUT_1_SIZ_Y (110)
@@ -104,6 +107,7 @@ void settings_initialize(settings_menu_t *set, csfml_t *page);
 void free_game_ressources(game_menu_t *game);
 void camera_fight_zoom(game_menu_t *game, csfml_t *page);
 
+void change_volume(music_t *music);
 int action_plus_fx(csfml_t *page);
 int action_minus_fx(csfml_t *page);
 int action_plus_music(csfml_t *page);

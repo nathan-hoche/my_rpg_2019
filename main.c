@@ -10,6 +10,18 @@
 #include "my_rpg.h"
 #include "my.h"
 
+static void init_music(music_t *music)
+{
+    music->menu = sfMusic_createFromFile(MUSIC_MENU);
+    /*page->sound_but = sfSound_create();
+    page->sound_but_buf = sfSoundBuffer_createFromFile("src/punch.ogg");
+    sfSound_setBuffer(page->sound_but, page->sound_but_buf);*/
+    sfMusic_setLoop(music->menu, sfTrue);
+    sfMusic_play(music->menu);
+    sfMusic_setVolume(music->menu, 60);
+    music->music_played = MUSIC_MENU_PLAY;
+}
+
 static void main_initialization(csfml_t *page)
 {
     initialize_window(page);
@@ -22,10 +34,12 @@ static void main_initialization(csfml_t *page)
     page->font_itim = sfFont_createFromFile(FONT_1);
     page->act_scene = 1;
     init_player(&page->player);
+    init_music(&page->music);
 }
 
 static void main_destroy(csfml_t *page)
 {
+    sfMusic_destroy(page->music.menu);
     sfRenderWindow_close(page->window);
     sfFont_destroy(page->font_itim);
     sfTexture_destroy(page->button_1);

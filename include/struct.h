@@ -163,6 +163,11 @@ typedef struct views_s {
     sfView *actual_view;
 }views_t;
 
+typedef struct music_s {
+    sfMusic *menu;
+    int music_played;
+}music_t;
+
 typedef struct csfml_s {
     sfVideoMode mode;
     views_t views;
@@ -175,6 +180,7 @@ typedef struct csfml_s {
     player_t player;
     int act_scene;
     settings_t settings;
+    music_t music;
 }csfml_t;
 
 #endif /* !SCENE_H_ */

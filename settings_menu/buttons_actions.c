@@ -27,6 +27,7 @@ int action_plus_music(csfml_t *page)
 {
     if (page->settings.music_lvl != 100)
         page->settings.music_lvl += 10;
+    sfMusic_setVolume(page->music.menu, page->settings.music_lvl);
     return (0);
 }
 
@@ -34,6 +35,7 @@ int action_minus_music(csfml_t *page)
 {
     if (page->settings.music_lvl != 0)
         page->settings.music_lvl -= 10;
+    sfMusic_setVolume(page->music.menu, page->settings.music_lvl);
     return (0);
 }
 
