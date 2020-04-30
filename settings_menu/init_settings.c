@@ -66,7 +66,7 @@ csfml_t *page)
 
 static void settings_buttons_initialize(settings_menu_t *set, csfml_t *page)
 {
-    set->back.tx_back = make_texture(BACKGROUND_1);
+    set->back.tx_back = make_texture(BACKGROUND_2);
     set->back.sp_back = make_sprite(set->back.tx_back);
     set->buttons = malloc(sizeof(button_t) * NB_SET_MENU_B);
     set->buttons[0].state = -1;
