@@ -23,8 +23,8 @@ static void player_gps(player_t *player)
 {
     sfVector2f pos = sfSprite_getPosition(player->player);
 
-    player->pos_cart.x = (int) pos.x / 32;
-    player->pos_cart.y = (int) pos.y / 32;
+    player->pos_cart.x = pos.x / 32;
+    player->pos_cart.y = pos.y / 32;
     player->pos_px.x = pos.x;
     player->pos_px.y = pos.y;
 }
