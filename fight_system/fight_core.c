@@ -41,10 +41,13 @@ static void defence_mode(fight_scene_t *fight, sfRenderWindow *window)
 static void fight_attacks(fight_scene_t *fight, csfml_t *general)
 {
     if (fight->atk_step != 0) {
-        if (fight->turn_state == 0)
-            fight_attack_animation(&fight->player, &fight->enemy, fight, general);
-        else
-            fight_attack_animation(&fight->enemy, &fight->player, fight, general);
+        if (fight->turn_state == 0) {
+            fight_attack_animation(&fight->player, &fight->enemy, \
+            fight, general);
+        } else {
+            fight_attack_animation(&fight->enemy, &fight->player, \
+            fight, general);
+        }
     }
 }
 
