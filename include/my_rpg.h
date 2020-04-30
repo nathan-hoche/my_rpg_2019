@@ -81,6 +81,8 @@
 #define ARMOR_POS_Y (1)
 #define PANTS_POS_X (216)
 
+#define END_NPC_ACT (1)
+
 #define NPC_01_TXTR "src/npc/npc_01.png"
 
 void game_menu(csfml_t *page);
@@ -129,7 +131,11 @@ void display_items(sfRenderWindow *window, items_t *items);
 void free_inventory(inventory_t *inventory);
 void set_inventory_pos(csfml_t *page, inventory_t *inventory);
 void display_inventory(csfml_t *general, game_menu_t *game);
+void check_collisions_with_npc(player_t *player, npc_t *npc);
 
-void set_npc_interaction(npc_t *npc);
+void set_npc(npc_t *npc);
+int move_npc(npc_t *npc, player_t *player, int dist, int dir);
+int check_npc_collision(npc_t *npc, player_t *player);
+void perform_npc_actions(npc_t *npc, player_t *player);
 
 #endif /* !MY_RPG_H_ */

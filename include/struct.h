@@ -75,11 +75,15 @@ typedef struct pause_menu_s {
 //-> GAME SCENE <-///////////////////////////////
 
 typedef struct npc_s {
+    char on_move;
     sfTexture *tx;
     sfSprite *sp;
     sfVector2i pos_cart;
     sfVector2f pos_px;
+    sfVector2i traj_cart;
     sfIntRect tx_rect;
+    sfClock *move;
+    sfClock *anim;
 }npc_t;
 
 typedef struct game_scene_s {
@@ -100,7 +104,7 @@ typedef struct game_menu_s {
     sfTexture *grass;
     sfSprite *back_grass;
     inventory_t inventory;
-    npc_t npc_test;
+    npc_t npc;
 }game_menu_t;
 
 //-> START SCENE <-//////////////////////////////
@@ -160,6 +164,7 @@ typedef struct player_t {
     sfVector2i move_pos_cart;
     sfVector2i pos_px;
     sfVector2i pos_traj;
+    sfVector2i pos_view;
 }player_t;
 
 typedef struct views_s {

@@ -29,22 +29,24 @@ static void player_gps(player_t *player)
     player->pos_px.y = pos.y;
 }
 
-static void game_display(game_menu_t *game, csfml_t *general, npc_t *npc)
+static void game_display(game_menu_t *game, csfml_t *general)
 {
     sfRenderWindow_clear(general->window, sfBlack);
     sfRenderWindow_drawSprite(general->window, game->back_grass, NULL);
     display_map_core(game, general);
+    player_gps(&general->player);
     player_core(general, game);
     player_gps(&general->player);
+    sfRenderWindow_drawSprite(general->window, game->npc.sp, NULL);
     sfRenderWindow_drawSprite(general->window, general->player.player, NULL);
     if (game->on_fight == 0)
         camera_view(game, general);
     display_inventory(general, game);
-    sfRenderWindow_drawSprite(general->window, npc->sp, NULL);
+    perform_npc_actions(&game->npc, &general->player);
     sfRenderWindow_display(general->window);
 }
 
-static void game_initialize(game_menu_t *game, csfml_t *general, npc_t *npc)
+static void game_initialize(game_menu_t *game, csfml_t *general)
 {
     game->game_scene.map_layer01_file = MAP_L01_FILE;
     game->game_scene.map_layer02_file = MAP_L02_FILE;
@@ -62,20 +64,19 @@ static void game_initialize(game_menu_t *game, csfml_t *general, npc_t *npc)
         sfView_copy(general->views.actual_view);
     sfRenderWindow_setView(general->window, general->views.actual_view);
     initialize_inventory(&game->inventory);
-    set_npc_interaction(npc);
+    set_npc(&game->npc);
     game->on_fight = 0;
 }
 
 void game_menu(csfml_t *general)
 {
     game_menu_t game;
-    npc_t npc;
 
-    game_initialize(&game, general, &npc);
+    game_initialize(&game, general);
     while (general->act_scene == ID_GAME) {
         while (sfRenderWindow_pollEvent(general->window, &general->event))
             game_event(general, &game);
-        game_display(&game, general, &npc);
+        game_display(&game, general);
     }
     free_game_ressources(&game);
 }

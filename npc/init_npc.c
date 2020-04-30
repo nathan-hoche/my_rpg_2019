@@ -9,11 +9,11 @@
 #include "my.h"
 #include "struct.h"
 
-void set_npc_interaction(npc_t *npc)
+void set_npc(npc_t *npc)
 {
     sfVector2f npc_pos;
 
-    npc->pos_px = (sfVector2f) {(20 * 32) + 16, (20 * 32) + 16};
+    npc->pos_px = (sfVector2f) {(15 * 32) + 16, (15 * 32) + 10};
     npc->tx_rect = (sfIntRect) {0, 0, 64, 64};
     npc->tx = make_texture(NPC_01_TXTR);
     npc->sp = make_sprite(npc->tx);

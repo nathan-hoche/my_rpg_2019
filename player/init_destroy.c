@@ -29,6 +29,8 @@ void init_game_player(player_t *player, game_scene_t *game_scene)
     player->pos_px = (sfVector2i) {0, 0};
     player->on_move = 0;
     player->on_anim = 0;
+    player->pos_traj.x = player->pos_cart.x + 1;
+    player->pos_traj.y = player->pos_cart.y;
     sfSprite_setPosition(player->player, game_scene->starting_pos);
 }
 

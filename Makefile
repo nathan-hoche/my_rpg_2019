@@ -32,7 +32,10 @@ SRC	=	main.c \
 		inventory/set_items.c \
 		inventory/free_inventory.c	\
 		inventory/display_inventory.c \
-		npc_interaction/interaction.c
+		npc/interaction.c \
+		npc/manage_npc_actions.c \
+		npc/init_npc.c \
+		npc/collision.c
 
 NAME	=		my_rpg
 

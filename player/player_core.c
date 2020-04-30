@@ -35,14 +35,17 @@ static void update_player_pos(player_t *player, int i)
 void player_key_orientation(sfEvent event, player_t *player, game_menu_t *game)
 {
     int key[4] = {sfKeyS, sfKeyQ, sfKeyD, sfKeyZ};
+    int looking[4][2] = {{0, 1}, {-1, 0}, {1, 0}, {0, -1}};
     int way[4] = {0, 64, 128, 192};
 
     for (int i = 0; player->on_move == 0 && i != 4; i++) {
         if (player->on_move == 0 && sfKeyboard_isKeyPressed(key[i]) == 1) {
+            player->player_rect.top = way[i];
+            player->pos_view = (sfVector2i) {player->pos_view.x + \
+            looking[i][0], player->pos_view.y + looking[i][1]};
             if (player_collision_core(key[i], player, game) == 1)
                 return;
             update_player_pos(player, i);
-            player->player_rect.top = way[i];
             player->on_move = i + 1;
             player->on_anim = 1;
         }
@@ -88,6 +91,7 @@ static void player_animation(player_t *player)
 void player_core(csfml_t *general, game_menu_t *game)
 {
     player_key_orientation(general->event, &general->player, game);
+    check_collisions_with_npc(&general->player, &game->npc);
     if (general->player.on_move != 0)
         player_movement(&general->player);
     if (general->player.on_anim != 0)

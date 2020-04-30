@@ -37,3 +37,21 @@ int player_collision_core(int key, player_t *playr, game_menu_t *game)
         return (1);
     return (0);
 }
+
+void check_collisions_with_npc(player_t *player, npc_t *npc)
+{
+    if ((player->pos_traj.x == npc->pos_cart.x && \
+    player->pos_traj.y == npc->pos_cart.y - 1) || \
+    (player->pos_traj.x == npc->pos_cart.x) && \
+    (player->pos_traj.y == npc->pos_cart.y)) {
+        player->on_move = 0;
+        player->on_anim = 0;
+    }
+    if ((player->pos_traj.x == npc->pos_cart.x && \
+    player->pos_traj.y - 1 == npc->pos_cart.y - 1) || \
+    (player->pos_traj.x == npc->pos_cart.x) && \
+    (player->pos_traj.y - 1 == npc->pos_cart.y)) {
+        player->on_move = 0;
+        player->on_anim = 0;
+    }
+}
