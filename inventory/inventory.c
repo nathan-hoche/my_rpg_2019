@@ -42,15 +42,18 @@ void manage_inventory_event(csfml_t *page, inventory_t *inventory)
 static void put_obj_name(inventory_t *inventory, FILE *fp)
 {
     char *buf = NULL;
+    char **temp = NULL;
     char *line = NULL;
     size_t len = 0;
     __ssize_t read;
 
+    inventory->stats.stat = malloc(sizeof(int *) * ALL_OBJ);
     read = getline(&buf, &len, fp);
-    while (read != -1) {
+    for (int i = 0; read != -1; i++) {
         read = getline(&line, &len, fp);
-        if (read != -1)
-            buf = my_strcat(buf, line);
+        if (read != -1) {
+            buf = initialize_stats(inventory, buf, line, i);
+        }
     }
     inventory->obj_name = my_str_to_word_array(buf, '\n');
     free(line);
@@ -67,7 +70,7 @@ static int *put_obj_id(int *id_inventory, FILE *fp)
     if (getline(&line, &len, fp) == -1)
         return (NULL);
     id = my_getnbr(line);
-    for (int i = 0; i < INVENTORY_ID_SIZE; i++) {
+    for (int i = 0; i < INVENTORY_SIZE; i++) {
         id_inventory[i] = id;
         id += 1;
     }
@@ -83,7 +86,7 @@ int initialize_inventory(inventory_t *inventory)
     fp = fopen(CONFIG_INVENTORY_FILE, "r");
     if (!fp)
         return (84);
-    inventory->obj_id = malloc(sizeof(int) * INVENTORY_ID_SIZE);
+    inventory->obj_id = malloc(sizeof(int) * INVENTORY_SIZE);
     if (!inventory->obj_id)
         return (84);
     inventory->obj_id = put_obj_id(inventory->obj_id, fp);

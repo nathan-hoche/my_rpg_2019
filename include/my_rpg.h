@@ -69,7 +69,7 @@
 
 #define CAM_DEFAULT_ZOOM (0.6)
 
-#define INVENTORY_ID_SIZE (7)
+#define INVENTORY_SIZE (7)
 
 #define SWORD_POS_X (5)
 #define SWORD_POS_Y (2)
@@ -80,6 +80,9 @@
 #define ARMOR_POS_X (162)
 #define ARMOR_POS_Y (1)
 #define PANTS_POS_X (216)
+
+#define ALL_OBJ (14)
+#define STAT_DATA (3)
 
 
 void game_menu(csfml_t *page);
@@ -129,4 +132,6 @@ void manage_inventory_event(csfml_t *page, inventory_t *inventory);
 void display_items(sfRenderWindow *window, items_t *items);
 void free_inventory(inventory_t *inventory);
 void set_inventory_pos(csfml_t *page, inventory_t *inventory);
+
+char *initialize_stats(inventory_t *inventory, char *buf, char *line, int i);
 #endif /* !MY_RPG_H_ */

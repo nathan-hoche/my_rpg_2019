@@ -12,6 +12,13 @@
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
 
+typedef struct stats_s {
+    int **stat;
+    short attack;
+    short defense;
+    short speed;
+}stats_t;
+
 typedef struct items_s {
     sfTexture *sword_tx;
     sfSprite *sword_sp;
@@ -32,6 +39,7 @@ typedef struct inventory_s {
     sfTexture *tx_bar;
     sfSprite *sp_bar;
     items_t items;
+    stats_t stats;
 }inventory_t;
 
 typedef struct csfml_s csfml_t;
