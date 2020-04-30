@@ -30,7 +30,7 @@ static void pause_display(pause_menu_t *pause, sfRenderWindow *window)
 
 static void pause_initialize(pause_menu_t *pause)
 {
-    pause->back.tx_back = make_texture(BACKGROUND_2);
+    pause->back.tx_back = make_texture(BACKGROUND_1);
     pause->back.sp_back = make_sprite(pause->back.tx_back);
 }
 

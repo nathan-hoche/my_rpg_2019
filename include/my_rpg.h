@@ -27,7 +27,6 @@
 
 #define FONT_1 "src/font_itim.ttf"
 #define BACKGROUND_1 "src/space.png"
-#define BACKGROUND_2 "src/background.png"
 
 #define MAP_SP_SHEET "src/tile.png"
 

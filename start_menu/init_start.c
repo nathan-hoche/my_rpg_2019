@@ -79,7 +79,7 @@ void start_initialize(start_menu_t *start, csfml_t *page)
     start->menu_buttons[1].hover = &action_button_hover;
     start->menu_buttons[2].hover = &action_button_hover;
     start->menu_buttons[3].hover = &action_button_hover;
-    start->back.tx_back = make_texture(BACKGROUND_2);
+    start->back.tx_back = make_texture(BACKGROUND_1);
     start->back.sp_back = make_sprite(start->back.tx_back);
     sfSprite_setTexture(start->back.sp_back, start->back.tx_back, sfFalse);
 }

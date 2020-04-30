@@ -106,9 +106,6 @@ typedef struct start_menu_s {
 //-> HOW TO PLAY MENU <-/////////////////////////
 
 typedef struct htp_menu_t {
-    sfSprite *exit_button;
-    sfText *exit;
-    sfVector2f pos_but;
     background_t back;
 }htp_menu_t;
 
