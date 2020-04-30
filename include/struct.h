@@ -131,6 +131,11 @@ typedef struct attacks_s {
     sfTexture *txtr_shield;
 }attaks_t;
 
+typedef struct sound_s {
+    sfSoundBuffer *sound_buf;
+    sfSound *sound;
+}sounds_t;
+
 typedef struct fight_scene_s {
     char turn_state;
     char atk_step;

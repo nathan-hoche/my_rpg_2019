@@ -5,8 +5,6 @@
 ** fight system destroy functions
 */
 
-#include "my_rpg.h"
-#include "my.h"
 #include "struct.h"
 
 void fight_destroy(fight_scene_t *fight)

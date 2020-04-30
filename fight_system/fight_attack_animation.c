@@ -89,5 +89,6 @@ fight_scene_t *fight, csfml_t *general)
             waiting_time(fight);
             break;
     }
-    sfRenderWindow_drawSprite(general->window, fight->attacks.sword_slash, NULL);
+    sfRenderWindow_drawSprite(general->window, \
+    fight->attacks.sword_slash, NULL);
 }
