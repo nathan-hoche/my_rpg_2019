@@ -119,6 +119,11 @@ typedef struct start_menu_s {
 //-> HOW TO PLAY MENU <-/////////////////////////
 
 typedef struct htp_menu_t {
+    sfTexture *htp_texture;
+    sfSprite *exit_button;
+    sfSprite *htp;
+    sfText *exit;
+    sfVector2f pos_but;
     background_t back;
 }htp_menu_t;
 
@@ -173,6 +178,11 @@ typedef struct views_s {
     sfView *actual_view;
 }views_t;
 
+typedef struct music_s {
+    sfMusic *menu;
+    int music_played;
+}music_t;
+
 typedef struct csfml_s {
     sfVideoMode mode;
     views_t views;
@@ -185,6 +195,7 @@ typedef struct csfml_s {
     player_t player;
     int act_scene;
     settings_t settings;
+    music_t music;
 }csfml_t;
 
 #endif /* !SCENE_H_ */

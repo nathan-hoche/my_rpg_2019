@@ -43,7 +43,7 @@ void player_key_orientation(sfEvent event, player_t *player, game_menu_t *game)
             player->player_rect.top = way[i];
             player->pos_view = (sfVector2i) {player->pos_cart.x + \
             looking[i][0], player->pos_cart.y + looking[i][1]};
-            printf("POS : %d %d -> VIEW : %d %d\n", player->pos_cart.x, player->pos_cart.y, player->pos_view.x, player->pos_view.y);
+            //printf("POS : %d %d -> VIEW : %d %d\n", player->pos_cart.x, player->pos_cart.y, player->pos_view.x, player->pos_view.y);
             if (player_collision_core(key[i], player, game) == 1) {
                 sfSprite_setTextureRect(player->player, player->player_rect);
                 return;
