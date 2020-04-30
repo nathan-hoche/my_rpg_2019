@@ -27,13 +27,14 @@
 
 #define FONT_1 "src/font_itim.ttf"
 #define BACKGROUND_1 "src/space.png"
+#define BACKGROUND_2 "src/island.jpg"
 
 #define MAP_SP_SHEET "src/tile.png"
 
 #define MAP_L01_FILE "map/map_layer01.txt"
 #define MAP_L02_FILE "map/map_layer02.txt"
 
-#define MAP_GROUND_1 "src/grass.png"
+#define MAP_GROUND_1 "src/water.jpg"
 
 #define CONFIG_INVENTORY_FILE "src/config.txt"
 
