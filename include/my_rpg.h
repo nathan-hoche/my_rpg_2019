@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_rpg_2019
 ** File description:
-** my_rpg
+** rpg prototypes
 */
 
 #ifndef MY_RPG_H_
@@ -67,7 +67,7 @@
 #define BLOCK_SIZE_X (32)
 #define BLOCK_SIZE_Y (32)
 
-#define CAM_DEFAULT_ZOOM (0.6)
+#define CAM_DEFAULT_ZOOM (0.48)
 
 #define INVENTORY_ID_SIZE (7)
 
@@ -81,20 +81,17 @@
 #define ARMOR_POS_Y (1)
 #define PANTS_POS_X (216)
 
-
 void game_menu(csfml_t *page);
 void start_menu(csfml_t *page);
 void start_initialize(start_menu_t *start, csfml_t *page);
 void pause_menu(csfml_t *page);
 void initialize_window(csfml_t *page);
 void init_game_scene(game_scene_t *scene);
-void map_display(char *map, game_scene_t *scene, sfSprite *tile, \
-csfml_t *general);
 void init_player(player_t *player);
+void init_game_player(player_t *player, game_scene_t *game_scene);
 void init_destroy(player_t *player);
-void clock_player_animation(player_t *player);
 void destroy_player(player_t *player);
-void player_orientation(sfEvent event, player_t *player);
+void player_orientation(sfEvent event, player_t *player, game_menu_t *game);
 int action_start_button(csfml_t *page);
 int action_quit_button(csfml_t *page);
 int action_settings_button(csfml_t *page);
@@ -102,7 +99,6 @@ int action_howtoplay_button(csfml_t *page);
 void action_button_hover(button_t *button, csfml_t *core);
 void check_buttons_hover(start_menu_t *start, csfml_t *page);
 int button_obj_is_hover(button_t *button, sfRenderWindow *window);
-void player_check_collision(player_t *player, sfVector2f pos_block);
 void settings_initialize(settings_menu_t *set, csfml_t *page);
 void free_game_ressources(game_menu_t *game);
 void camera_fight_zoom(game_menu_t *game, csfml_t *page);
@@ -111,7 +107,7 @@ int action_plus_fx(csfml_t *page);
 int action_minus_fx(csfml_t *page);
 int action_plus_music(csfml_t *page);
 int action_minus_music(csfml_t *page);
-int action_returning(csfml_t *page);
+int action_return(csfml_t *page);
 void settings(csfml_t *page);
 void how_to_play(csfml_t *page);
 int event_skin(csfml_t *page);
@@ -119,9 +115,10 @@ void skin(csfml_t *page);
 
 void fight_core(csfml_t *page, game_menu_t *game);
 
-
-void player_movement(player_t *player);
-void player_animation(player_t *player);
+void display_map_core(game_menu_t *game, csfml_t *general);
+void player_core(csfml_t *general, game_menu_t *game);
+void camera_view(game_menu_t *game, csfml_t *page);
+int player_collision_core(int key, player_t *player, game_menu_t *game);
 
 int initialize_inventory(inventory_t *inventory);
 void initialize_items(items_t *items);
@@ -129,4 +126,6 @@ void manage_inventory_event(csfml_t *page, inventory_t *inventory);
 void display_items(sfRenderWindow *window, items_t *items);
 void free_inventory(inventory_t *inventory);
 void set_inventory_pos(csfml_t *page, inventory_t *inventory);
+void display_inventory(csfml_t *general, game_menu_t *game);
+
 #endif /* !MY_RPG_H_ */

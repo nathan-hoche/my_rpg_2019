@@ -9,11 +9,12 @@
 #include "struct.h"
 #include "my.h"
 
-void set_inventory_pos(csfml_t *page, inventory_t *inventory)
+void set_inventory_pos(csfml_t *general, inventory_t *inventory)
 {
     sfVector2f pos;
 
-    pos = sfSprite_getPosition(page->player.player);
+    pos.x = general->player.pos_px.x;
+    pos.y = general->player.pos_px.y;
     pos.x -= 135;
     pos.y += 215;
     sfSprite_setPosition(inventory->sp_bar, pos);

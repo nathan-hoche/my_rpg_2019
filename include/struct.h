@@ -75,21 +75,23 @@ typedef struct pause_menu_s {
 //-> GAME SCENE <-///////////////////////////////
 
 typedef struct game_scene_s {
+    int **view_dist;
     char *map_layer01_file;
     char *map_layer02_file;
-    char *map_layer01;
-    char *map_layer02;
+    char **map_layer01;
+    char **map_layer02;
     sfVector2f starting_pos;
 }game_scene_t;
 
 typedef struct game_menu_s {
-    int on_fight_zoom;
+    int on_fight;
     sfClock *cam_clock;
-    game_scene_t first_scene;
+    game_scene_t game_scene;
     sfTexture *texture_tile;
     sfSprite *tile;
     sfTexture *grass;
     sfSprite *back_grass;
+    inventory_t inventory;
 }game_menu_t;
 
 //-> START SCENE <-//////////////////////////////
@@ -140,11 +142,14 @@ typedef struct player_t {
     sfSprite *player;
     sfIntRect player_rect;
     sfClock *animation;
+    sfClock *movement;
     sfVector2f move_direction;
-    int nb_move;
-    int move_ways;
-    int collision;
     int gender;
+    int on_move;
+    int on_anim;
+    sfVector2i pos_cart;
+    sfVector2i pos_px;
+    sfVector2i traj;
 }player_t;
 
 typedef struct views_s {

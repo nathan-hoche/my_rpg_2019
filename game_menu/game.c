@@ -2,87 +2,77 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_rpg_2019
 ** File description:
-** play game
+** loop the game
 */
 
 #include "my_rpg.h"
 #include "my.h"
 #include "struct.h"
 
-static void game_event(csfml_t *page, game_menu_t *game, inventory_t *inventory)
+static void game_event(csfml_t *general, game_menu_t *game)
 {
-    if (page->event.type == sfEvtClosed)
-        page->act_scene = ID_CLOSE;
-    else if (page->event.key.code == sfKeyEscape && \
-    page->event.type == sfEvtKeyPressed)
-        pause_menu(page);
-    else if (page->event.key.code == sfKeyE && \
-    page->event.type == sfEvtKeyPressed)
-        game->on_fight_zoom = 1;
-    manage_inventory_event(page, inventory);
-    player_orientation(page->event, &page->player);
+    if (general->event.type == sfEvtClosed)
+        general->act_scene = ID_CLOSE;
+    if (general->event.key.code == sfKeyEscape && \
+    general->event.type == sfEvtKeyPressed)
+        pause_menu(general);
+    manage_inventory_event(general, &game->inventory);
 }
 
-static void camera_view(game_menu_t *game, csfml_t *page)
+static void player_gps(player_t *player)
 {
-    sfVector2f player_pos = sfSprite_getPosition(page->player.player);
+    sfVector2f pos = sfSprite_getPosition(player->player);
 
-    sfView_setCenter(page->views.actual_view, player_pos);
-    sfRenderWindow_setView(page->window, page->views.actual_view);
+    player->pos_cart.x = (int) pos.x / 32;
+    player->pos_cart.y = (int) pos.y / 32;
+    player->pos_px.x = pos.x;
+    player->pos_px.y = pos.y;
 }
 
-static void game_display(game_menu_t *game, csfml_t *page, \
-inventory_t *inventory)
+static void game_display(game_menu_t *game, csfml_t *general)
 {
-    sfRenderWindow_clear(page->window, sfBlack);
-    sfRenderWindow_drawSprite(page->window, game->back_grass, NULL);
-    clock_player_animation(&page->player);
-    map_display(game->first_scene.map_layer01, &game->first_scene, \
-        game->tile, page);
-    map_display(game->first_scene.map_layer02, &game->first_scene, \
-        game->tile, page);
-    sfRenderWindow_drawSprite(page->window, page->player.player, NULL);
-    if (game->on_fight_zoom == 0)
-        camera_view(game, page);
-    else
-        camera_fight_zoom(game, page);
-    if (inventory->status == 1) {
-        set_inventory_pos(page, inventory);
-        sfRenderWindow_drawSprite(page->window, inventory->sp_bar, NULL);
-        display_items(page->window, &inventory->items);
-    }
-    sfRenderWindow_display(page->window);
+    sfRenderWindow_clear(general->window, sfBlack);
+    sfRenderWindow_drawSprite(general->window, game->back_grass, NULL);
+    display_map_core(game, general);
+    player_core(general, game);
+    player_gps(&general->player);
+    sfRenderWindow_drawSprite(general->window, general->player.player, NULL);
+    if (game->on_fight == 0)
+        camera_view(game, general);
+    display_inventory(general, game);
+    sfRenderWindow_display(general->window);
 }
 
-static void game_initialize(game_menu_t *game, csfml_t *page)
+static void game_initialize(game_menu_t *game, csfml_t *general)
 {
-    game->first_scene.map_layer01_file = MAP_L01_FILE;
-    game->first_scene.map_layer02_file = MAP_L02_FILE;
-    init_game_scene(&game->first_scene);
+    game->game_scene.map_layer01_file = MAP_L01_FILE;
+    game->game_scene.map_layer02_file = MAP_L02_FILE;
+    init_game_scene(&game->game_scene);
+    init_game_player(&general->player, &game->game_scene);
     game->texture_tile = make_texture(MAP_SP_SHEET);
     game->tile = make_sprite(game->texture_tile);
     game->grass = make_texture(MAP_GROUND_1);
     game->back_grass = make_sprite(game->grass);
-    page->views.default_view = sfRenderWindow_getDefaultView(page->window);
-    page->views.actual_view = sfView_copy(page->views.default_view);
-    sfView_zoom(page->views.actual_view, CAM_DEFAULT_ZOOM);
-    page->views.default_player_view = sfView_copy(page->views.actual_view);
-    sfRenderWindow_setView(page->window, page->views.actual_view);
-    game->on_fight_zoom = 0;
+    general->views.default_view = \
+        sfRenderWindow_getDefaultView(general->window);
+    general->views.actual_view = sfView_copy(general->views.default_view);
+    sfView_zoom(general->views.actual_view, CAM_DEFAULT_ZOOM);
+    general->views.default_player_view = \
+        sfView_copy(general->views.actual_view);
+    sfRenderWindow_setView(general->window, general->views.actual_view);
+    initialize_inventory(&game->inventory);
+    game->on_fight = 0;
 }
 
-void game_menu(csfml_t *page)
+void game_menu(csfml_t *general)
 {
     game_menu_t game;
-    inventory_t inventory;
 
-    initialize_inventory(&inventory);
-    game_initialize(&game, page);
-    while (page->act_scene == ID_GAME) {
-        game_display(&game, page, &inventory);
-        while (sfRenderWindow_pollEvent(page->window, &page->event))
-            game_event(page, &game, &inventory);
+    game_initialize(&game, general);
+    while (general->act_scene == ID_GAME) {
+        while (sfRenderWindow_pollEvent(general->window, &general->event))
+            game_event(general, &game);
+        game_display(&game, general);
     }
     free_game_ressources(&game);
-    free_inventory(&inventory);
 }

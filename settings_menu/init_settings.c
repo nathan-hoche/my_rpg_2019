@@ -83,7 +83,7 @@ static void settings_buttons_initialize(settings_menu_t *set, csfml_t *page)
     set->buttons[1].action = &action_plus_music;
     set->buttons[2].action = &action_minus_fx;
     set->buttons[3].action = &action_plus_fx;
-    set->buttons[4].action = &action_returning;
+    set->buttons[4].action = &action_return;
     buttons_sounds_sprite_initialize(set, page);
     buttons_exit_sprite_initialize(set, page);
 }

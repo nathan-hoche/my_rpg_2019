@@ -27,7 +27,7 @@ void camera_fight_zoom(game_menu_t *game, csfml_t *page)
     if (times == 60) {
         times = 0;
         state = 1;
-        game->on_fight_zoom = 0;
+        game->on_fight = 0;
         sfClock_destroy(game->cam_clock);
         page->views.actual_view = sfView_copy(page->views.default_player_view);
     }

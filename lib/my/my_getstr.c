@@ -1,43 +1,50 @@
 /*
-** EPITECH PROJECT, 2019
-** my_getstr.c
+** EPITECH PROJECT, 2020
+** SHOW_NUMBER
 ** File description:
-** getstr from int
+** covnert int to char
 */
 
+#include <stddef.h>
 #include <stdlib.h>
 #include "my.h"
 
-static char *except(int nb)
+static int sizer(int nb)
 {
-    char *result = NULL;
+    int count = 0;
+    int rest = nb;
 
-    result = malloc(sizeof(int)* (nb + 2));
-    if (nb == 0)
-        result[0] = '0';
-    result[1] = '\0';
-    return (result);
+    if (nb == 0) {
+        count = 1;
+        return (count);
+    }
+    while (rest != 0) {
+        rest = rest / 10;
+        count++;
+    }
+    return (count);
 }
 
 char *my_getstr(int nb)
 {
-    int temp = 0;
-    int i = 0;
-    int sign = 0;
+    char *number = NULL;
+    int negative = 0;
+    int size = 0;
+    int rest = 0;
 
-    if (nb == 0)
-        return ("0\0");
     if (nb < 0) {
-        nb = nb * -1;
-        sign == 1;
+        nb = nb * (-1);
+        negative = 1;
     }
-    char *result = except(nb);
-    for (;nb > 0; i++) {
-        temp = nb % 10;
-        temp = temp + 48;
-        nb = nb / 10;
-        result[i] = temp;
+    rest = nb;
+    size = sizer(nb) + negative;
+    number = malloc(sizeof(char) * (size + 1));
+    number[size] = '\0';
+    for (int i = size - 1; i >= negative; i--) {
+        number[i] = rest % 10 + '0';
+        rest = rest / 10;
     }
-    result[i] = '\0';
-    return (my_revstr(result));
+    if (negative == 1)
+        number[0] = '-';
+    return (number);
 }

@@ -8,13 +8,32 @@
 #include "my_rpg.h"
 #include "struct.h"
 
-void player_check_collision(player_t *player, sfVector2f pos_block)
+static int is_collide(char value)
 {
-    sfVector2f pos;
-    sfVector2f size;
+    char collide_list[] = {'2', '3', '4', '5', '6', '7', '\0'};
 
-    pos = player->move_direction;
-    if ((pos.x + 16) < (pos_block.x + 32) && (pos.x + 64 - 16) > pos_block.x \
-    && (pos.y + 48 + 8) < (pos_block.y + 32) && (64 + pos.y) > pos_block.y)
-        player->collision = player->move_ways;
+    for (int i = 0; collide_list[i]; i++) {
+        if (value == collide_list[i])
+            return (1);
+    }
+    return (0);
+}
+
+int player_collision_core(int key, player_t *playr, game_menu_t *game)
+{
+    char **map = game->game_scene.map_layer01;
+
+    if (key == sfKeyD && is_collide \
+    (map[playr->pos_cart.y][playr->pos_cart.x + 1]) == 1)
+        return (1);
+    else if (key == sfKeyQ && is_collide \
+    (map[playr->pos_cart.y][playr->pos_cart.x - 1]) == 1)
+        return (1);
+    if (key == sfKeyS && is_collide \
+    (map[playr->pos_cart.y + 1][playr->pos_cart.x]) == 1)
+        return (1);
+    else if (key == sfKeyZ && is_collide \
+    (map[playr->pos_cart.y - 1][playr->pos_cart.x]) == 1)
+        return (1);
+    return (0);
 }

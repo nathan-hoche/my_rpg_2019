@@ -17,13 +17,19 @@ void init_player(player_t *player)
     player->animation = sfClock_create();
     player->player_rect = (sfIntRect)
         {0, 0, PLAYER_SP_SIZ_X, PLAYER_SP_SIZ_Y};
-    player->move_direction = (sfVector2f) \
-        {PLAYER_SP_SIZ_X, PLAYER_SP_SIZ_Y};
-    sfSprite_setPosition(player->player, player->move_direction);
     sfSprite_setTextureRect(player->player, player->player_rect);
-    player->nb_move = 0;
-    player->move_ways = 0;
-    player->collision = -1;
+    sfSprite_setOrigin(player->player, (sfVector2f) {32, 48});
+}
+
+void init_game_player(player_t *player, game_scene_t *game_scene)
+{
+    player->movement = sfClock_create();
+    player->animation = sfClock_create();
+    player->pos_cart = (sfVector2i) {0, 0};
+    player->pos_px = (sfVector2i) {0, 0};
+    player->on_move = 0;
+    player->on_anim = 0;
+    sfSprite_setPosition(player->player, game_scene->starting_pos);
 }
 
 void destroy_player(player_t *player)

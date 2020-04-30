@@ -9,60 +9,49 @@
 #include "struct.h"
 #include "my.h"
 
-static char *init_map(game_scene_t *scene, char *filepath)
+static int file_size(char *filepath)
 {
     FILE *fp;
     char *buffer = NULL;
-    char *line = NULL;
+    size_t len = 0;
+    int read = 0;
+    int count = 0;
+
+    fp = fopen(filepath, "r");
+    for (count = 0; read != -1; count++)
+        read = getline(&buffer, &len, fp);
+    if (count > 0)
+        free(buffer);
+    return (count);
+}
+
+static char **init_map(game_scene_t *scene, char *filepath)
+{
+    FILE *fp;
+    int size = file_size(filepath);
+    char **map = malloc(sizeof(char *) * size);
     size_t len = 0;
     int read = 0;
 
     fp = fopen(filepath, "r");
     if (fp == NULL)
         return (NULL);
-    read = getline(&buffer, &len, fp);
-    while (read != -1) {
-        read = getline(&line, &len, fp);
-        if (read != -1)
-            buffer = my_strcat(buffer, line);
+    for (int i = 0; read != -1; i++) {
+        map[i] = NULL;
+        read = getline(&map[i], &len, fp);
+        if (read != -1 && map[i][read - 1] == '\n')
+            map[i][read - 1] = '\0';
+        if (read == -1)
+            map[i] = NULL;
     }
-    free(line);
-    return (buffer);
+    return (map);
 }
 
 void init_game_scene(game_scene_t *scene)
 {
-    scene->starting_pos = (sfVector2f) {0, 0};
+    scene->starting_pos = (sfVector2f) {16 + 32 * 11, 16 + 32 * 11};
     scene->map_layer01 = init_map(scene, MAP_L01_FILE);
-    scene->map_layer02 = init_map(scene, MAP_L02_FILE);
-}
-
-static void block_collider(int tmp, csfml_t *general, sfVector2f tile_pos)
-{
-    if (tmp == '2')
-        player_check_collision(&general->player, tile_pos);
-}
-
-void map_display(char *map, game_scene_t *scene, sfSprite *tile, \
-csfml_t *general)
-{
-    sfVector2f tile_pos;
-    int rows[7] = {0, 32, 32 * 5, 0, 32, 0, 32};
-    int cols[7] = {0, 0, 32 * 5, 32, 32, 64, 64};
-    char tmp = 0;
-
-    tile_pos = (sfVector2f) {0, 0};
-    for (int i = 0; map != NULL && map[i] != '\0'; i++) {
-        tmp = map[i];
-        if (tmp == '\n')
-            tile_pos = (sfVector2f) {-BLOCK_SIZE_X, tile_pos.y + BLOCK_SIZE_Y};
-        else if (tmp != ' ') {
-            sfSprite_setPosition(tile, tile_pos);
-            sfSprite_setTextureRect(tile, (sfIntRect) \
-{rows[tmp - 48], cols[tmp - 48], BLOCK_SIZE_X, BLOCK_SIZE_Y});
-            sfRenderWindow_drawSprite(general->window, tile, NULL);
-            block_collider(tmp, general, tile_pos);
-        }
-        tile_pos.x += BLOCK_SIZE_X;
-    }
+    scene->view_dist = malloc(sizeof(int *) * 2);
+    scene->view_dist[0] = malloc(sizeof(int) * 2);
+    scene->view_dist[1] = malloc(sizeof(int) * 2);
 }
