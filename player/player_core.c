@@ -41,10 +41,13 @@ void player_key_orientation(sfEvent event, player_t *player, game_menu_t *game)
     for (int i = 0; player->on_move == 0 && i != 4; i++) {
         if (player->on_move == 0 && sfKeyboard_isKeyPressed(key[i]) == 1) {
             player->player_rect.top = way[i];
-            player->pos_view = (sfVector2i) {player->pos_view.x + \
-            looking[i][0], player->pos_view.y + looking[i][1]};
-            if (player_collision_core(key[i], player, game) == 1)
+            player->pos_view = (sfVector2i) {player->pos_cart.x + \
+            looking[i][0], player->pos_cart.y + looking[i][1]};
+            printf("POS : %d %d -> VIEW : %d %d\n", player->pos_cart.x, player->pos_cart.y, player->pos_view.x, player->pos_view.y);
+            if (player_collision_core(key[i], player, game) == 1) {
+                sfSprite_setTextureRect(player->player, player->player_rect);
                 return;
+            }
             update_player_pos(player, i);
             player->on_move = i + 1;
             player->on_anim = 1;
@@ -91,7 +94,7 @@ static void player_animation(player_t *player)
 void player_core(csfml_t *general, game_menu_t *game)
 {
     player_key_orientation(general->event, &general->player, game);
-    check_collisions_with_npc(&general->player, &game->npc);
+    //check_collisions_with_npc(&general->player, &game->npc);
     if (general->player.on_move != 0)
         player_movement(&general->player);
     if (general->player.on_anim != 0)
