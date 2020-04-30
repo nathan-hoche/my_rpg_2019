@@ -32,7 +32,7 @@ static void slash_animation(fight_scene_t *fight)
     }
 }
 
-static void damage_stats(fighter_t *striker, fighter_t *target, 
+static void damage_stats(fighter_t *striker, fighter_t *target, \
 fight_scene_t *fight)
 {
     if (target->def == sfTrue) {
@@ -43,7 +43,7 @@ fight_scene_t *fight)
     fight->atk_step = 4;
 }
 
-static void initialize_slash_pos(fighter_t *target, 
+static void initialize_slash_pos(fighter_t *target, \
 fight_scene_t *fight)
 {
     sfVector2f pos_target;
@@ -78,7 +78,7 @@ static void waiting_time(fight_scene_t *fight)
     }
 }
 
-void fight_attack_animation(fighter_t *striker, fighter_t *target,
+void fight_attack_animation(fighter_t *striker, fighter_t *target, \
 fight_scene_t *fight, csfml_t *general)
 {
     switch (fight->atk_step) {

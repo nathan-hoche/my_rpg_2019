@@ -56,12 +56,12 @@ csfml_t *general)
 {
     sfRenderWindow_clear(window, sfWhite);
     sfRenderWindow_drawSprite(window, fight->back.sp_back, NULL);
-    display_infos_areas(fight, window);
     sfRenderWindow_drawSprite(general->window, fight->player.sp, NULL);
     sfRenderWindow_drawSprite(general->window, fight->enemy.sp, NULL);
-    turn_core(fight, window);
     defence_mode(fight, window);
     fight_attacks(fight, general);
+    turn_core(fight, window);
+    display_infos_areas(fight, window);
     sfRenderWindow_display(window);
 }
 
@@ -84,4 +84,4 @@ void fight_core(csfml_t *general, game_menu_t *game)
     }
     fight_destroy(&fight);
     sfRenderWindow_setView(general->window, general->views.actual_view);
-}
+}²

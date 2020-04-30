@@ -9,6 +9,11 @@
 #include "my.h"
 #include "struct.h"
 
+/* static void buttons_hover()
+{
+
+} */
+
 static void display_buttons(fight_scene_t *fight, sfRenderWindow *window)
 {
     sfRenderWindow_drawSprite(window, fight->fight_buttons.button_atk, NULL);
