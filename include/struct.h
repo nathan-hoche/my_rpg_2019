@@ -149,7 +149,7 @@ typedef struct player_t {
     int on_anim;
     sfVector2i pos_cart;
     sfVector2i pos_px;
-    sfVector2i traj;
+    sfVector2i pos_traj;
 }player_t;
 
 typedef struct views_s {
