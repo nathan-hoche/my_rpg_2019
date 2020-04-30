@@ -62,7 +62,8 @@ csfml_t *general)
 {rows[tmp - 48], cols[tmp - 48], BLOCK_SIZE_X, BLOCK_SIZE_Y});
             sfRenderWindow_drawSprite(general->window, tile, NULL);
             block_collider(tmp, general, tile_pos);
-        }
+        } else
+            player_check_collision(&general->player, tile_pos);
         tile_pos.x += BLOCK_SIZE_X;
     }
 }
