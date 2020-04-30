@@ -13,9 +13,6 @@
 static void init_music(music_t *music)
 {
     music->menu = sfMusic_createFromFile(MUSIC_MENU);
-    /*page->sound_but = sfSound_create();
-    page->sound_but_buf = sfSoundBuffer_createFromFile("src/punch.ogg");
-    sfSound_setBuffer(page->sound_but, page->sound_but_buf);*/
     sfMusic_setLoop(music->menu, sfTrue);
     sfMusic_play(music->menu);
     sfMusic_setVolume(music->menu, 60);
