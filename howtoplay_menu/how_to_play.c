@@ -9,15 +9,21 @@
 #include "my.h"
 #include "struct.h"
 
-static int htp_event(csfml_t *page)
+static int htp_event(csfml_t *page, htp_menu_t *htp)
 {
     if (page->event.type == sfEvtClosed) {
         page->act_scene = ID_CLOSE;
         return (0);
-    }
-    else if (page->event.key.code == sfKeyEscape && \
+    } else if (page->event.key.code == sfKeyEscape && \
     page->event.type == sfEvtKeyPressed)
         return (0);
+    if (page->event.key.code == sfMouseLeft && \
+        page->event.type == sfEvtMouseButtonPressed)
+        if (button_is_clicked(htp->pos_but, page->size_button, \
+        page->window) == 0) {
+            page->act_scene = ID_START_MENU;
+            return (0);
+        }
     return (1);
 }
 
@@ -65,7 +71,7 @@ void how_to_play(csfml_t *page)
         htp_display(&htp, page->window);
         while (sfRenderWindow_pollEvent(page->window, &page->event) && \
         active != 0)
-            active = htp_event(page);
+            active = htp_event(page, &htp);
     }
     htp_destroy(&htp);
 }
