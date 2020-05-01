@@ -85,6 +85,8 @@
 #define ARMOR_POS_Y (1)
 #define PANTS_POS_X (216)
 
+#define STAT_DATA (3)
+
 void game_menu(csfml_t *page);
 void start_menu(csfml_t *page);
 void start_initialize(start_menu_t *start, csfml_t *page);
