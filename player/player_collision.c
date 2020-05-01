@@ -10,7 +10,7 @@
 
 static int is_collide(char value)
 {
-    char collide_list[] = {'2', '3', '4', '5', '6', '7', '\0'};
+    char *collide_list = "234567\0";
 
     for (int i = 0; collide_list[i]; i++) {
         if (value == collide_list[i])

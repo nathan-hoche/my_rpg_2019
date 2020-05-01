@@ -81,4 +81,6 @@ void display_map_core(game_menu_t *game, csfml_t *general)
         game->game_scene.view_dist);
     map_display(game->game_scene.map_layer01, \
         &game->game_scene, game->tile, general);
+    map_display(game->game_scene.map_layer02, \
+        &game->game_scene, game->tile, general);
 }
