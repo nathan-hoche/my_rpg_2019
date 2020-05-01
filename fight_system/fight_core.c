@@ -79,7 +79,6 @@ void fight_core(csfml_t *general, game_menu_t *game)
             active = fight_event(general);
         if (check_end(&fight) == 1)
             active = 0;
-
     }
     fight_destroy(&fight);
     sfRenderWindow_setView(general->window, general->views.actual_view);
