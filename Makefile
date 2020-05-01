@@ -31,7 +31,9 @@ SRC	=	main.c \
 		inventory/initialize_inventory.c \
 		inventory/set_items.c \
 		inventory/free_inventory.c	\
-		inventory/display_inventory.c
+		inventory/display_inventory.c \
+		inventory/stat/stat_player.c \
+		inventory/stat/free_stats.c
 
 NAME	=		my_rpg
 

@@ -61,6 +61,7 @@ static void game_initialize(game_menu_t *game, csfml_t *general)
         sfView_copy(general->views.actual_view);
     sfRenderWindow_setView(general->window, general->views.actual_view);
     initialize_inventory(&game->inventory, general);
+    initialize_graphical_stats(&game->inventory, general);
     game->on_fight = 0;
 }
 

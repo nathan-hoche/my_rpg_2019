@@ -17,10 +17,13 @@ typedef struct stats_s {
     short attack;
     short defense;
     sfRectangleShape *status;
+    sfText *att_val;
+    sfText *def_val;
+    sfText *speed_val;
     sfText *att_txt;
     sfText *def_txt;
     sfText *speed_txt;
-    int **stat;
+    int *stat;
 }stats_t;
 
 typedef struct items_s {

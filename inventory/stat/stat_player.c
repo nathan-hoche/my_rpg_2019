@@ -8,52 +8,76 @@
 #include "my.h"
 #include "my_rpg.h"
 #include "struct.h"
+#include <unistd.h>
 
-void display_texts(stats_t *stats)
+void display_status(csfml_t *general, stats_t *stats)
 {
-    return;
+    sfRenderWindow_drawText(general->window, stats->att_txt, NULL);
+    sfRenderWindow_drawText(general->window, stats->def_txt, NULL);
+    sfRenderWindow_drawText(general->window, stats->speed_txt, NULL);
+    sfRenderWindow_drawText(general->window, stats->att_val, NULL);
+    sfRenderWindow_drawText(general->window, stats->def_val, NULL);
+    sfRenderWindow_drawText(general->window, stats->speed_val, NULL);
 }
 
-static void initialize_texts(stats_t *stats, csfml_t *general, int i)
+void initialize_texts(stats_t *stats, csfml_t *general)
 {
-    sfVector2f att_txt_pos = (sfVector2f) {300, 200};
-    sfVector2f def_txt_pos = (sfVector2f) {300, 300};
-    sfVector2f spe_txt_pos = (sfVector2f) {300, 400};
-    stats->att_txt = make_text(general->font_itim, "ATTACK:", att_txt_pos, 10);
-    stats->def_txt = make_text(general->font_itim, "DEFENSE:", def_txt_pos, 3);
-    stats->speed_txt = make_text(general->font_itim, "SPEED:", spe_txt_pos, 10);
-    sfText_setString(stats->att_txt, my_getstr(stats->stat[i][0]));
-    sfText_setString(stats->def_txt, my_getstr(stats->stat[i][1]));
-    sfText_setString(stats->speed_txt, my_getstr(stats->stat[i][2]));
-
+    stats->att_val = make_text(general->font_itim, my_getstr(stats->stat[0]), \
+    (sfVector2f) {10, 10}, 20);
+    stats->def_val = make_text(general->font_itim, my_getstr(stats->stat[1]), \
+    (sfVector2f) {10, 50}, 20);
+    stats->speed_val = make_text(general->font_itim, \
+    my_getstr(stats->stat[2]), (sfVector2f) {10, 90}, 20);
+    stats->att_txt = make_text(general->font_itim, "ATTACK:", \
+    (sfVector2f) {10, 10}, 20);
+    stats->def_txt = make_text(general->font_itim, "DEFENSE:", \
+    (sfVector2f) {10, 50}, 20);
+    stats->speed_txt = make_text(general->font_itim, \
+    "SPEED:", (sfVector2f) {10, 90}, 20);
 }
 
-void initialize_graphical_stats(inventory_t *inventory, csfml_t *general, int i)
+void set_stats_pos(inventory_t *inventory, csfml_t *general)
 {
-    sfVector2f get_pl_pos;
+    sfVector2f pos;
 
-    get_pl_pos = sfSprite_getPosition(general->player.player);
-    get_pl_pos.x -= 595;
-    get_pl_pos.y += 190;
+    pos.x = general->player.pos_px.x;
+    pos.y = general->player.pos_px.y;
+    pos.x -= 465;
+    pos.y += 100;
+    sfRectangleShape_setPosition(inventory->stats.status, pos);
+    sfText_setPosition(inventory->stats.att_val, \
+    (sfVector2f) {pos.x + 95, pos.y + 10});
+    sfText_setPosition(inventory->stats.def_val, \
+    (sfVector2f) {pos.x + 100, pos.y + 50});
+    sfText_setPosition(inventory->stats.speed_val, \
+    (sfVector2f) {pos.x + 80, pos.y + 90});
+    sfText_setPosition(inventory->stats.att_txt, \
+    (sfVector2f) {pos.x + 10, pos.y + 10});
+    sfText_setPosition(inventory->stats.def_txt, \
+    (sfVector2f) {pos.x + 10, pos.y + 50});
+    sfText_setPosition(inventory->stats.speed_txt, \
+    (sfVector2f) {pos.x + 10, pos.y + 90});
+}
+
+void initialize_graphical_stats(inventory_t *inventory, csfml_t *general)
+{
     inventory->stats.status = sfRectangleShape_create();
     sfRectangleShape_setFillColor(inventory->stats.status, sfBlack);
     sfRectangleShape_setOutlineColor(inventory->stats.status, sfWhite);
     sfRectangleShape_setOutlineThickness(inventory->stats.status, 1.5);
-    sfRectangleShape_setSize(inventory->stats.status, (sfVector2f) {250, 120});
-    sfRectangleShape_setPosition(inventory->stats.status, get_pl_pos);
-    initialize_texts(&inventory->stats, general, i);
+    sfRectangleShape_setSize(inventory->stats.status, (sfVector2f) {150, 175});
 }
 
-char *initialize_stats(inventory_t *inventory, char *buf, char *line, int i)
+char *initialize_stats(inventory_t *inventory, char *buf, char *line, \
+csfml_t *general)
 {
     char **temp = NULL;
 
-    inventory->stats.stat[i] = malloc(sizeof(int) * STAT_DATA);
     buf = my_strcat(buf, line);
     temp = my_str_to_word_array(line, ':');
-    inventory->stats.stat[i][0] = my_getnbr(temp[1]);
-    inventory->stats.stat[i][1] = my_getnbr(temp[2]);
-    inventory->stats.stat[i][2] = my_getnbr(temp[3]);
+    inventory->stats.stat[0] += my_getnbr(temp[1]);
+    inventory->stats.stat[1] += my_getnbr(temp[2]);
+    inventory->stats.stat[2] += my_getnbr(temp[3]);
     free(temp);
     return (buf);
 }

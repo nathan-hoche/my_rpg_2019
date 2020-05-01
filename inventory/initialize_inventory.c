@@ -15,8 +15,8 @@ void set_inventory_pos(csfml_t *general, inventory_t *inventory)
 
     pos.x = general->player.pos_px.x;
     pos.y = general->player.pos_px.y;
-    pos.x -= 135;
-    pos.y += 215;
+    pos.x -= 170;
+    pos.y += 180;
     sfSprite_setPosition(inventory->sp_bar, pos);
     sfSprite_setPosition(inventory->items.sword_sp, \
     (sfVector2f) {pos.x + SWORD_POS_X, pos.y + SWORD_POS_Y});
@@ -47,14 +47,18 @@ static void put_obj_name(inventory_t *inventory, FILE *fp, csfml_t *general)
     size_t len = 0;
     __ssize_t read;
 
+    inventory->stats.stat = malloc(sizeof(int) * STAT_DATA);
+    inventory->stats.stat[0] = 0;
+    inventory->stats.stat[1] = 0;
+    inventory->stats.stat[2] = 0;
     read = getline(&buf, &len, fp);
     for (int i = 0; read != -1; i++) {
         read = getline(&line, &len, fp);
         if (read != -1) {
-            buf = initialize_stats(inventory, buf, line, i);
-            initialize_graphical_stats(inventory, general, i);
+            buf = initialize_stats(inventory, buf, line, general);
         }
     }
+    initialize_texts(&inventory->stats, general);
     inventory->obj_name = my_str_to_word_array(buf, '\n');
     free(line);
     free(buf);

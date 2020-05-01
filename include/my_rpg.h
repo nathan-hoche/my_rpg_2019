@@ -136,7 +136,12 @@ void free_inventory(inventory_t *inventory);
 void set_inventory_pos(csfml_t *page, inventory_t *inventory);
 void display_inventory(csfml_t *general, game_menu_t *game);
 
-char *initialize_stats(inventory_t *inventory, char *buf, char *line, int i);
-void initialize_graphical_stats(inventory_t *inventory, csfml_t *page, int i);
+char *initialize_stats(inventory_t *inventory, char *buf, char *line, \
+csfml_t *general);
+void initialize_graphical_stats(inventory_t *inventory, csfml_t *general);
+void display_status(csfml_t *general, stats_t *stats);
+void free_stats(stats_t *stats);
+void initialize_texts(stats_t *stats, csfml_t *general);
+void set_stats_pos(inventory_t *inventory, csfml_t *general);
 
 #endif /* !MY_RPG_H_ */
