@@ -93,8 +93,9 @@ static void player_animation(player_t *player)
 
 void player_core(csfml_t *general, game_menu_t *game)
 {
+    printf("PLAYER - pos(%d, %d) view(%d, %d) traj(%d, %d)\n", general->player.pos_cart.x, general->player.pos_cart.y, general->player.pos_view.x, general->player.pos_view.y, general->player.pos_traj.x, general->player.pos_traj.y);
+    printf("NPC - pos(%d, %d) traj(%d, %d)\n\n", game->npc.pos_cart.x, game->npc.pos_cart.y, game->npc.traj_cart.x, game->npc.traj_cart.y);
     player_key_orientation(general->event, &general->player, game);
-    //check_collisions_with_npc(&general->player, &game->npc);
     if (general->player.on_move != 0)
         player_movement(&general->player);
     if (general->player.on_anim != 0)
