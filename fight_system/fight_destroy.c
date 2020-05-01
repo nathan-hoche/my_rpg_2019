@@ -36,13 +36,14 @@ void fight_destroy(fight_scene_t *fight)
     sfTexture_destroy(fight->attacks.txtr_shield);
     sfTexture_destroy(fight->attacks.txtr_sword);
     sfSprite_destroy(fight->enemy.sp);
-    sfSprite_destroy(fight->fight_buttons.button_atk);
-    sfTexture_destroy(fight->fight_buttons.texture);
-    sfSprite_destroy(fight->fight_buttons.button_def);
+    sfSprite_destroy(fight->button_atk.sp);
+    sfTexture_destroy(fight->tx_buttons);
     sfSprite_destroy(fight->attacks.sword_slash);
     sfSprite_destroy(fight->attacks.shield);
     if (sfSound_getStatus(fight->fx_sword_atk.sound))
         sfSound_stop(fight->fx_sword_atk.sound);
     sfSound_destroy(fight->fx_sword_atk.sound);
     sfSoundBuffer_destroy(fight->fx_sword_atk.buf);
+    sfText_destroy(fight->button_atk.txt);
+    sfText_destroy(fight->button_def.txt);
 }

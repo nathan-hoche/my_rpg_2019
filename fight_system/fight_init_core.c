@@ -56,27 +56,27 @@ static void init_attacks(fight_scene_t *fight, csfml_t *general)
     sfSprite_setScale(fight->attacks.shield, (sfVector2f) {1.2, 1.2});
 }
 
-static void init_buttons(fight_buttons_t *fight_but, csfml_t *general)
+static void init_buttons(fight_scene_t *fight, csfml_t *general)
 {
     sfIntRect rect_but_atk = {342, 0, 342, 80};
     sfIntRect rect_but_def = {0, 0, 342, 80};
     sfVector2f pos_txt_atk = {1000 + 62, 820};
     sfVector2f pos_txt_def = {570 + 65, 820};
 
-    fight_but->size_butt_atk = (sfVector2f) {342, 80};
-    fight_but->size_butt_def = (sfVector2f) {342, 80};
-    fight_but->pos_butt_atk = (sfVector2f) {1000, 820};
-    fight_but->pos_butt_def = (sfVector2f) {570, 820};
-    fight_but->texture = sfTexture_createFromFile(FIGHT_BUTTONS_TEXTR, NULL);
-    fight_but->button_atk = make_sprite(fight_but->texture);
-    fight_but->button_def = make_sprite(fight_but->texture);
-    sfSprite_setTextureRect(fight_but->button_atk, rect_but_atk);
-    sfSprite_setTextureRect(fight_but->button_def, rect_but_def);
-    sfSprite_setPosition(fight_but->button_atk, fight_but->pos_butt_atk);
-    sfSprite_setPosition(fight_but->button_def, fight_but->pos_butt_def);
-    fight_but->txt_atk = make_text(general->font_itim, "ATTACK", \
+    fight->button_atk.size = (sfVector2f) {342, 80};
+    fight->button_def.size = (sfVector2f) {342, 80};
+    fight->button_atk.pos = (sfVector2f) {1000, 820};
+    fight->button_def.pos = (sfVector2f) {570, 820};
+    fight->tx_buttons = sfTexture_createFromFile(FIGHT_BUT_TEXTR, NULL);
+    fight->button_atk.sp = make_sprite(fight->tx_buttons);
+    fight->button_def.sp = make_sprite(fight->tx_buttons);
+    sfSprite_setTextureRect(fight->button_atk.sp, rect_but_atk);
+    sfSprite_setTextureRect(fight->button_def.sp, rect_but_def);
+    sfSprite_setPosition(fight->button_atk.sp, fight->button_atk.pos);
+    sfSprite_setPosition(fight->button_def.sp, fight->button_def.pos);
+    fight->button_atk.txt = make_text(general->font_itim, "ATTACK", \
         pos_txt_atk, 60);
-    fight_but->txt_def = make_text(general->font_itim, "DEFEND", \
+    fight->button_def.txt = make_text(general->font_itim, "DEFEND", \
         pos_txt_def, 60);
 }
 
@@ -90,7 +90,7 @@ void fight_initialize(fight_scene_t *fight, csfml_t *general)
     fight->back.tx_back = make_texture(FIGHT_BACK_1);
     fight->back.sp_back = make_sprite(fight->back.tx_back);
     initialize_areas(general, fight);
-    init_buttons(&fight->fight_buttons, general);
+    init_buttons(fight, general);
     fight->info_area.txt_wait = \
         make_text(general->font_itim, "Enemy turn ...", pos_txt_msg, 80);
     init_fight_enemy(fight, general);
@@ -101,4 +101,6 @@ void fight_initialize(fight_scene_t *fight, csfml_t *general)
     fight->fx_sword_atk.sound = sfSound_create();
     sfSound_setBuffer(fight->fx_sword_atk.sound, fight->fx_sword_atk.buf);
     sfSound_setVolume(fight->fx_sword_atk.sound, general->settings.fx_lvl);
+    fight->button_atk.state = 0;
+    fight->button_def.state = 0;
 }

@@ -89,17 +89,13 @@ typedef struct stats_area_s {
     sfText *shld_val;
 }stats_area_t;
 
-typedef struct fight_buttons_s {
-    sfTexture *texture;
-    sfSprite *button_atk;
-    sfVector2f pos_butt_atk;
-    sfVector2f size_butt_atk;
-    sfText *txt_atk;
-    sfSprite *button_def;
-    sfVector2f pos_butt_def;
-    sfVector2f size_butt_def;
-    sfText *txt_def;
-}fight_buttons_t;
+typedef struct fight_button_s {
+    sfSprite *sp;
+    sfVector2f pos;
+    sfVector2f size;
+    sfText *txt;
+    char state;
+}fight_button_t;
 
 typedef struct info_area_s {
     life_area_t player_life_area;
@@ -142,13 +138,15 @@ typedef struct fight_scene_s {
     char updater;
     background_t back;
     info_area_t info_area;
-    fight_buttons_t fight_buttons;
+    fight_button_t button_atk;
+    fight_button_t button_def;
     fighter_t enemy;
     fighter_t player;
     attaks_t attacks;
     sfClock *clock_move;
     sfClock *clock_atk;
     sound_t fx_sword_atk;
+    sfTexture *tx_buttons;
 }fight_scene_t;
 
 

@@ -9,41 +9,67 @@
 #include "my.h"
 #include "struct.h"
 
-/* static void buttons_hover()
-{
-
-} */
-
 static void display_buttons(fight_scene_t *fight, sfRenderWindow *window)
 {
-    sfRenderWindow_drawSprite(window, fight->fight_buttons.button_atk, NULL);
-    sfRenderWindow_drawSprite(window, fight->fight_buttons.button_def, NULL);
-    sfRenderWindow_drawText(window, fight->fight_buttons.txt_atk, NULL);
-    sfRenderWindow_drawText(window, fight->fight_buttons.txt_def, NULL);
+    sfRenderWindow_drawSprite(window, fight->button_atk.sp, NULL);
+    sfRenderWindow_drawSprite(window, fight->button_def.sp, NULL);
+    sfRenderWindow_drawText(window, fight->button_atk.txt, NULL);
+    sfRenderWindow_drawText(window, fight->button_def.txt, NULL);
+}
+
+static void check_button_attack(fight_scene_t *fight, sfRenderWindow *window, \
+sfBool clicked)
+{
+    sfTime test;
+
+    test.microseconds = 100000;
+    if (button_is_hover(fight->button_atk.pos, \
+    fight->button_atk.size, window)) {
+        if (clicked == sfTrue) {
+            fight->atk_step = 1;
+            fight_button_clicked(&fight->button_atk);
+            display_buttons(fight, window);
+            sfRenderWindow_display(window);
+            sfSleep(test);
+        } else {
+            fight_button_hover(&fight->button_atk);
+        }
+    } else {
+        fight_button_no_hover(&fight->button_atk);
+    }
+}
+
+static void check_button_defence(fight_scene_t *fight, sfRenderWindow *window, \
+sfBool clicked)
+{
+    sfTime test;
+
+    test.microseconds = 100000;
+    if (button_is_hover(fight->button_def.pos, \
+    fight->button_atk.size, window)) {
+        if (clicked == sfTrue) {
+            fight->player.def = sfTrue;
+            fight->turn_state = 1;
+            fight_button_clicked(&fight->button_def);
+            display_buttons(fight, window);
+            sfRenderWindow_display(window);
+            sfSleep(test);
+        } else {
+            fight_button_hover(&fight->button_def);
+        }
+    } else {
+        fight_button_no_hover(&fight->button_def);
+    }
 }
 
 static void buttons_management(fight_scene_t *fight, sfRenderWindow *window)
 {
     sfBool clicked = sfFalse;
 
-    display_buttons(fight, window);
     clicked = sfMouse_isButtonPressed(sfMouseLeft);
-    if (button_is_hover(fight->fight_buttons.pos_butt_atk, \
-    fight->fight_buttons.size_butt_atk, window)) {
-        if (clicked == sfTrue)
-            fight->atk_step = 1;
-        else
-            puts("HOVER\n");
-    }
-    if (button_is_hover(fight->fight_buttons.pos_butt_def, \
-    fight->fight_buttons.size_butt_def, window)) {
-        if (clicked == sfTrue) {
-            fight->player.def = sfTrue;
-            fight->turn_state = 1;
-        }
-        else
-            puts("HOVER\n");
-    }
+    check_button_attack(fight, window, clicked);
+    check_button_defence(fight, window, clicked);
+    display_buttons(fight, window);
 }
 
 void turn_core(fight_scene_t *fight, sfRenderWindow *window)

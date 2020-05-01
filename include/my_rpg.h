@@ -67,7 +67,7 @@
 
 #define CAM_DEFAULT_ZOOM (0.6)
 
-#define FIGHT_BUTTONS_TEXTR "src/fight/buttons.png"
+#define FIGHT_BUT_TEXTR "src/fight/buttons.png"
 
 void initialize_window(csfml_t *page);
 void start_menu(csfml_t *page);
@@ -123,5 +123,9 @@ void initialize_areas(csfml_t *general, fight_scene_t *fight);
 void display_stats_valors(info_area_t *area, stats_t *player, stats_t *enemy);
 void fight_attack_animation(fighter_t *striker, fighter_t *target, 
 fight_scene_t *fight, csfml_t *general);
+void fight_button_hover(fight_button_t *button);
+void fight_button_no_hover(fight_button_t *button);
+void fight_button_clicked(fight_button_t *button);
+int check_end(fight_scene_t *fight);
 
 #endif /* !MY_RPG_H_ */
