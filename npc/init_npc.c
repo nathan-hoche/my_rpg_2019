@@ -9,7 +9,26 @@
 #include "my.h"
 #include "struct.h"
 
-void set_npc(npc_t *npc)
+static void set_good_npc(npc_t *npc)
+{
+    sfVector2f npc_pos;
+
+    npc->pos_px = (sfVector2f) {(20 * 32) + 16, (20 * 32) + 10};
+    npc->tx_rect = (sfIntRect) {0, 0, 64, 64};
+    npc->tx = make_texture(NPC_01_TXTR);
+    npc->sp = make_sprite(npc->tx);
+    sfSprite_setTextureRect(npc->sp, npc->tx_rect);
+    sfSprite_setOrigin(npc->sp, (sfVector2f) {32, 48});
+    sfSprite_setPosition(npc->sp, npc->pos_px);
+    npc_pos = sfSprite_getPosition(npc->sp);
+    npc->pos_cart.x = npc_pos.x / 32;
+    npc->pos_cart.y = npc_pos.y / 32;
+    npc->inter_talk_1 = &manage_action_message;
+    npc->tmp_move = -1;
+    npc->index_action = 0;
+}
+
+static void set_bad_npc(npc_t *npc)
 {
     sfVector2f npc_pos;
 
@@ -23,4 +42,14 @@ void set_npc(npc_t *npc)
     npc_pos = sfSprite_getPosition(npc->sp);
     npc->pos_cart.x = npc_pos.x / 32;
     npc->pos_cart.y = npc_pos.y / 32;
+    npc->inter_talk_1 = &manage_action_message;
+    npc->tmp_move = -1;
+    npc->index_action = 0;
+}
+
+void set_npc(game_menu_t *game)
+{
+    game->npc = malloc(sizeof(npc_t) * 2);
+    set_good_npc(&game->npc[0]);
+    set_bad_npc(&game->npc[1]);
 }

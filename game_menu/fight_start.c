@@ -41,10 +41,11 @@ static int camera_fight_zoom(game_menu_t *game, csfml_t *general)
     return (0);
 }
 
-void start_fight(game_menu_t *game, csfml_t *page)
+void start_fight(game_menu_t *game, csfml_t *general, npc_t *npc)
 {
-    if (camera_fight_zoom(game, page) == 1) {
+    game->on_fight = 0;
+    if (camera_fight_zoom(game, general) == 1) {
         game->on_fight = 0;
-        fight_core(page, game);
+        fight_core(general, game, npc);
     }
 }

@@ -76,6 +76,8 @@ typedef struct pause_menu_s {
 
 //-> GAME SCENE <-///////////////////////////////
 
+typedef struct game_menu_s game_menu_t;
+
 typedef struct npc_s {
     char on_move;
     sfTexture *tx;
@@ -86,6 +88,12 @@ typedef struct npc_s {
     sfIntRect tx_rect;
     sfClock *move;
     sfClock *anim;
+    int tmp_move;
+    char index_action;
+    int (*inter_talk_1) (char **message, game_menu_t *game);
+    int (*inter_talk_2) (char **message, game_menu_t *game);
+    int (*inter_talk_3) (char **message, game_menu_t *game);
+    int (*inter_fight) (game_menu_t *game, csfml_t *general, struct npc_s *);
 }npc_t;
 
 typedef struct game_scene_s {
@@ -97,16 +105,25 @@ typedef struct game_scene_s {
     sfVector2f starting_pos;
 }game_scene_t;
 
+typedef struct meassge_box_s {
+    sfSprite *sp;
+    sfTexture *txtr;
+    sfText *one;
+    sfText *two;
+}message_box_t;
+
 typedef struct game_menu_s {
-    int on_fight;
+    char on_msg;
+    char on_fight;
     sfClock *cam_clock;
     game_scene_t game_scene;
     sfTexture *texture_tile;
+    message_box_t message_box;
     sfSprite *tile;
     sfTexture *grass;
     sfSprite *back_grass;
     inventory_t inventory;
-    npc_t npc;
+    npc_t *npc;
 }game_menu_t;
 
 
@@ -244,14 +261,14 @@ typedef struct player_t {
     sfClock *animation;
     sfClock *movement;
     sfVector2f move_direction;
-    int gender;
-    int on_move;
-    int on_anim;
+    char gender;
+    char on_move;
+    char on_anim;
     sfVector2i pos_cart;
-    sfVector2i move_pos_cart;
-    sfVector2i pos_px;
+    sfVector2f pos_px;
     sfVector2i pos_traj;
     sfVector2i pos_view;
+    char dir_view;
 }player_t;
 
 typedef struct views_s {

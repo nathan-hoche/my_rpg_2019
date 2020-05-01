@@ -8,24 +8,34 @@
 #include "my_rpg.h"
 #include "struct.h"
 
+static void set_view_direction(player_t *player, int i)
+{
+    int looking[4][2] = {{0, -2}, {1, 0}, {0, 1}, {-1, 0}};
+    int dir[4] = {1, 2, 3, 4};
+
+    player->dir_view = dir[i];
+    player->pos_view = (sfVector2i) {player->pos_cart.x + \
+    looking[i][0], player->pos_cart.y + looking[i][1]};
+}
+
 static void update_player_pos(player_t *player, int i)
 {
     switch (i) {
         case 0:
             player->pos_traj.x = player->pos_cart.x;
-            player->pos_traj.y = player->pos_cart.y + 1;
+            player->pos_traj.y = player->pos_cart.y - 2;
             break;
         case 1:
-            player->pos_traj.x = player->pos_cart.x - 1;
-            player->pos_traj.y = player->pos_cart.y;
-            break;
-        case 2:
             player->pos_traj.x = player->pos_cart.x + 1;
             player->pos_traj.y = player->pos_cart.y;
             break;
-        case 3:
+        case 2:
             player->pos_traj.x = player->pos_cart.x;
-            player->pos_traj.y = player->pos_cart.y - 1;
+            player->pos_traj.y = player->pos_cart.y + 1;
+            break;
+        case 3:
+            player->pos_traj.x = player->pos_cart.x - 1;
+            player->pos_traj.y = player->pos_cart.y;
             break;
         default:
             break;
@@ -34,15 +44,15 @@ static void update_player_pos(player_t *player, int i)
 
 static int player_key_orientation(player_t *player, game_menu_t *game, char i)
 {
-    int looking[4][2] = {{0, 1}, {-1, 0}, {1, 0}, {0, -1}};
-    int key[4] = {sfKeyS, sfKeyQ, sfKeyD, sfKeyZ};
-    int way[4] = {0, 64, 128, 192};
+    //int key[4] = {sfKeyS, sfKeyQ, sfKeyD, sfKeyZ};
+    int key[4] = {sfKeyZ, sfKeyD, sfKeyS, sfKeyQ};
+    //int way[4] = {0, 64, 128, 192};
+    int way[4] = {192, 128, 0, 64};
 
     if (player->on_move == 0 && game->on_fight == 0 && \
-    sfKeyboard_isKeyPressed(key[i]) == 1) {
+    sfKeyboard_isKeyPressed(key[i]) == 1 && game->on_msg == 0) {
+        set_view_direction(player, i);
         player->player_rect.top = way[i];
-        player->pos_view = (sfVector2i) {player->pos_cart.x + \
-        looking[i][0], player->pos_cart.y + looking[i][1]};
         if (player_collision_core(key[i], player, game) == 1) {
             sfSprite_setTextureRect(player->player, player->player_rect);
             return (1);
@@ -64,9 +74,11 @@ void player_key_analysis(sfEvent event, player_t *player, game_menu_t *game)
 
 void player_core(csfml_t *general, game_menu_t *game)
 {
+    player_gps(&general->player);
     player_key_analysis(general->event, &general->player, game);
     if (general->player.on_move != 0)
         player_movement(&general->player);
     if (general->player.on_anim != 0)
         player_animation(&general->player);
+    player_gps(&general->player);
 }

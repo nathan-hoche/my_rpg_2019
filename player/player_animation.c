@@ -11,7 +11,7 @@
 void player_movement(player_t *player)
 {
     static int distance = 0;
-    int direction[4][2] = {{0, 4}, {-4, 0}, {4, 0}, {0, -4}};
+    int direction[4][2] = {{0, -4}, {4, 0}, {0, 4}, {-4, 0}};
     sfTime timer = sfClock_getElapsedTime(player->movement);
 
     if (timer.microseconds >= 25000) {

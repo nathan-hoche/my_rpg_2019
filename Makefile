@@ -12,6 +12,7 @@ SRC	=	main.c \
 		game_menu/display_map_core.c \
 		game_menu/free_game_res.c \
 		game_menu/fight_start.c \
+		game_menu/game_event.c \
 		start_menu/start.c \
 		start_menu/init_start.c \
 		start_menu/buttons_actions.c \
@@ -35,6 +36,7 @@ SRC	=	main.c \
 		player/init_destroy.c \
 		player/player_collision.c \
 		player/player_animation.c \
+		player/player_gps.c \
 		choose_skin/choose_skin.c \
 		choose_skin/event_skin.c \
 		inventory/initialize_inventory.c \
@@ -44,6 +46,10 @@ SRC	=	main.c \
 		npc/action_move_npc.c \
 		npc/action_wait_npc.c \
 		npc/manage_npc_actions.c \
+		message_box/action_message.c \
+		message_box/init_message_box.c \
+		message_box/manage_action_message.c \
+		message_box/manage_message_box.c \
 		npc/init_npc.c \
 		npc/collision.c
 

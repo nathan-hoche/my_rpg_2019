@@ -104,6 +104,7 @@ void init_game_scene(game_scene_t *scene);
 void init_player(player_t *player);
 void init_game_player(player_t *player, game_scene_t *game_scene);
 void init_destroy(player_t *player);
+void game_event(csfml_t *general, game_menu_t *game);
 
 int action_start_button(csfml_t *page);
 int action_quit_button(csfml_t *page);
@@ -134,11 +135,10 @@ void skin(csfml_t *page);
 
 //-> FIGHT_SYSTEM <-/////////////////////////////
 
-void start_fight(game_menu_t *game, csfml_t *page);
+void start_fight(game_menu_t *game, csfml_t *general, npc_t *npc);
 void fight_initialize(fight_scene_t *fight, csfml_t *general);
-void fight_core(csfml_t *general, game_menu_t *game);
+void fight_core(csfml_t *general, game_menu_t *game, npc_t *npc);
 void fight_destroy(fight_scene_t *fight);
-void fight_core(csfml_t *page, game_menu_t *game);
 void display_infos_areas(fight_scene_t *fight, sfRenderWindow *window);
 void turn_core(fight_scene_t *fight, sfRenderWindow *window);
 void initialize_areas(csfml_t *general, fight_scene_t *fight);
@@ -170,16 +170,24 @@ void player_movement(player_t *player);
 void destroy_player(player_t *player);
 void player_orientation(sfEvent event, player_t *player, game_menu_t *game);
 void check_collisions_with_npc(player_t *player, npc_t *npc);
+void player_gps(player_t *player);
 
 void display_map_core(game_menu_t *game, csfml_t *general);
 
 //-> NPC_SYSTEM <-///////////////////////////////
 
-void set_npc(npc_t *npc);
+void set_npc(game_menu_t *game);
 int check_npc_collision(npc_t *npc, player_t *player);
 void manage_npc_actions(npc_t *npc, player_t *player);
 void npc_gps(npc_t *npc);
 int action_move_npc(npc_t *npc, player_t *player, int dist, int dir);
 int action_wait_npc(npc_t *npc, player_t *player, float seconds);
+
+/////////////////////////////////////////////////
+
+int init_message_box(game_menu_t *game, csfml_t *general);
+int action_message(char **message, game_menu_t *game);
+int manage_action_message(char **message, game_menu_t *game);
+int manage_message_box(game_menu_t *game, csfml_t *general);
 
 #endif /* !MY_RPG_H_ */

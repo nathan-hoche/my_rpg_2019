@@ -65,7 +65,7 @@ csfml_t *general)
     sfRenderWindow_display(window);
 }
 
-void fight_core(csfml_t *general, game_menu_t *game)
+void fight_core(csfml_t *general, game_menu_t *game, npc_t *npc)
 {
     fight_scene_t fight;
     int active = 1;

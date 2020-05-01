@@ -18,13 +18,10 @@ void npc_gps(npc_t *npc)
 
 void manage_npc_actions(npc_t *npc, player_t *player)
 {
-    static int index = 0;
-    int param[2][2] = {{5, 2}, {5, 4}};
-
-    if (index == 0 && action_move_npc(npc, player, 1, 2) == END_NPC_ACT)
-        index++;
-    if (index == 1 && action_wait_npc(npc, player, 4) == END_NPC_ACT)
-        index++;
-    if (index == 2)
-        index = 0;
+    if (npc->index_action == 0 && action_move_npc(npc, player, 5, 2) == 1) {
+        npc->index_action++;
+    }
+    if (npc->index_action == 1 && action_move_npc(npc, player, 5, 4) == 1) {
+        npc->index_action = 0;
+    }
 }
