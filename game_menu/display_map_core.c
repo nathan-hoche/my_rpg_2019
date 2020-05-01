@@ -83,6 +83,7 @@ static void map_display(char **map, game_menu_t *game, csfml_t *general)
             cursor_px.x += 32;
         }
         cursor_px.y += 32;
+        cursor_px.x = 0;
     }
 }
 /*             if (map[y][x] != ' ' && \
