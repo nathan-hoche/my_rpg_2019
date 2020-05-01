@@ -9,14 +9,6 @@
 #include "my.h"
 #include "struct.h"
 
-static void npc_gps(npc_t *npc)
-{
-    npc->pos_px = sfSprite_getPosition(npc->sp);
-
-    npc->pos_cart.x = npc->pos_px.x / 32;
-    npc->pos_cart.y = npc->pos_px.y / 32;
-}
-
 static void update_npc_pos(npc_t *npc, int dir)
 {
     npc_gps(npc);

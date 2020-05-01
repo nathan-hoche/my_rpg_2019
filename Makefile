@@ -26,6 +26,7 @@ SRC	=	main.c \
 		player/player_view.c\
 		player/init_destroy.c \
 		player/player_collision.c \
+		player/player_animation.c \
 		choose_skin/choose_skin.c \
 		choose_skin/event_skin.c \
 		inventory/initialize_inventory.c \

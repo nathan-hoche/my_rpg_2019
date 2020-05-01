@@ -142,5 +142,8 @@ void set_npc(npc_t *npc);
 int move_npc(npc_t *npc, player_t *player, int dist, int dir);
 int check_npc_collision(npc_t *npc, player_t *player);
 void perform_npc_actions(npc_t *npc, player_t *player);
+void npc_gps(npc_t *npc);
+void player_animation(player_t *player);
+void player_movement(player_t *player);
 
 #endif /* !MY_RPG_H_ */
