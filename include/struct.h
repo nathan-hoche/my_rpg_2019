@@ -70,6 +70,11 @@ typedef struct scene_tab_s {
 
 typedef struct pause_menu_s {
     background_t back;
+    sfSprite *button;
+    sfText *resume;
+    sfText *htp;
+    sfText *settings;
+    sfText *exit;
 }pause_menu_t;
 
 //-> GAME SCENE <-///////////////////////////////

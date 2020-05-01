@@ -117,6 +117,7 @@ void settings(csfml_t *page);
 void how_to_play(csfml_t *page);
 int event_skin(csfml_t *page);
 void skin(csfml_t *page);
+int pause_check_button(csfml_t *page, pause_menu_t *pause);
 
 void fight_core(csfml_t *page, game_menu_t *game);
 
