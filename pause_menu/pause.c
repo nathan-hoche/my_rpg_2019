@@ -12,11 +12,14 @@
 static int pause_event(csfml_t *page, pause_menu_t *pause)
 {
     if (page->event.type == sfEvtClosed) {
+        sfSound_play(page->music.sound_but);
         page->act_scene = ID_CLOSE;
         return (0);
     } else if (page->event.type == sfEvtKeyPressed && \
-    page->event.key.code == sfKeyEscape)
+    page->event.key.code == sfKeyEscape) {
+        sfSound_play(page->music.sound_but);
         return (0);
+    }
     return (pause_check_button(page, pause));
 }
 

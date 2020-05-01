@@ -21,6 +21,7 @@
 
 #define MUSIC_MENU "src/menu.ogg"
 #define MUSIC_MENU_PLAY (1)
+#define CLICK_SOUND "src/click.ogg"
 
 #define BUT_1_TXTR "src/button.png"
 #define BUT_1_SIZ_X (285)
