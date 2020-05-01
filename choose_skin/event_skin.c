@@ -31,8 +31,8 @@ int event_skin(csfml_t *page)
     texture_female};
 
     for (int i = 0; i != NB_TEXTURE_PLAYER;i++)
-        if (button_is_clicked((sfVector2f){pos[i][0], pos[i][1]}, \
-        size_player, page->window) == 0) {
+        if (button_is_hover((sfVector2f){pos[i][0], pos[i][1]}, \
+        size_player, page->window) == 1) {
             texture[i](&page->player);
             page->act_scene = ID_GAME;
             return (0);

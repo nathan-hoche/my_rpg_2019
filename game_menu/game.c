@@ -16,6 +16,9 @@ static void game_event(csfml_t *general, game_menu_t *game)
     if (general->event.key.code == sfKeyEscape && \
     general->event.type == sfEvtKeyPressed)
         pause_menu(general);
+    else if (general->event.key.code == sfKeyE && \
+    general->event.type == sfEvtKeyPressed)
+        game->on_fight = 1;
     manage_inventory_event(general, &game->inventory);
 }
 
@@ -39,10 +42,12 @@ static void game_display(game_menu_t *game, csfml_t *general)
     player_gps(&general->player);
     sfRenderWindow_drawSprite(general->window, game->npc.sp, NULL);
     sfRenderWindow_drawSprite(general->window, general->player.player, NULL);
-    if (game->on_fight == 0)
-        camera_view(game, general);
     display_inventory(general, game);
-    perform_npc_actions(&game->npc, &general->player);
+    manage_npc_actions(&game->npc, &general->player);
+        if (game->on_fight == 0)
+        camera_view(game, general);
+    else
+        start_fight(game, general);
     sfRenderWindow_display(general->window);
 }
 

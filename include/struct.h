@@ -35,6 +35,7 @@ typedef struct inventory_s {
 }inventory_t;
 
 typedef struct csfml_s csfml_t;
+typedef struct fight_scene_s fight_scene_t;
 
 typedef struct basic_text_s {
     sfText *text;
@@ -46,7 +47,7 @@ typedef struct background_s {
     sfSprite *sp_back;
 }background_t;
 
-//-> BASIC BUTTON <-/////////////////////////////
+//-> BASIC OBJECT BUTTON <-/////////////////////////////
 
 typedef struct button_s {
     sfSprite *sprite;
@@ -58,6 +59,7 @@ typedef struct button_s {
     int (* action)(csfml_t *);
     void (* hover)(struct button_s *, csfml_t *);
 }button_t;
+
 
 //-> SCENE TAB <-////////////////////////////////
 
@@ -107,6 +109,84 @@ typedef struct game_menu_s {
     npc_t npc;
 }game_menu_t;
 
+
+//-> FIGHT SCENE <-///////////////////////////////
+
+typedef struct life_area_s {
+    sfText *name;
+    sfText *life_txt;
+    sfText *life_val;
+}life_area_t;
+
+typedef struct stats_area_s {
+    sfText *name;
+    sfText *atk_txt;
+    sfText *atk_val;
+    sfText *shld_txt;
+    sfText *shld_val;
+}stats_area_t;
+
+typedef struct fight_button_s {
+    sfSprite *sp;
+    sfVector2f pos;
+    sfVector2f size;
+    sfText *txt;
+    char state;
+}fight_button_t;
+
+typedef struct info_area_s {
+    life_area_t player_life_area;
+    life_area_t enemy_life_area;
+    stats_area_t player_stats_area;
+    stats_area_t enemy_stats_area;
+    sfText *txt_wait;
+}info_area_t;
+
+typedef struct stats_s {
+    char hp;
+    int atk;
+    int armor;
+    int speed;
+}stats_t;
+
+typedef struct fighter_s {
+    sfSprite *sp;
+    sfVector2f pos;
+    stats_t stats;
+    sfBool def;
+}fighter_t;
+
+typedef struct attacks_s {
+    sfSprite *sword_slash;
+    sfIntRect sword_slash_rect;
+    sfTexture *txtr_sword;
+    sfSprite *shield;
+    sfTexture *txtr_shield;
+}attaks_t;
+
+typedef struct sound_s {
+    sfSoundBuffer *buf;
+    sfSound *sound;
+}sound_t;
+
+typedef struct fight_scene_s {
+    char turn_state;
+    char atk_step;
+    char updater;
+    background_t back;
+    info_area_t info_area;
+    fight_button_t button_atk;
+    fight_button_t button_def;
+    fighter_t enemy;
+    fighter_t player;
+    attaks_t attacks;
+    sfClock *clock_move;
+    sfClock *clock_atk;
+    sound_t fx_sword_atk;
+    sfTexture *tx_buttons;
+}fight_scene_t;
+
+
 //-> START SCENE <-//////////////////////////////
 
 typedef struct start_menu_s {
@@ -115,6 +195,7 @@ typedef struct start_menu_s {
     sfText *title;
     sfVector2f pos_title;
 }start_menu_t;
+
 
 //-> HOW TO PLAY MENU <-/////////////////////////
 
@@ -126,6 +207,7 @@ typedef struct htp_menu_t {
     sfVector2f pos_but;
     background_t back;
 }htp_menu_t;
+
 
 //-> SETTINGS MENU <-////////////////////////////
 

@@ -11,7 +11,7 @@ SRC	=	main.c \
 		game_menu/tile_mapping.c \
 		game_menu/display_map_core.c \
 		game_menu/free_game_res.c \
-		game_menu/camera_fight_zoom.c \
+		game_menu/fight_start.c \
 		start_menu/start.c \
 		start_menu/init_start.c \
 		start_menu/buttons_actions.c \
@@ -22,6 +22,14 @@ SRC	=	main.c \
 		settings_menu/init_settings.c \
 		howtoplay_menu/how_to_play.c \
 		fight_system/fight_core.c \
+		fight_system/fight_init_core.c \
+		fight_system/fight_destroy.c \
+		fight_system/display_infos_areas.c \
+		fight_system/turn_core.c \
+		fight_system/fight_init_areas.c \
+		fight_system/fight_attack_animation.c \
+		fight_system/fight_buttons_effects.c \
+		fight_system/fight_end.c \
 		player/player_core.c\
 		player/player_view.c\
 		player/init_destroy.c \
@@ -33,7 +41,8 @@ SRC	=	main.c \
 		inventory/set_items.c \
 		inventory/free_inventory.c	\
 		inventory/display_inventory.c \
-		npc/interaction.c \
+		npc/action_move_npc.c \
+		npc/action_wait_npc.c \
 		npc/manage_npc_actions.c \
 		npc/init_npc.c \
 		npc/collision.c

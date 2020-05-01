@@ -38,7 +38,8 @@ static int player_key_orientation(player_t *player, game_menu_t *game, char i)
     int key[4] = {sfKeyS, sfKeyQ, sfKeyD, sfKeyZ};
     int way[4] = {0, 64, 128, 192};
 
-    if (player->on_move == 0 && sfKeyboard_isKeyPressed(key[i]) == 1) {
+    if (player->on_move == 0 && game->on_fight == 0 && \
+    sfKeyboard_isKeyPressed(key[i]) == 1) {
         player->player_rect.top = way[i];
         player->pos_view = (sfVector2i) {player->pos_cart.x + \
         looking[i][0], player->pos_cart.y + looking[i][1]};

@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2020
-** interaction.c
+** action_move_npc.c
 ** File description:
-** interaction
+** action of moving by npc
 */
 
 #include "my_rpg.h"
@@ -79,12 +79,12 @@ int action_management(npc_t *npc, player_t *player, int dist, int dir)
         update_npc_pos(npc, dir);
         travelled_cart = travelled / 32;
     }
-    if (travelled_cart == dist - 1)
+    if (travelled_cart == dist)
         travelled = 0;
     return (travelled_cart);
 }
 
-int move_npc(npc_t *npc, player_t *player, int dist, int dir)
+int action_move_npc(npc_t *npc, player_t *player, int dist, int dir)
 {
     static char flag = 1;
     int travelled_cart = 0;
@@ -95,7 +95,7 @@ int move_npc(npc_t *npc, player_t *player, int dist, int dir)
         flag = 0;
     }
     travelled_cart = action_management(npc, player, dist, dir);
-    if (travelled_cart == dist - 1) {
+    if (travelled_cart == dist) {
         flag = 1;
         sfClock_destroy(npc->move);
         sfClock_destroy(npc->anim);

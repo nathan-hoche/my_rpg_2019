@@ -19,8 +19,8 @@ static int htp_event(csfml_t *page, htp_menu_t *htp)
         return (0);
     if (page->event.key.code == sfMouseLeft && \
         page->event.type == sfEvtMouseButtonPressed)
-        if (button_is_clicked(htp->pos_but, page->size_button, \
-        page->window) == 0) {
+        if (button_is_hover(htp->pos_but, page->size_button, \
+        page->window) == 1) {
             page->act_scene = ID_START_MENU;
             return (0);
         }
