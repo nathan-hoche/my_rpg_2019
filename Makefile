@@ -45,6 +45,7 @@ SRC	=	main.c \
 		inventory/display_inventory.c \
 		npc/action_move_npc.c \
 		npc/action_wait_npc.c \
+		npc/action_focus_npc.c \
 		npc/manage_npc_actions.c \
 		message_box/action_message.c \
 		message_box/init_message_box.c \

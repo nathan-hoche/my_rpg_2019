@@ -44,9 +44,7 @@ static void update_player_pos(player_t *player, int i)
 
 static int player_key_orientation(player_t *player, game_menu_t *game, char i)
 {
-    //int key[4] = {sfKeyS, sfKeyQ, sfKeyD, sfKeyZ};
     int key[4] = {sfKeyZ, sfKeyD, sfKeyS, sfKeyQ};
-    //int way[4] = {0, 64, 128, 192};
     int way[4] = {192, 128, 0, 64};
 
     if (player->on_move == 0 && game->on_fight == 0 && \

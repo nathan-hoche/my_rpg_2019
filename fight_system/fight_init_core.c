@@ -9,7 +9,8 @@
 #include "my.h"
 #include "struct.h"
 
-static void init_fight_enemy(fight_scene_t *fight, csfml_t *general)
+static void init_fight_enemy(fight_scene_t *fight, csfml_t *general, \
+npc_t *npc)
 {
     sfTexture *txtr_enemy = sfTexture_createFromFile("src/corona.png", NULL);
 
@@ -18,10 +19,11 @@ static void init_fight_enemy(fight_scene_t *fight, csfml_t *general)
     sfSprite_setScale(fight->enemy.sp, (sfVector2f) {0.2, 0.2});
     fight->enemy.pos = (sfVector2f) {1200, 480};
     sfSprite_setPosition(fight->enemy.sp, fight->enemy.pos);
-    fight->enemy.stats.hp = 66;
-    fight->enemy.stats.atk = 6;
-    fight->enemy.stats.armor = 12;
-    fight->enemy.stats.speed = 1;
+
+    fight->enemy.stats.hp = npc->stats.hp;
+    fight->enemy.stats.atk = npc->stats.atk;
+    fight->enemy.stats.armor = npc->stats.armor;
+    fight->enemy.stats.speed = npc->stats.speed;
     fight->enemy.def = sfFalse;
 }
 
@@ -81,7 +83,7 @@ static void init_buttons(fight_scene_t *fight, csfml_t *general)
         pos_txt_def, 60);
 }
 
-void fight_initialize(fight_scene_t *fight, csfml_t *general)
+void fight_initialize(fight_scene_t *fight, csfml_t *general, npc_t *npc)
 {
     sfVector2f pos_txt_msg = {740, 860};
 
@@ -94,7 +96,7 @@ void fight_initialize(fight_scene_t *fight, csfml_t *general)
     init_buttons(fight, general);
     fight->info_area.txt_wait = \
         make_text(general->font_itim, "Enemy turn ...", pos_txt_msg, 80);
-    init_fight_enemy(fight, general);
+    init_fight_enemy(fight, general, npc);
     init_fight_player(fight, general);
     init_attacks(fight, general);
     fight->fx_sword_atk.buf = \

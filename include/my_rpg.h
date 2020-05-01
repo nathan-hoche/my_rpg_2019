@@ -135,8 +135,8 @@ void skin(csfml_t *page);
 
 //-> FIGHT_SYSTEM <-/////////////////////////////
 
-void start_fight(game_menu_t *game, csfml_t *general, npc_t *npc);
-void fight_initialize(fight_scene_t *fight, csfml_t *general);
+int start_fight(game_menu_t *game, csfml_t *general, npc_t *npc);
+void fight_initialize(fight_scene_t *fight, csfml_t *general, npc_t *npc);
 void fight_core(csfml_t *general, game_menu_t *game, npc_t *npc);
 void fight_destroy(fight_scene_t *fight);
 void display_infos_areas(fight_scene_t *fight, sfRenderWindow *window);
@@ -182,6 +182,7 @@ void manage_npc_actions(npc_t *npc, player_t *player);
 void npc_gps(npc_t *npc);
 int action_move_npc(npc_t *npc, player_t *player, int dist, int dir);
 int action_wait_npc(npc_t *npc, player_t *player, float seconds);
+void action_npc_focus_player(player_t *player, npc_t *npc);
 
 /////////////////////////////////////////////////
 

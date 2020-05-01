@@ -50,7 +50,7 @@ static int **display_optimization(char **map, player_t *playr, int **view_dist)
     return (view_dist);
 }
 
-static void map_display(char **map, game_scene_t *scene, sfSprite *tile, \
+/* static void map_display(char **map, game_scene_t *scene, sfSprite *tile, \
 csfml_t *general)
 {
     sfVector2f cursor = {0, 0};
@@ -72,7 +72,7 @@ csfml_t *general)
         }
         cursor = (sfVector2f) {0, cursor.y + 32};
     }
-}
+} */
 
 void display_map_core(game_menu_t *game, csfml_t *general)
 {

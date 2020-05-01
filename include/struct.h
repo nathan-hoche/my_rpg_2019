@@ -78,10 +78,25 @@ typedef struct pause_menu_s {
 
 typedef struct game_menu_s game_menu_t;
 
+typedef struct stats_s {
+    char *name;
+    int hp;
+    int atk;
+    int speed;
+    int armor;
+}stats_t;
+
+typedef struct fight_npc_s {
+    char **message_before;
+    int (*inter_fight) (game_menu_t *game, csfml_t *general, struct npc_s *);
+    char **message_after;
+}fight_npc_t;
+
 typedef struct npc_s {
     char on_move;
     sfTexture *tx;
     sfSprite *sp;
+    stats_t stats;
     sfVector2i pos_cart;
     sfVector2f pos_px;
     sfVector2i traj_cart;
@@ -90,10 +105,9 @@ typedef struct npc_s {
     sfClock *anim;
     int tmp_move;
     char index_action;
+    char is_fighter;
+    fight_npc_t fighting;
     int (*inter_talk_1) (char **message, game_menu_t *game);
-    int (*inter_talk_2) (char **message, game_menu_t *game);
-    int (*inter_talk_3) (char **message, game_menu_t *game);
-    int (*inter_fight) (game_menu_t *game, csfml_t *general, struct npc_s *);
 }npc_t;
 
 typedef struct game_scene_s {
@@ -158,13 +172,6 @@ typedef struct info_area_s {
     stats_area_t enemy_stats_area;
     sfText *txt_wait;
 }info_area_t;
-
-typedef struct stats_s {
-    char hp;
-    int atk;
-    int armor;
-    int speed;
-}stats_t;
 
 typedef struct fighter_s {
     sfSprite *sp;

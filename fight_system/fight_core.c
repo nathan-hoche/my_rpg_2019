@@ -71,7 +71,7 @@ void fight_core(csfml_t *general, game_menu_t *game, npc_t *npc)
     int active = 1;
 
     sfRenderWindow_setView(general->window, general->views.default_view);
-    fight_initialize(&fight, general);
+    fight_initialize(&fight, general, npc);
     while (active != 0) {
         fight_display(&fight, general->window, general);
         while (sfRenderWindow_pollEvent(general->window, &general->event) && \

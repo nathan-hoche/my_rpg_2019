@@ -15,7 +15,6 @@ static void game_display(game_menu_t *game, csfml_t *general)
     sfRenderWindow_drawSprite(general->window, game->back_grass, NULL);
     display_map_core(game, general);
     player_core(general, game);
-
     for (int i = 0; i < 2; i++) {
         sfRenderWindow_drawSprite(general->window, game->npc[i].sp, NULL);
         if (game->on_msg == 0)
