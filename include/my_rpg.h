@@ -128,12 +128,15 @@ void player_core(csfml_t *general, game_menu_t *game);
 void camera_view(game_menu_t *game, csfml_t *page);
 int player_collision_core(int key, player_t *player, game_menu_t *game);
 
-int initialize_inventory(inventory_t *inventory);
+int initialize_inventory(inventory_t *inventory, csfml_t *page);
 void initialize_items(items_t *items);
 void manage_inventory_event(csfml_t *page, inventory_t *inventory);
 void display_items(sfRenderWindow *window, items_t *items);
 void free_inventory(inventory_t *inventory);
 void set_inventory_pos(csfml_t *page, inventory_t *inventory);
 void display_inventory(csfml_t *general, game_menu_t *game);
+
+char *initialize_stats(inventory_t *inventory, char *buf, char *line, int i);
+void initialize_graphical_stats(inventory_t *inventory, csfml_t *page, int i);
 
 #endif /* !MY_RPG_H_ */

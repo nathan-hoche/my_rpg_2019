@@ -30,17 +30,17 @@ void set_inventory_pos(csfml_t *general, inventory_t *inventory)
     (sfVector2f) {pos.x + PANTS_POS_X, pos.y});
 }
 
-void manage_inventory_event(csfml_t *page, inventory_t *inventory)
+void manage_inventory_event(csfml_t *general, inventory_t *inventory)
 {
-    if (page->event.key.code == sfKeyI && page->event.type == sfEvtKeyPressed \
-    && inventory->status == 0)
+    if (general->event.key.code == sfKeyI && \
+    general->event.type == sfEvtKeyPressed && inventory->status == 0)
         inventory->status = 1;
-    else if (page->event.key.code == sfKeyI && page->event.type \
+    else if (general->event.key.code == sfKeyI && general->event.type \
     == sfEvtKeyPressed)
         inventory->status = 0;
 }
 
-static void put_obj_name(inventory_t *inventory, FILE *fp)
+static void put_obj_name(inventory_t *inventory, FILE *fp, csfml_t *general)
 {
     char *buf = NULL;
     char *line = NULL;
@@ -48,10 +48,12 @@ static void put_obj_name(inventory_t *inventory, FILE *fp)
     __ssize_t read;
 
     read = getline(&buf, &len, fp);
-    while (read != -1) {
+    for (int i = 0; read != -1; i++) {
         read = getline(&line, &len, fp);
-        if (read != -1)
-            buf = my_strcat(buf, line);
+        if (read != -1) {
+            buf = initialize_stats(inventory, buf, line, i);
+            initialize_graphical_stats(inventory, general, i);
+        }
     }
     inventory->obj_name = my_str_to_word_array(buf, '\n');
     free(line);
@@ -76,7 +78,7 @@ static int *put_obj_id(int *id_inventory, FILE *fp)
     return (id_inventory);
 }
 
-int initialize_inventory(inventory_t *inventory)
+int initialize_inventory(inventory_t *inventory, csfml_t *general)
 {
     items_t items;
     FILE *fp;
@@ -88,7 +90,7 @@ int initialize_inventory(inventory_t *inventory)
     if (!inventory->obj_id)
         return (84);
     inventory->obj_id = put_obj_id(inventory->obj_id, fp);
-    put_obj_name(inventory, fp);
+    put_obj_name(inventory, fp, general);
     inventory->tx_bar = make_texture(INVENTORY_FILE);
     inventory->sp_bar = make_sprite(inventory->tx_bar);
     inventory->status = 0;

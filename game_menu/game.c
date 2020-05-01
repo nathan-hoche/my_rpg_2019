@@ -60,7 +60,7 @@ static void game_initialize(game_menu_t *game, csfml_t *general)
     general->views.default_player_view = \
         sfView_copy(general->views.actual_view);
     sfRenderWindow_setView(general->window, general->views.actual_view);
-    initialize_inventory(&game->inventory);
+    initialize_inventory(&game->inventory, general);
     game->on_fight = 0;
 }
 
