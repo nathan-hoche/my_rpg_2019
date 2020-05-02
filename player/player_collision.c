@@ -11,14 +11,11 @@
 static int is_collide_npc(int x, int y, game_menu_t *game, player_t *player)
 {
     for (int i = 0; i < 2; i++) {
-        if ((x == game->npc[i].pos_cart.x && y == game->npc[i].pos_cart.y - 1) 
-        || (x == game->npc[i].pos_cart.x && y == game->npc[i].pos_cart.y))
+        if (x == game->npc[i].pos_cart.x && y == game->npc[i].pos_cart.y)
             return (1);
-        if ((x == game->npc[i].pos_cart.x && \
-        y - 1 == game->npc[i].pos_cart.y - 1) || \
-        (x == game->npc[i].pos_cart.x && y - 1 == game->npc[i].pos_cart.y))
+        if (x == game->npc[i].traj_cart.x && y == game->npc[i].traj_cart.y)
             return (1);
-    }
+    } 
     return (0);
 }
 

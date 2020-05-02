@@ -41,7 +41,7 @@ static int handle_npc_move(npc_t *npc, int dir)
     int dir_rect[4] = {192, 128, 0, 64};
     sfTime time = sfClock_getElapsedTime(npc->move);
 
-    if (npc->tmp_move == 0) {
+    if (npc->tmp_move == 0 || npc->tx_rect.top != dir_rect[dir - 1]) {
         npc->tx_rect.top = dir_rect[dir - 1];
         sfSprite_setTextureRect(npc->sp, npc->tx_rect);
     }
@@ -77,9 +77,15 @@ int action_management(npc_t *npc, player_t *player, int dist, int dir)
         npc->tmp_move = handle_npc_move(npc, dir);
         update_npc_pos(npc, dir);
         travelled_cart = npc->tmp_move / 32;
+    } else {
+        npc->tx_rect.left = 0;
+        sfSprite_setTextureRect(npc->sp, npc->tx_rect);
     }
-    if (travelled_cart == dist)
+    if (travelled_cart == dist) {
         npc->tmp_move = 0;
+        npc->tx_rect.left = 0;
+        sfSprite_setTextureRect(npc->sp, npc->tx_rect);
+    }
     return (travelled_cart);
 }
 

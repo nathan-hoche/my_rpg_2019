@@ -72,11 +72,17 @@ typedef struct scene_tab_s {
 
 typedef struct pause_menu_s {
     background_t back;
+    sfSprite *button;
+    sfText *resume;
+    sfText *htp;
+    sfText *settings;
+    sfText *exit;
 }pause_menu_t;
 
 //-> GAME SCENE <-///////////////////////////////
 
 typedef struct game_menu_s game_menu_t;
+typedef struct npc_s npc_t;
 
 typedef struct stats_s {
     char *name;
@@ -88,12 +94,12 @@ typedef struct stats_s {
 
 typedef struct fight_npc_s {
     char **message_before;
-    int (*inter_fight) (game_menu_t *game, csfml_t *general, struct npc_s *);
+    int (*inter_fight) (game_menu_t *game, csfml_t *general, npc_t *);
     char **message_after;
 }fight_npc_t;
 
 typedef struct npc_s {
-    char on_move;
+    char state;
     sfTexture *tx;
     sfSprite *sp;
     stats_t stats;
@@ -287,6 +293,8 @@ typedef struct views_s {
 typedef struct music_s {
     sfMusic *menu;
     int music_played;
+    sfSoundBuffer *sound_but_buf;
+    sfSound *sound_but;
 }music_t;
 
 typedef struct csfml_s {

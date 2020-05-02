@@ -10,7 +10,7 @@
 
 static void set_view_direction(player_t *player, int i)
 {
-    int looking[4][2] = {{0, -2}, {1, 0}, {0, 1}, {-1, 0}};
+    int looking[4][2] = {{0, -1}, {1, 0}, {0, 1}, {-1, 0}};
     int dir[4] = {1, 2, 3, 4};
 
     player->dir_view = dir[i];
@@ -23,7 +23,7 @@ static void update_player_pos(player_t *player, int i)
     switch (i) {
         case 0:
             player->pos_traj.x = player->pos_cart.x;
-            player->pos_traj.y = player->pos_cart.y - 2;
+            player->pos_traj.y = player->pos_cart.y - 1;
             break;
         case 1:
             player->pos_traj.x = player->pos_cart.x + 1;

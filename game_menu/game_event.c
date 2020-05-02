@@ -37,8 +37,10 @@ void game_event(csfml_t *general, game_menu_t *game)
     if (general->event.type == sfEvtClosed)
         general->act_scene = ID_CLOSE;
     if (general->event.key.code == sfKeyEscape && \
-    general->event.type == sfEvtKeyPressed)
+    general->event.type == sfEvtKeyPressed) {
+        sfSound_play(general->music.sound_but);
         pause_menu(general);
+    }
     else if (general->event.key.code == sfKeyE && \
     general->event.type == sfEvtKeyPressed) {
         for (int i = 0; i < 2; i++)

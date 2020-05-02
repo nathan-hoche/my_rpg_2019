@@ -13,9 +13,13 @@
 static void init_music(music_t *music)
 {
     music->menu = sfMusic_createFromFile(MUSIC_MENU);
+    music->sound_but = sfSound_create();
+    music->sound_but_buf = sfSoundBuffer_createFromFile(CLICK_SOUND);
+    sfSound_setBuffer(music->sound_but, music->sound_but_buf);
+    sfSound_setVolume(music->sound_but, DEFAULT_FX_LEVEL);
     sfMusic_setLoop(music->menu, sfTrue);
     sfMusic_play(music->menu);
-    sfMusic_setVolume(music->menu, 60);
+    sfMusic_setVolume(music->menu, DEFAULT_MUSIC_LEVEL);
     music->music_played = MUSIC_MENU_PLAY;
 }
 
@@ -37,6 +41,8 @@ static void main_initialization(csfml_t *page)
 static void main_destroy(csfml_t *page)
 {
     sfMusic_destroy(page->music.menu);
+    sfSoundBuffer_destroy(page->music.sound_but_buf);
+    sfSound_destroy(page->music.sound_but);
     sfRenderWindow_close(page->window);
     sfFont_destroy(page->font_itim);
     sfTexture_destroy(page->button_1);

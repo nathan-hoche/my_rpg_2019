@@ -9,18 +9,33 @@
 #include "my.h"
 #include "struct.h"
 
+static void print_text_color(start_menu_t *start, \
+sfRenderWindow *window, int nb_but)
+{
+    sfText_setColor(start->menu_buttons[nb_but].text, sfYellow);
+    sfRenderWindow_drawText(window, start->menu_buttons[nb_but].text, NULL);
+    sfRenderWindow_display(window);
+    sfSleep((sfTime) {100000});
+    sfText_setColor(start->menu_buttons[nb_but].text, sfWhite);
+}
+
 static void start_event(csfml_t *page, start_menu_t *start)
 {
     for (int i = 0; page->event.type == sfEvtMouseButtonPressed && \
     i < NB_START_MENU_B; i++) {
         if (button_obj_is_hover(&start->menu_buttons[i], page->window) && \
-        page->event.key.code == sfMouseLeft)
+        page->event.key.code == sfMouseLeft) {
+            print_text_color(start, page->window, i);
             start->menu_buttons[i].action(page);
+        }
     }
-    if (page->event.type == sfEvtClosed || button_obj_is_hover \
-    (&start->menu_buttons[3], page->window) && \
-    page->event.key.code == sfMouseLeft)
+    if (page->event.type == sfEvtClosed)
         start->menu_buttons[3].action(page);
+    else if (button_obj_is_hover (&start->menu_buttons[3], page->window) && \
+    page->event.key.code == sfMouseLeft) {
+        print_text_color(start, page->window, 3);
+        start->menu_buttons[3].action(page);
+    }
 }
 
 static void start_display(start_menu_t *start, sfRenderWindow *window)

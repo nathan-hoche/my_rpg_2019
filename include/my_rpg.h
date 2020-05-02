@@ -21,6 +21,7 @@
 
 #define MUSIC_MENU "src/menu.ogg"
 #define MUSIC_MENU_PLAY (1)
+#define CLICK_SOUND "src/click.ogg"
 
 #define BUT_1_TXTR "src/button.png"
 #define BUT_1_SIZ_X (285)
@@ -132,6 +133,7 @@ void how_to_play(csfml_t *page);
 
 int event_skin(csfml_t *page);
 void skin(csfml_t *page);
+int pause_check_button(csfml_t *page, pause_menu_t *pause);
 
 //-> FIGHT_SYSTEM <-/////////////////////////////
 

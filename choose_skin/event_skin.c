@@ -34,6 +34,7 @@ int event_skin(csfml_t *page)
         if (button_is_hover((sfVector2f){pos[i][0], pos[i][1]}, \
         size_player, page->window) == 1) {
             texture[i](&page->player);
+            sfSound_play(page->music.sound_but);
             page->act_scene = ID_GAME;
             return (0);
         }

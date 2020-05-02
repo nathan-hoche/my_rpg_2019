@@ -10,7 +10,7 @@
 
 static void set_view_direction(player_t *player)
 {
-    int looking[4][2] = {{0, -2}, {1, 0}, {0, 1}, {-1, 0}};
+    int looking[4][2] = {{0, -1}, {1, 0}, {0, 1}, {-1, 0}};
 
     player->pos_view = (sfVector2i) {player->pos_cart.x + \
     looking[player->dir_view - 1][0], \

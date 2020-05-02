@@ -9,18 +9,39 @@
 #include "my.h"
 #include "struct.h"
 
+static void display_player_with_entities(csfml_t *general, game_menu_t *game)
+{
+    int pos_en = -1;
+
+    for (int i = 0; i < 2; i++) {
+        if ((general->player.pos_traj.x == game->npc[i].pos_cart.x && \
+        general->player.pos_traj.y == game->npc[i].pos_cart.y - 1) ||
+        (general->player.pos_traj.x - 1 == game->npc[i].pos_cart.x && \
+        general->player.pos_traj.y == game->npc[i].pos_cart.y - 1) ||
+        (general->player.pos_traj.x + 1 == game->npc[i].pos_cart.x && \
+        general->player.pos_traj.y == game->npc[i].pos_cart.y - 1)) {
+            pos_en = i;
+        }
+    }
+    for (int i = 0; i < 2; i++) {
+        if (i != pos_en)
+            sfRenderWindow_drawSprite(general->window, game->npc[i].sp, NULL);
+        if (game->on_msg == 0)
+            manage_npc_actions(&game->npc[i], &general->player);
+    }
+    sfRenderWindow_drawSprite(general->window, general->player.player, NULL);
+    if (pos_en != -1)
+        sfRenderWindow_drawSprite(general->window, game->npc[pos_en].sp, NULL);
+    pos_en = -1;
+}
+
 static void game_display(game_menu_t *game, csfml_t *general)
 {
     sfRenderWindow_clear(general->window, sfBlack);
     sfRenderWindow_drawSprite(general->window, game->back_grass, NULL);
     display_map_core(game, general);
     player_core(general, game);
-    for (int i = 0; i < 2; i++) {
-        sfRenderWindow_drawSprite(general->window, game->npc[i].sp, NULL);
-        if (game->on_msg == 0)
-            manage_npc_actions(&game->npc[i], &general->player);
-    }
-    sfRenderWindow_drawSprite(general->window, general->player.player, NULL);
+    display_player_with_entities(general, game);
     display_inventory(general, game);
     if (game->on_fight == 0)
         camera_view(game, general);

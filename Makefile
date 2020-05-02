@@ -18,6 +18,7 @@ SRC	=	main.c \
 		start_menu/buttons_actions.c \
 		start_menu/buttons_hover.c \
 		pause_menu/pause.c \
+		pause_menu/pause_button.c \
 		settings_menu/settings.c \
 		settings_menu/buttons_actions.c \
 		settings_menu/init_settings.c \
