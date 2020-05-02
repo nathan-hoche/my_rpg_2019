@@ -41,13 +41,33 @@ static int camera_fight_zoom(game_menu_t *game, csfml_t *general)
     return (0);
 }
 
-int start_fight(game_menu_t *game, csfml_t *general, npc_t *npc)
+static int start_fight(game_menu_t *game, csfml_t *general, npc_t *npc)
 {
-    game->on_fight = 1;
-    if (camera_fight_zoom(game, general) == 1) {
-        game->on_fight = 0;
+    char *test[] = {"On m'appel l'OVNI, ...", "Tulutututu", "J'adore les chips'", "subvention de l'etat", "Bonjour", "lolilol", NULL};
+    static int first = 0;
+
+    if (first == 0) {
+        game->on_msg = 1;
+        first = 1;
+    }
+    if (npc->fighting.message_before == NULL || (game->inter == 1 && action_message(npc->fighting.message_before, game) == 1))
+        game->on_msg = 0;
+    if (game->on_msg == 0 && camera_fight_zoom(game, general) == 1) {
         fight_core(general, game, npc);
+        game->on_fight = 0;
+        if (npc->fighting.message_after != NULL)
+            action_message(npc->fighting.message_before, game);
+        first = 0;
         return (1);
     }
+    return (0);
+}
+
+int fight_management(game_menu_t *game, csfml_t *general)
+{
+    if (game->on_fight == 0)
+        return (0);
+    else
+        start_fight(game, general, &game->npc[game->on_fight - 1]);
     return (0);
 }

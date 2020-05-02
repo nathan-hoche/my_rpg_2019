@@ -49,6 +49,8 @@ static void set_bad_npc(npc_t *npc)
     npc->is_fighter = 1;
     npc->stats = (stats_t) {"Bad boy", 15, 2, 12, 1};
     npc->state = 1;
+    npc->fighting.message_before = NULL;
+    npc->fighting.message_after = NULL;
 }
 
 void set_npc(game_menu_t *game)

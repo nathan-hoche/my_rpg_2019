@@ -27,7 +27,6 @@ static void check_interraction(csfml_t *general, game_menu_t *game, npc_t *npc)
         if (npc->inter_talk_1 != NULL) {
             action_npc_focus_player(&general->player, npc);
             npc->inter_talk_1(test, game);
-
         }
     }
 }
@@ -36,15 +35,23 @@ void game_event(csfml_t *general, game_menu_t *game)
 {
     if (general->event.type == sfEvtClosed)
         general->act_scene = ID_CLOSE;
-    if (general->event.key.code == sfKeyEscape && \
+    else if (general->event.key.code == sfKeyEscape && \
     general->event.type == sfEvtKeyPressed) {
         sfSound_play(general->music.sound_but);
         pause_menu(general);
     }
-    else if (general->event.key.code == sfKeyE && \
+    if (general->event.key.code == sfKeyE && \
     general->event.type == sfEvtKeyPressed) {
+        if (game->inter_lock == 0)
+            game->inter = 1;
+        game->on_fight = 2;
         for (int i = 0; i < 2; i++)
             check_interraction(general, game, &game->npc[i]);
+    }
+    else if (general->event.key.code == sfKeyE && \
+    general->event.type == sfEvtKeyReleased) {
+        game->inter = 0;
+        game->inter_lock = 0;
     }
     manage_inventory_event(general, &game->inventory);
 }

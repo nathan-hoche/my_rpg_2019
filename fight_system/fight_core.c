@@ -27,13 +27,16 @@ static void defence_mode(fight_scene_t *fight, sfRenderWindow *window)
 
     if (fight->player.def == sfTrue) {
         pos = fight->player.pos;
-        pos.x += 70;
-        pos.y += 90;
+        pos.x -= 90;
+        pos.y -= 100;
         sfSprite_setPosition(fight->attacks.shield, pos);
         sfRenderWindow_drawSprite(window, fight->attacks.shield, NULL);
     }
     if (fight->enemy.def == sfTrue) {
-        sfSprite_setPosition(fight->attacks.shield, fight->enemy.pos);
+        pos = fight->enemy.pos;
+        pos.x -= 90;
+        pos.y -= 100;
+        sfSprite_setPosition(fight->attacks.shield, pos);
         sfRenderWindow_drawSprite(window, fight->attacks.shield, NULL);
     }
 }
@@ -60,6 +63,7 @@ csfml_t *general)
     sfRenderWindow_drawSprite(general->window, fight->enemy.sp, NULL);
     defence_mode(fight, window);
     fight_attacks(fight, general);
+    display_infos_areas(fight, window);
     turn_core(fight, window);
     display_infos_areas(fight, window);
     sfRenderWindow_display(window);

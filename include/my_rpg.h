@@ -137,7 +137,7 @@ int pause_check_button(csfml_t *page, pause_menu_t *pause);
 
 //-> FIGHT_SYSTEM <-/////////////////////////////
 
-int start_fight(game_menu_t *game, csfml_t *general, npc_t *npc);
+int fight_management(game_menu_t *game, csfml_t *general);
 void fight_initialize(fight_scene_t *fight, csfml_t *general, npc_t *npc);
 void fight_core(csfml_t *general, game_menu_t *game, npc_t *npc);
 void fight_destroy(fight_scene_t *fight);

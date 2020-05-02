@@ -12,19 +12,17 @@
 static void init_fight_enemy(fight_scene_t *fight, csfml_t *general, \
 npc_t *npc)
 {
-    sfTexture *txtr_enemy = sfTexture_createFromFile("src/corona.png", NULL);
-
-    fight->enemy.sp = make_sprite(txtr_enemy);
-    sfSprite_setTexture(fight->enemy.sp, txtr_enemy, sfTrue);
-    sfSprite_setScale(fight->enemy.sp, (sfVector2f) {0.2, 0.2});
-    fight->enemy.pos = (sfVector2f) {1200, 480};
+    fight->enemy.sp = sfSprite_copy(npc->sp);
+    sfSprite_setScale(fight->enemy.sp, (sfVector2f) {4, 4});
+    sfSprite_setTextureRect(fight->enemy.sp, (sfIntRect) {0, 64, 64, 64});
+    fight->enemy.pos = (sfVector2f) {1200, 590};
     sfSprite_setPosition(fight->enemy.sp, fight->enemy.pos);
-
     fight->enemy.stats.hp = npc->stats.hp;
     fight->enemy.stats.atk = npc->stats.atk;
     fight->enemy.stats.armor = npc->stats.armor;
     fight->enemy.stats.speed = npc->stats.speed;
     fight->enemy.def = sfFalse;
+    sfSprite_setOrigin(fight->enemy.sp, (sfVector2f) {32, 48});
 }
 
 static void init_fight_player(fight_scene_t *fight, csfml_t *general)
@@ -32,7 +30,7 @@ static void init_fight_player(fight_scene_t *fight, csfml_t *general)
     fight->player.sp = sfSprite_copy(general->player.player);
     sfSprite_setTextureRect(fight->player.sp, (sfIntRect) {0, 128, 64, 64});
     sfSprite_setScale(fight->player.sp, (sfVector2f) {4, 4});
-    fight->player.pos = (sfVector2f) {640, 590};
+    fight->player.pos = (sfVector2f) {720, 590};
     sfSprite_setPosition(fight->player.sp, fight->player.pos);
     fight->player.stats.hp = 42;
     fight->player.stats.atk = 2;

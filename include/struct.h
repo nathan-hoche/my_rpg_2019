@@ -100,6 +100,7 @@ typedef struct fight_npc_s {
 
 typedef struct npc_s {
     char state;
+    char dir;
     sfTexture *tx;
     sfSprite *sp;
     stats_t stats;
@@ -135,6 +136,8 @@ typedef struct meassge_box_s {
 typedef struct game_menu_s {
     char on_msg;
     char on_fight;
+    char inter;
+    char inter_lock;
     sfClock *cam_clock;
     game_scene_t game_scene;
     sfTexture *texture_tile;

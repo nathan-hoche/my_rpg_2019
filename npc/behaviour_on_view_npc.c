@@ -11,5 +11,5 @@
 
 int behaviour_see_player(player_t *player, npc_t *npc)
 {
-
+    //
 }

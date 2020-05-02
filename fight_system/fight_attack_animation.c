@@ -9,7 +9,7 @@
 #include "my.h"
 #include "struct.h"
 
-static void slash_animation(fight_scene_t *fight)
+static void slash_animation(fight_scene_t *fight, csfml_t *general)
 {
     sfTime timer;
     static char sound = 0;
@@ -30,6 +30,8 @@ static void slash_animation(fight_scene_t *fight)
             sound = 0;
         }
     }
+    sfRenderWindow_drawSprite(general->window, \
+    fight->attacks.sword_slash, NULL);
 }
 
 static void damage_stats(fighter_t *striker, fighter_t *target, \
@@ -66,7 +68,7 @@ static void waiting_time(fight_scene_t *fight)
         fight->clock_atk = sfClock_create();
     }
     timer = sfClock_getElapsedTime(fight->clock_atk);
-    if (timer.microseconds >= 200000) {
+    if (timer.microseconds >= 300000) {
         init = 0;
         sfClock_destroy(fight->clock_atk);
         if (fight->turn_state == 0)
@@ -86,7 +88,7 @@ fight_scene_t *fight, csfml_t *general)
             initialize_slash_pos(target, fight);
             break;
         case 2 :
-            slash_animation(fight);
+            slash_animation(fight, general);
             break;
         case 3 :
             damage_stats(striker, target, fight);
@@ -95,6 +97,4 @@ fight_scene_t *fight, csfml_t *general)
             waiting_time(fight);
             break;
     }
-    sfRenderWindow_drawSprite(general->window, \
-    fight->attacks.sword_slash, NULL);
 }

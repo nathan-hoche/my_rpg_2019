@@ -33,7 +33,7 @@ static void display_player_with_entities(csfml_t *general, game_menu_t *game)
     for (int i = 0; i < 2; i++) {
         if (i != pos_en)
             sfRenderWindow_drawSprite(general->window, game->npc[i].sp, NULL);
-        if (game->on_msg == 0)
+        if (game->on_msg == 0 && game->on_fight == 0)
             manage_npc_actions(&game->npc[i], &general->player);
     }
     sfRenderWindow_drawSprite(general->window, general->player.player, NULL);
@@ -49,6 +49,7 @@ static void game_display(game_menu_t *game, csfml_t *general)
     player_core(general, game);
     display_player_with_entities(general, game);
     display_inventory(general, game);
+    fight_management(game, general);
     if (game->on_fight == 0)
         camera_view(game, general);
     manage_message_box(game, general);
@@ -76,6 +77,8 @@ static void game_initialize(game_menu_t *game, csfml_t *general)
     set_npc(game);
     init_message_box(game, general);
     game->on_fight = 0;
+    game->inter = 0;
+    game->inter_lock = 0;
 }
 
 void game_menu(csfml_t *general)
@@ -87,6 +90,10 @@ void game_menu(csfml_t *general)
         while (sfRenderWindow_pollEvent(general->window, &general->event))
             game_event(general, &game);
         game_display(&game, general);
+        if (game.inter == 1) {
+            game.inter_lock = 1;
+            game.inter = 0;
+        }
     }
     free_game_ressources(&game);
 }
