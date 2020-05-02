@@ -107,6 +107,7 @@ int button_obj_is_hover(button_t *button, sfRenderWindow *window);
 void settings_initialize(settings_menu_t *set, csfml_t *page);
 void free_game_ressources(game_menu_t *game);
 void camera_fight_zoom(game_menu_t *game, csfml_t *page);
+int **display_optimization(char **map, player_t *playr, int **view_dist);
 
 void change_volume(music_t *music);
 int action_plus_fx(csfml_t *page);
