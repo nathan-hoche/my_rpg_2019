@@ -31,6 +31,15 @@ npc_t *npc, int id)
     }
 }
 
+static void manage_key_interraction(csfml_t *general, game_menu_t *game)
+{
+    if (game->inter_lock == 0)
+        game->inter = 1;
+    game->on_fight = 2;
+    for (int i = 0; i < 2; i++)
+        check_interraction(general, game, &game->npc[i], i);
+}
+
 void game_event(csfml_t *general, game_menu_t *game)
 {
     if (general->event.type == sfEvtClosed)
@@ -42,11 +51,7 @@ void game_event(csfml_t *general, game_menu_t *game)
     }
     if (general->event.key.code == sfKeyE && \
     general->event.type == sfEvtKeyPressed) {
-        if (game->inter_lock == 0)
-            game->inter = 1;
-        game->on_fight = 2;
-        for (int i = 0; i < 2; i++)
-            check_interraction(general, game, &game->npc[i], i);
+        manage_key_interraction(general, game);
     }
     else if (general->event.key.code == sfKeyE && \
     general->event.type == sfEvtKeyReleased) {
