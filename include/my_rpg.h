@@ -49,6 +49,8 @@
 #define ARMOR_FILE "src/items/armor/bust_start.png"
 #define PANTS_FILE "src/items/armor/pants_start.png"
 
+#define INTRO_BACKGROUND "src/intro.png"
+
 #define DEFAULT_FX_LEVEL (60)
 #define DEFAULT_MUSIC_LEVEL (60)
 
@@ -136,4 +138,6 @@ void free_inventory(inventory_t *inventory);
 void set_inventory_pos(csfml_t *page, inventory_t *inventory);
 void display_inventory(csfml_t *general, game_menu_t *game);
 
+void begin_intro(intro_t *intro);
+void display_intro(sfRenderWindow *window, game_menu_t *game);
 #endif /* !MY_RPG_H_ */

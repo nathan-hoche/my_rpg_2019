@@ -42,6 +42,8 @@ static void game_display(game_menu_t *game, csfml_t *general)
     if (game->on_fight == 0)
         camera_view(game, general);
     display_inventory(general, game);
+    if (game->intro.on_intro == 1)
+        display_intro(general->window, game);
     sfRenderWindow_display(general->window);
 }
 
@@ -64,6 +66,7 @@ static void game_initialize(game_menu_t *game, csfml_t *general)
     sfRenderWindow_setView(general->window, general->views.actual_view);
     initialize_inventory(&game->inventory);
     game->on_fight = 0;
+    begin_intro(&game->intro);
 }
 
 void game_menu(csfml_t *general)

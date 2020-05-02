@@ -12,6 +12,12 @@
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
 
+typedef struct intro_s {
+    sfTexture *intro_tx;
+    sfSprite *intro_sp;
+    int on_intro;
+}intro_t;
+
 typedef struct items_s {
     sfTexture *sword_tx;
     sfSprite *sword_sp;
@@ -90,6 +96,7 @@ typedef struct game_scene_s {
 
 typedef struct game_menu_s {
     int on_fight;
+    int on_outro;
     sfClock *cam_clock;
     game_scene_t game_scene;
     sfTexture *texture_tile;
@@ -97,6 +104,7 @@ typedef struct game_menu_s {
     sfTexture *grass;
     sfSprite *back_grass;
     inventory_t inventory;
+    intro_t intro;
 }game_menu_t;
 
 //-> START SCENE <-//////////////////////////////
