@@ -133,8 +133,8 @@ typedef struct meassge_box_s {
 }message_box_t;
 
 typedef struct game_menu_s {
-    char on_msg;
-    char on_fight;
+    int on_msg;
+    int on_fight;
     char inter;
     char inter_lock;
     sfClock *cam_clock;
@@ -295,7 +295,7 @@ typedef struct views_s {
 
 typedef struct music_s {
     sfMusic *menu;
-    int music_played;
+    sfMusic *fight;
     sfSoundBuffer *sound_but_buf;
     sfSound *sound_but;
 }music_t;

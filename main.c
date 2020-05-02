@@ -20,7 +20,6 @@ static void init_music(music_t *music)
     sfMusic_setLoop(music->menu, sfTrue);
     sfMusic_play(music->menu);
     sfMusic_setVolume(music->menu, DEFAULT_MUSIC_LEVEL);
-    music->music_played = MUSIC_MENU_PLAY;
 }
 
 static void main_initialization(csfml_t *page)

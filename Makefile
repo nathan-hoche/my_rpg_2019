@@ -12,6 +12,7 @@ SRC	=	main.c \
 		game_menu/display_map_core.c \
 		game_menu/free_game_res.c \
 		game_menu/fight_management.c \
+		game_menu/fight_camera_zoom.c \
 		game_menu/draw_entity.c \
 		game_menu/initialize_game.c \
 		game_menu/message_management.c \

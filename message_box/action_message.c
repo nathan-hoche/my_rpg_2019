@@ -17,7 +17,7 @@ static int count_message(char **message)
     return (count);
 }
 
-int action_message(char **message, game_menu_t *game)
+int action_message(char **message, game_menu_t *game, csfml_t *general)
 {
     static int index = 0;
 

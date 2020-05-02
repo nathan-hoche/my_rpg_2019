@@ -17,8 +17,8 @@ static void game_display(game_menu_t *game, csfml_t *general)
     player_core(general, game);
     display_player_with_entities(general, game);
     display_inventory(general, game);
-    fight_management(game, general);
     message_management(game, general);
+    fight_management(game, general);
     if (game->on_fight == 0)
         camera_view(game, general);
     sfRenderWindow_display(general->window);

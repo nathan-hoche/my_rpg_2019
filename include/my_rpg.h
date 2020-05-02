@@ -93,7 +93,7 @@
 
 #define NPC_01_TXTR "src/npc/npc_01.png"
 #define FIGHT_BUT_TEXTR "src/fight/buttons.png"
-
+#define MUSIC_FIGHT "src/battle.ogg"
 
 void game_menu(csfml_t *page);
 
@@ -109,6 +109,7 @@ void game_event(csfml_t *general, game_menu_t *game);
 void display_player_with_entities(csfml_t *general, game_menu_t *game);
 void initialize_game_core(game_menu_t *game, csfml_t *general);
 int message_management(game_menu_t *game, csfml_t *general);
+int camera_fight_zoom(game_menu_t *game, csfml_t *general);
 
 int action_start_button(csfml_t *page);
 int action_quit_button(csfml_t *page);
@@ -192,7 +193,7 @@ void action_npc_focus_player(player_t *player, npc_t *npc);
 /////////////////////////////////////////////////
 
 int init_message_box(game_menu_t *game, csfml_t *general);
-int action_message(char **message, game_menu_t *game);
+int action_message(char **message, game_menu_t *game, csfml_t *general);
 int display_message_box(game_menu_t *game, csfml_t *general);
 
 #endif /* !MY_RPG_H_ */

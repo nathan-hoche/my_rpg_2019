@@ -9,58 +9,64 @@
 #include "my.h"
 #include "struct.h"
 
-static void camera_effects(csfml_t *general)
+static int fight_controller(game_menu_t *game, csfml_t *general, npc_t *npc)
 {
-    sfView_zoom(general->views.actual_view, 0.98);
-    sfView_rotate(general->views.actual_view, 0.14);
-    sfRenderWindow_setView(general->window, general->views.actual_view);
+    fight_core(general, game, npc);
+    sfMusic_stop(general->music.fight);
+    return (1);
 }
 
-static int camera_fight_zoom(game_menu_t *game, csfml_t *general)
+static int before_fight(game_menu_t *game, csfml_t *general, npc_t *npc)
 {
-    sfTime time;
-    static int times[2] = {1, 0};
-
-    if (times[0] == 1)
-        game->cam_clock = sfClock_create();
-    times[0] = 2;
-    time = sfClock_getElapsedTime(game->cam_clock);
-    if (time.microseconds >= 50) {
-        camera_effects(general);
-        times[1]++;
-    }
-    if (times[1] == 60) {
-        times[1] = 0;
-        times[0] = 1;
-        game->on_fight = 0;
-        sfClock_destroy(game->cam_clock);
-        general->views.actual_view = \
-            sfView_copy(general->views.default_player_view);
+    if (npc->fighting.message_before == NULL) {
+        game->on_msg = 0;
+        sfMusic_play(general->music.fight);
         return (1);
     }
+    else if (game->inter == 1 && \
+    action_message(npc->fighting.message_before, game, general) == 1) {
+        game->on_msg = 0;
+        sfMusic_play(general->music.fight);
+        return (1);
+    }
+    return (0);
+}
+
+static int after_fight(game_menu_t *game, csfml_t *general, npc_t *npc)
+{
+    static char first = 1;
+
+    game->on_msg = -1;
+    if (npc->fighting.message_after == NULL)
+        return (1);
+    else if ((first == 1 || game->inter == 1 ) && action_message(npc->fighting.message_after, game, general) == 1) {
+        first = 1;
+        return (1);
+    }
+    first = 0;
     return (0);
 }
 
 static int start_fight(game_menu_t *game, csfml_t *general, npc_t *npc)
 {
-    static int first = 0;
+    static int step = -1;
 
-    if (first == 0) {
-        game->on_msg = 1;
-        first = 1;
+    if (step == -1) {
+        game->on_msg = -1;
+        step = 0;
     }
-    if (npc->fighting.message_before == NULL || (game->inter == 1 && \
-    action_message(npc->fighting.message_before, game) == 1))
-        game->on_msg = 0;
-    if (game->on_msg == 0 && camera_fight_zoom(game, general) == 1) {
-        fight_core(general, game, npc);
+    if (step == 0 && before_fight(game, general, npc) == 1)
+        step = 1;
+    if (step == 1 && camera_fight_zoom(game, general) == 1)
+        step = 2;
+    if (step == 2 && fight_controller(game, general, npc) == 1)
+        step = 3;
+    if (step == 3 && after_fight(game, general, npc) == 1) {
         game->on_fight = 0;
-        if (npc->fighting.message_after != NULL)
-            action_message(npc->fighting.message_before, game);
-        first = 0;
-        return (1);
+        game->on_msg = 0;
+        step = -1;
     }
-    return (0);
+    return (1);
 }
 
 int fight_management(game_menu_t *game, csfml_t *general)
