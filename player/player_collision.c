@@ -21,7 +21,7 @@ static int is_collide_npc(int x, int y, game_menu_t *game, player_t *player)
 
 static int is_collide(char value)
 {
-    char *collide_list = " 1234:=>?@B\0";
+    char *collide_list = " 1234:=>?@BCDFGH\0";
 
     for (int i = 0; collide_list[i]; i++) {
         if (value == collide_list[i])
