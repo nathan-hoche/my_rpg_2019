@@ -15,9 +15,6 @@ static int fight_event(csfml_t *general)
         general->act_scene = ID_CLOSE;
         return (0);
     }
-    else if (general->event.type == sfEvtKeyPressed && \
-    general->event.key.code == sfKeyEscape)
-        return (0);
     return (1);
 }
 

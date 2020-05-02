@@ -11,7 +11,7 @@
 
 static void camera_effects(csfml_t *general)
 {
-    sfView_zoom(general->views.actual_view, 0.98);
+    sfView_zoom(general->views.actual_view, 0.983);
     sfView_rotate(general->views.actual_view, 0.14);
     sfRenderWindow_setView(general->window, general->views.actual_view);
 }
@@ -25,11 +25,11 @@ int camera_fight_zoom(game_menu_t *game, csfml_t *general)
         game->cam_clock = sfClock_create();
     times[0] = 2;
     time = sfClock_getElapsedTime(game->cam_clock);
-    if (time.microseconds >= 50) {
+    if (time.microseconds >= 70) {
         camera_effects(general);
         times[1]++;
     }
-    if (times[1] == 60) {
+    if (times[1] == 70) {
         times[1] = 0;
         times[0] = 1;
         game->on_fight = 0;
