@@ -13,6 +13,7 @@ SRC	=	initialize_window.c \
 		my_getstr.c \
 		my_revstr.c \
 		my_strcat.c \
+		my_strdup.c \
 		my_str_to_word_array.c \
 		my_getnbr.c
 

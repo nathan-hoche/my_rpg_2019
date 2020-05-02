@@ -32,11 +32,12 @@ static void init_fight_player(fight_scene_t *fight, csfml_t *general)
     sfSprite_setScale(fight->player.sp, (sfVector2f) {4, 4});
     fight->player.pos = (sfVector2f) {720, 590};
     sfSprite_setPosition(fight->player.sp, fight->player.pos);
-    fight->player.stats.hp = 42;
-    fight->player.stats.atk = 2;
-    fight->player.stats.armor = 24;
-    fight->player.stats.speed = 1;
+    fight->player.stats.hp = general->player.stats.hp;
+    fight->player.stats.atk = general->player.stats.atk;
+    fight->player.stats.armor = general->player.stats.armor;
+    fight->player.stats.speed = general->player.stats.speed;
     fight->player.def = sfFalse;
+    fight->player.stats.name = general->player.stats.name;
     sfSprite_setOrigin(fight->player.sp, (sfVector2f) {32, 48});
 }
 

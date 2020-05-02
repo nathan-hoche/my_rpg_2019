@@ -21,5 +21,6 @@ char *my_revstr(char *str);
 int my_getnbr(char const *str);
 char *my_strcat(char *dest, char *src);
 char **my_str_to_word_array(char *str, char separate);
+char *my_strdup(char const *src);
 
 #endif /* !MY_H_ */

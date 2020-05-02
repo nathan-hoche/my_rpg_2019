@@ -9,7 +9,7 @@
 #include "my.h"
 #include "struct.h"
 
-int behaviour_see_player(player_t *player, npc_t *npc)
+int behaviour_see_player_proximity(player_t *player, npc_t *npc)
 {
-    //
+    
 }

@@ -114,7 +114,7 @@ typedef struct npc_s {
     char index_action;
     char is_fighter;
     fight_npc_t fighting;
-    int (*inter_talk_1) (char **message, game_menu_t *game);
+    char **talk_1;
 }npc_t;
 
 typedef struct game_scene_s {
@@ -130,7 +130,6 @@ typedef struct meassge_box_s {
     sfSprite *sp;
     sfTexture *txtr;
     sfText *one;
-    sfText *two;
 }message_box_t;
 
 typedef struct game_menu_s {
@@ -270,6 +269,7 @@ typedef struct skin_menu_t {
 //-> PRINCIPAL INFORMATION <-////////////////////
 
 typedef struct player_t {
+    stats_t stats;
     sfTexture *texture_male;
     sfTexture *texture_female;
     sfSprite *player;

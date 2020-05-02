@@ -46,7 +46,8 @@ static void init_stats_area_enemy(stats_area_t *stats, csfml_t *general)
         make_text(general->font_itim, "0", pos_shld_val_enemy, 40);
 }
 
-static void init_life_area(info_area_t *area, csfml_t *general)
+static void init_life_area(info_area_t *area, csfml_t *general, \
+fight_scene_t *fight)
 {
     sfVector2f pos_hp_txt_player = {10, 100};
     sfVector2f pos_hp_val_player = {180, 100};
@@ -60,9 +61,11 @@ static void init_life_area(info_area_t *area, csfml_t *general)
     area->enemy_life_area.life_txt = \
         make_text(general->font_itim, "LIFE :", pos_hp_txt_enemy, 50);
     area->player_life_area.name = \
-        make_text(general->font_itim, "YOU", pos_name_player, 50);
+        make_text(general->font_itim, "YOU", \
+        pos_name_player, 50);
     area->enemy_life_area.name = \
-        make_text(general->font_itim, "ENEMY", pos_name_enemy, 50);
+        make_text(general->font_itim, "ENEMY", \
+        pos_name_enemy, 50);
     area->player_life_area.life_val = \
         make_text(general->font_itim, "0", pos_hp_val_player, 50);
     area->enemy_life_area.life_val = \
@@ -71,7 +74,7 @@ static void init_life_area(info_area_t *area, csfml_t *general)
 
 void initialize_areas(csfml_t *general, fight_scene_t *fight)
 {
-    init_life_area(&fight->info_area, general);
+    init_life_area(&fight->info_area, general, fight);
     init_stats_area_player(&fight->info_area.player_stats_area, general);
     init_stats_area_enemy(&fight->info_area.enemy_stats_area, general);
 }

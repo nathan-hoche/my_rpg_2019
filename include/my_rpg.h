@@ -106,6 +106,9 @@ void init_player(player_t *player);
 void init_game_player(player_t *player, game_scene_t *game_scene);
 void init_destroy(player_t *player);
 void game_event(csfml_t *general, game_menu_t *game);
+void display_player_with_entities(csfml_t *general, game_menu_t *game);
+void initialize_game_core(game_menu_t *game, csfml_t *general);
+int message_management(game_menu_t *game, csfml_t *general);
 
 int action_start_button(csfml_t *page);
 int action_quit_button(csfml_t *page);
@@ -178,7 +181,7 @@ void display_map_core(game_menu_t *game, csfml_t *general);
 
 //-> NPC_SYSTEM <-///////////////////////////////
 
-void set_npc(game_menu_t *game);
+void initialize_npc(game_menu_t *game);
 int check_npc_collision(npc_t *npc, player_t *player);
 void manage_npc_actions(npc_t *npc, player_t *player);
 void npc_gps(npc_t *npc);
@@ -190,7 +193,6 @@ void action_npc_focus_player(player_t *player, npc_t *npc);
 
 int init_message_box(game_menu_t *game, csfml_t *general);
 int action_message(char **message, game_menu_t *game);
-int manage_action_message(char **message, game_menu_t *game);
-int manage_message_box(game_menu_t *game, csfml_t *general);
+int display_message_box(game_menu_t *game, csfml_t *general);
 
 #endif /* !MY_RPG_H_ */

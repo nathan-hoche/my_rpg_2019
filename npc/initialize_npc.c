@@ -23,7 +23,8 @@ static void set_good_npc(npc_t *npc)
     npc_pos = sfSprite_getPosition(npc->sp);
     npc->pos_cart.x = npc_pos.x / 32;
     npc->pos_cart.y = npc_pos.y / 32;
-    npc->inter_talk_1 = &manage_action_message;
+    npc->talk_1 = NULL;
+    npc->is_fighter = 0;
     npc->tmp_move = -1;
     npc->index_action = 0;
     npc->state = 1;
@@ -43,17 +44,20 @@ static void set_bad_npc(npc_t *npc)
     npc_pos = sfSprite_getPosition(npc->sp);
     npc->pos_cart.x = npc_pos.x / 32;
     npc->pos_cart.y = npc_pos.y / 32;
-    npc->inter_talk_1 = &manage_action_message;
     npc->tmp_move = -1;
     npc->index_action = 0;
     npc->is_fighter = 1;
-    npc->stats = (stats_t) {"Bad boy", 15, 2, 12, 1};
+    npc->stats = (stats_t) {NULL, 15, 2, 12, 1};
     npc->state = 1;
     npc->fighting.message_before = NULL;
     npc->fighting.message_after = NULL;
+    npc->talk_1 =  malloc(sizeof(char *) * 3);
+    npc->talk_1[0] = my_strdup("Oh ! Bonjour, c'est la premiere fois que \n je vous vois ici ...");
+    npc->talk_1[1] = my_strdup("...");
+    npc->talk_1[2] = NULL;
 }
 
-void set_npc(game_menu_t *game)
+void initialize_npc(game_menu_t *game)
 {
     game->npc = malloc(sizeof(npc_t) * 2);
     set_good_npc(&game->npc[0]);

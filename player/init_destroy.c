@@ -19,6 +19,11 @@ void init_player(player_t *player)
         {0, 0, PLAYER_SP_SIZ_X, PLAYER_SP_SIZ_Y};
     sfSprite_setTextureRect(player->player, player->player_rect);
     sfSprite_setOrigin(player->player, (sfVector2f) {32, 48 + 6});
+    player->stats.speed = 10;
+    player->stats.hp = 10;
+    player->stats.atk = 3;
+    player->stats.armor = 10;
+    player->stats.name = "LOL";
 }
 
 void init_game_player(player_t *player, game_scene_t *game_scene)

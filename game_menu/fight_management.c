@@ -43,14 +43,14 @@ static int camera_fight_zoom(game_menu_t *game, csfml_t *general)
 
 static int start_fight(game_menu_t *game, csfml_t *general, npc_t *npc)
 {
-    char *test[] = {"On m'appel l'OVNI, ...", "Tulutututu", "J'adore les chips'", "subvention de l'etat", "Bonjour", "lolilol", NULL};
     static int first = 0;
 
     if (first == 0) {
         game->on_msg = 1;
         first = 1;
     }
-    if (npc->fighting.message_before == NULL || (game->inter == 1 && action_message(npc->fighting.message_before, game) == 1))
+    if (npc->fighting.message_before == NULL || (game->inter == 1 && \
+    action_message(npc->fighting.message_before, game) == 1))
         game->on_msg = 0;
     if (game->on_msg == 0 && camera_fight_zoom(game, general) == 1) {
         fight_core(general, game, npc);

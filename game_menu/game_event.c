@@ -9,9 +9,9 @@
 #include "my.h"
 #include "struct.h"
 
-static void check_interraction(csfml_t *general, game_menu_t *game, npc_t *npc)
+static void check_interraction(csfml_t *general, game_menu_t *game, \
+npc_t *npc, int id)
 {
-    char *test[] = {"On m'appel l'OVNI, ...", "Tulutututu", "J'adore les chips'", "subvention de l'etat", "Bonjour", "lolilol", NULL};
     int testo = 0;
 
     if (general->player.pos_view.x == npc->pos_cart.x &&
@@ -24,9 +24,9 @@ static void check_interraction(csfml_t *general, game_menu_t *game, npc_t *npc)
         testo = 1;
     }
     if (testo == 1) {
-        if (npc->inter_talk_1 != NULL) {
+        if (npc->talk_1 != NULL) {
             action_npc_focus_player(&general->player, npc);
-            npc->inter_talk_1(test, game);
+            game->on_msg = id + 1;
         }
     }
 }
@@ -44,9 +44,9 @@ void game_event(csfml_t *general, game_menu_t *game)
     general->event.type == sfEvtKeyPressed) {
         if (game->inter_lock == 0)
             game->inter = 1;
-        game->on_fight = 2;
+        //game->on_fight = 2;
         for (int i = 0; i < 2; i++)
-            check_interraction(general, game, &game->npc[i]);
+            check_interraction(general, game, &game->npc[i], i);
     }
     else if (general->event.key.code == sfKeyE && \
     general->event.type == sfEvtKeyReleased) {

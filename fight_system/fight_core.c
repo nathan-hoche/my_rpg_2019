@@ -76,6 +76,10 @@ void fight_core(csfml_t *general, game_menu_t *game, npc_t *npc)
 
     sfRenderWindow_setView(general->window, general->views.default_view);
     fight_initialize(&fight, general, npc);
+    if (npc->stats.speed > general->player.stats.speed)
+        fight.turn_state = 1;
+    else
+        fight.turn_state = 0;
     while (active != 0) {
         fight_display(&fight, general->window, general);
         while (sfRenderWindow_pollEvent(general->window, &general->event) && \

@@ -12,6 +12,9 @@ SRC	=	main.c \
 		game_menu/display_map_core.c \
 		game_menu/free_game_res.c \
 		game_menu/fight_management.c \
+		game_menu/draw_entity.c \
+		game_menu/initialize_game.c \
+		game_menu/message_management.c \
 		game_menu/game_event.c \
 		start_menu/start.c \
 		start_menu/init_start.c \
@@ -50,9 +53,8 @@ SRC	=	main.c \
 		npc/manage_npc_actions.c \
 		message_box/action_message.c \
 		message_box/init_message_box.c \
-		message_box/manage_action_message.c \
-		message_box/manage_message_box.c \
-		npc/init_npc.c \
+		message_box/display_message_box.c \
+		npc/initialize_npc.c \
 		npc/collision.c
 
 NAME	=		my_rpg

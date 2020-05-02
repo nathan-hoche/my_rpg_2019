@@ -21,19 +21,11 @@ int action_message(char **message, game_menu_t *game)
 {
     static int index = 0;
 
-    if (message[index] == NULL) {
+    if (message == NULL || message[index] == NULL) {
         index = 0;
         return (1);
     }
     sfText_setString(game->message_box.one, message[index]);
     index++;
-    if (message[index] != NULL) {
-        sfText_setString(game->message_box.two, message[index]);
-        index++;
-    } else {
-        sfText_setString(game->message_box.two, " ");
-        index = 0;
-        return (1);
-    }
     return (0);
 }
