@@ -12,6 +12,17 @@
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
 
+typedef struct stats_panel_s {
+    sfRectangleShape *status;
+    sfText *att_val;
+    sfText *def_val;
+    sfText *speed_val;
+    sfText *att_txt;
+    sfText *def_txt;
+    sfText *speed_txt;
+    int *stat;
+}stats_panel_t;
+
 typedef struct items_s {
     sfTexture *sword_tx;
     sfSprite *sword_sp;
@@ -32,6 +43,7 @@ typedef struct inventory_s {
     sfTexture *tx_bar;
     sfSprite *sp_bar;
     items_t items;
+    stats_panel_t stats;
 }inventory_t;
 
 typedef struct csfml_s csfml_t;

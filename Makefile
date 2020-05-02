@@ -17,6 +17,7 @@ SRC	=	main.c \
 		game_menu/initialize_game.c \
 		game_menu/message_management.c \
 		game_menu/game_event.c \
+		game_menu/display_optimizer.c \
 		start_menu/start.c \
 		start_menu/init_start.c \
 		start_menu/buttons_actions.c \
@@ -56,7 +57,9 @@ SRC	=	main.c \
 		message_box/init_message_box.c \
 		message_box/display_message_box.c \
 		npc/initialize_npc.c \
-		npc/collision.c
+		npc/collision.c \
+		inventory/stat/stat_player.c \
+		inventory/stat/free_stats.c
 
 NAME	=		my_rpg
 

@@ -36,7 +36,9 @@ void initialize_game_core(game_menu_t *game, csfml_t *general)
     game->grass = make_texture(MAP_GROUND_1);
     game->back_grass = make_sprite(game->grass);
     initialize_view(general);
-    initialize_inventory(&game->inventory);
+    initialize_inventory(general, game);
+    initialize_graphical_stats(&game->inventory, general);
+    initialize_texts(&game->inventory.stats, general);
     initialize_npc(game);
     init_message_box(game, general);
     initialize_view(general);
@@ -44,4 +46,5 @@ void initialize_game_core(game_menu_t *game, csfml_t *general)
     game->on_fight = 0;
     game->inter = 0;
     game->inter_lock = 0;
+    game->inventory.status = 0;
 }

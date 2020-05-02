@@ -95,6 +95,8 @@
 #define FIGHT_BUT_TEXTR "src/fight/buttons.png"
 #define MUSIC_FIGHT "src/battle.ogg"
 
+#define STAT_DATA (3)
+
 void game_menu(csfml_t *page);
 
 void start_menu(csfml_t *page);
@@ -110,7 +112,6 @@ void display_player_with_entities(csfml_t *general, game_menu_t *game);
 void initialize_game_core(game_menu_t *game, csfml_t *general);
 int message_management(game_menu_t *game, csfml_t *general);
 int camera_fight_zoom(game_menu_t *game, csfml_t *general);
-
 int action_start_button(csfml_t *page);
 int action_quit_button(csfml_t *page);
 int action_settings_button(csfml_t *page);
@@ -120,6 +121,7 @@ void check_buttons_hover(start_menu_t *start, csfml_t *page);
 int button_obj_is_hover(button_t *button, sfRenderWindow *window);
 void settings_initialize(settings_menu_t *set, csfml_t *page);
 void free_game_ressources(game_menu_t *game);
+int **display_optimization(char **map, player_t *playr, int **view_dist);
 
 //-> SETTINGS_MENU <-////////////////////////////
 
@@ -158,7 +160,7 @@ int check_end(fight_scene_t *fight);
 
 //-> INVENTORY_SYSTEM <-/////////////////////////
 
-int initialize_inventory(inventory_t *inventory);
+int initialize_inventory(csfml_t *general, game_menu_t *game);
 void initialize_items(items_t *items);
 void manage_inventory_event(csfml_t *page, inventory_t *inventory);
 void display_items(sfRenderWindow *window, items_t *items);
@@ -195,5 +197,12 @@ void action_npc_focus_player(player_t *player, npc_t *npc);
 int init_message_box(game_menu_t *game, csfml_t *general);
 int action_message(char **message, game_menu_t *game, csfml_t *general);
 int display_message_box(game_menu_t *game, csfml_t *general);
+char *initialize_stats(inventory_t *inventory, char *buf, char *line, \
+csfml_t *general);
+void initialize_graphical_stats(inventory_t *inventory, csfml_t *general);
+void display_status(csfml_t *general, stats_panel_t *stats);
+void free_stats(stats_panel_t *stats);
+void initialize_texts(stats_panel_t *stats, csfml_t *general);
+void set_stats_pos(inventory_t *inventory, csfml_t *general);
 
 #endif /* !MY_RPG_H_ */

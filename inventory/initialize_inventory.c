@@ -15,8 +15,8 @@ void set_inventory_pos(csfml_t *general, inventory_t *inventory)
 
     pos.x = general->player.pos_px.x;
     pos.y = general->player.pos_px.y;
-    pos.x -= 135;
-    pos.y += 215;
+    pos.x -= 170;
+    pos.y += 180;
     sfSprite_setPosition(inventory->sp_bar, pos);
     sfSprite_setPosition(inventory->items.sword_sp, \
     (sfVector2f) {pos.x + SWORD_POS_X, pos.y + SWORD_POS_Y});
@@ -30,29 +30,35 @@ void set_inventory_pos(csfml_t *general, inventory_t *inventory)
     (sfVector2f) {pos.x + PANTS_POS_X, pos.y});
 }
 
-void manage_inventory_event(csfml_t *page, inventory_t *inventory)
+void manage_inventory_event(csfml_t *general, inventory_t *inventory)
 {
-    if (page->event.key.code == sfKeyI && page->event.type == sfEvtKeyPressed \
-    && inventory->status == 0)
+    if (general->event.key.code == sfKeyI && \
+    general->event.type == sfEvtKeyPressed && inventory->status == 0)
         inventory->status = 1;
-    else if (page->event.key.code == sfKeyI && page->event.type \
+    else if (general->event.key.code == sfKeyI && general->event.type \
     == sfEvtKeyPressed)
         inventory->status = 0;
 }
 
-static void put_obj_name(inventory_t *inventory, FILE *fp)
+static void put_obj_name(inventory_t *inventory, FILE *fp, csfml_t *general)
 {
     char *buf = NULL;
     char *line = NULL;
     size_t len = 0;
     __ssize_t read;
 
+    inventory->stats.stat = malloc(sizeof(int) * STAT_DATA);
+    inventory->stats.stat[0] = 0;
+    inventory->stats.stat[1] = 0;
+    inventory->stats.stat[2] = 0;
     read = getline(&buf, &len, fp);
-    while (read != -1) {
+    for (int i = 0; read != -1; i++) {
         read = getline(&line, &len, fp);
-        if (read != -1)
-            buf = my_strcat(buf, line);
+        if (read != -1) {
+            buf = initialize_stats(inventory, buf, line, general);
+        }
     }
+    initialize_texts(&inventory->stats, general);
     inventory->obj_name = my_str_to_word_array(buf, '\n');
     free(line);
     free(buf);
@@ -76,22 +82,21 @@ static int *put_obj_id(int *id_inventory, FILE *fp)
     return (id_inventory);
 }
 
-int initialize_inventory(inventory_t *inventory)
+int initialize_inventory(csfml_t *general, game_menu_t *game)
 {
-    items_t items;
     FILE *fp;
 
     fp = fopen(CONFIG_INVENTORY_FILE, "r");
     if (!fp)
         return (84);
-    inventory->obj_id = malloc(sizeof(int) * INVENTORY_ID_SIZE);
-    if (!inventory->obj_id)
+    game->inventory.obj_id = malloc(sizeof(int) * INVENTORY_ID_SIZE);
+    if (!game->inventory.obj_id)
         return (84);
-    inventory->obj_id = put_obj_id(inventory->obj_id, fp);
-    put_obj_name(inventory, fp);
-    inventory->tx_bar = make_texture(INVENTORY_FILE);
-    inventory->sp_bar = make_sprite(inventory->tx_bar);
-    inventory->status = 0;
-    initialize_items(&inventory->items);
+    game->inventory.obj_id = put_obj_id(game->inventory.obj_id, fp);
+    put_obj_name(&game->inventory, fp, general);
+    game->inventory.tx_bar = make_texture(INVENTORY_FILE);
+    game->inventory.sp_bar = make_sprite(game->inventory.tx_bar);
+    game->inventory.status = 0;
+    initialize_items(&game->inventory.items);
     return (0);
 }

@@ -16,11 +16,11 @@ static void game_display(game_menu_t *game, csfml_t *general)
     display_map_core(game, general);
     player_core(general, game);
     display_player_with_entities(general, game);
-    display_inventory(general, game);
     message_management(game, general);
     fight_management(game, general);
     if (game->on_fight == 0)
         camera_view(game, general);
+    display_inventory(general, game);
     sfRenderWindow_display(general->window);
 }
 
