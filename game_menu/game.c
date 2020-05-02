@@ -9,19 +9,26 @@
 #include "my.h"
 #include "struct.h"
 
+static int is_behind_npc(player_t *player, npc_t *npc)
+{
+    if ((player->pos_traj.x == npc->pos_cart.x && \
+        player->pos_traj.y == npc->pos_cart.y - 1) ||
+        (player->pos_traj.x - 1 == npc->pos_cart.x && \
+        player->pos_traj.y == npc->pos_cart.y - 1) ||
+        (player->pos_traj.x + 1 == npc->pos_cart.x && \
+        player->pos_traj.y == npc->pos_cart.y - 1))
+        return (1);
+    return (0);
+}
+
 static void display_player_with_entities(csfml_t *general, game_menu_t *game)
 {
     int pos_en = -1;
 
     for (int i = 0; i < 2; i++) {
-        if ((general->player.pos_traj.x == game->npc[i].pos_cart.x && \
-        general->player.pos_traj.y == game->npc[i].pos_cart.y - 1) ||
-        (general->player.pos_traj.x - 1 == game->npc[i].pos_cart.x && \
-        general->player.pos_traj.y == game->npc[i].pos_cart.y - 1) ||
-        (general->player.pos_traj.x + 1 == game->npc[i].pos_cart.x && \
-        general->player.pos_traj.y == game->npc[i].pos_cart.y - 1)) {
+        if (game->npc[i].state != 0 && \
+        is_behind_npc(&general->player, &game->npc[i]) == 1)
             pos_en = i;
-        }
     }
     for (int i = 0; i < 2; i++) {
         if (i != pos_en)
