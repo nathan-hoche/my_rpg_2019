@@ -39,7 +39,6 @@ static void display_player_with_entities(csfml_t *general, game_menu_t *game)
     sfRenderWindow_drawSprite(general->window, general->player.player, NULL);
     if (pos_en != -1)
         sfRenderWindow_drawSprite(general->window, game->npc[pos_en].sp, NULL);
-    pos_en = -1;
 }
 
 static void game_display(game_menu_t *game, csfml_t *general)
