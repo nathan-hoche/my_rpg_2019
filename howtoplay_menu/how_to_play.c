@@ -12,16 +12,21 @@
 static int htp_event(csfml_t *page, htp_menu_t *htp)
 {
     if (page->event.type == sfEvtClosed) {
+        sfSound_play(page->music.sound_but);
         page->act_scene = ID_CLOSE;
         return (0);
     } else if (page->event.key.code == sfKeyEscape && \
-    page->event.type == sfEvtKeyPressed)
+    page->event.type == sfEvtKeyPressed) {
+        sfSound_play(page->music.sound_but);
         return (0);
+    }
     if (page->event.key.code == sfMouseLeft && \
         page->event.type == sfEvtMouseButtonPressed)
         if (button_is_clicked(htp->pos_but, page->size_button, \
-        page->window) == 0)
+        page->window) == 0) {
+            sfSound_play(page->music.sound_but);
             return (0);
+        }
     return (1);
 }
 

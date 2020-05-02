@@ -49,8 +49,9 @@ static char **init_map(game_scene_t *scene, char *filepath)
 
 void init_game_scene(game_scene_t *scene)
 {
-    scene->starting_pos = (sfVector2f) {16 + 32 * 11, 16 + 32 * 11};
+    scene->starting_pos = (sfVector2f) {16 + 32 * 15, 16 + 32 * 9};
     scene->map_layer01 = init_map(scene, MAP_L01_FILE);
+    scene->map_layer02 = init_map(scene, MAP_L02_FILE);
     scene->view_dist = malloc(sizeof(int *) * 2);
     scene->view_dist[0] = malloc(sizeof(int) * 2);
     scene->view_dist[1] = malloc(sizeof(int) * 2);

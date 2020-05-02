@@ -15,6 +15,7 @@ static int check_button(csfml_t *page, sfVector2f pos_but, int i)
     int if_close = 0;
 
     if (button_is_clicked(pos_but, page->size_button, page->window) == 0) {
+        sfSound_play(page->music.sound_but);
         if (i == 0)
             return (0);
         else if (i == 3)

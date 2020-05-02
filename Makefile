@@ -12,6 +12,7 @@ SRC	=	main.c \
 		game_menu/display_map_core.c \
 		game_menu/free_game_res.c \
 		game_menu/camera_fight_zoom.c \
+		game_menu/display_optimizer.c \
 		start_menu/start.c \
 		start_menu/init_start.c \
 		start_menu/buttons_actions.c \

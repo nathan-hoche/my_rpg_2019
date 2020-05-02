@@ -183,6 +183,8 @@ typedef struct views_s {
 typedef struct music_s {
     sfMusic *menu;
     int music_played;
+    sfSoundBuffer *sound_but_buf;
+    sfSound *sound_but;
 }music_t;
 
 typedef struct csfml_s {

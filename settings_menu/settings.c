@@ -18,8 +18,10 @@ static int settings_event(csfml_t *page, settings_menu_t *set)
         return (0);
     }
     else if (page->event.key.code == sfKeyEscape && \
-    page->event.type == sfEvtKeyPressed)
+    page->event.type == sfEvtKeyPressed) {
+        sfSound_play(page->music.sound_but);
         return (0);
+    }
     for (int i = 0; page->event.type == sfEvtMouseButtonPressed && \
     i < NB_SET_MENU_B; i++) {
         if (button_obj_is_hover(&set->buttons[i], page->window) && \
