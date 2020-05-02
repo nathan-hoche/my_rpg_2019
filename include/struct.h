@@ -13,9 +13,6 @@
 #include <SFML/Audio.h>
 
 typedef struct stats_s {
-    short speed;
-    short attack;
-    short defense;
     sfRectangleShape *status;
     sfText *att_val;
     sfText *def_val;
