@@ -22,10 +22,10 @@ void display_status(csfml_t *general, stats_panel_t *stats)
 
 void initialize_texts(stats_panel_t *stats, csfml_t *general)
 {
-    stats->att_val = make_text(general->font_itim, my_getstr(stats->stat[0]), \
-    (sfVector2f) {10, 10}, 20);
-    stats->def_val = make_text(general->font_itim, my_getstr(stats->stat[1]), \
-    (sfVector2f) {10, 50}, 20);
+    stats->att_val = make_text(general->font_itim, \
+    my_getstr(stats->stat[0]), (sfVector2f) {10, 10}, 20);
+    stats->def_val = make_text(general->font_itim, \
+    my_getstr(stats->stat[1]), (sfVector2f) {10, 50}, 20);
     stats->speed_val = make_text(general->font_itim, \
     my_getstr(stats->stat[2]), (sfVector2f) {10, 90}, 20);
     stats->att_txt = make_text(general->font_itim, "ATTACK:", \
@@ -65,7 +65,8 @@ void initialize_graphical_stats(inventory_t *inventory, csfml_t *general)
     sfRectangleShape_setFillColor(inventory->stats.status, sfBlack);
     sfRectangleShape_setOutlineColor(inventory->stats.status, sfWhite);
     sfRectangleShape_setOutlineThickness(inventory->stats.status, 1.5);
-    sfRectangleShape_setSize(inventory->stats.status, (sfVector2f) {150, 175});
+    sfRectangleShape_setSize(inventory->stats.status, (sfVector2f) \
+    {150, 175});
 }
 
 char *initialize_stats(inventory_t *inventory, char *buf, char *line, \

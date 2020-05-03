@@ -15,7 +15,7 @@ void init_player(player_t *player)
     player->texture_female = make_texture(PLAYER_TEXTURE_2);
     player->player = make_sprite(player->texture_male);
     player->animation = sfClock_create();
-    player->player_rect = (sfIntRect)
+    player->player_rect = (sfIntRect) \
         {0, 0, PLAYER_SP_SIZ_X, PLAYER_SP_SIZ_Y};
     sfSprite_setTextureRect(player->player, player->player_rect);
     sfSprite_setOrigin(player->player, (sfVector2f) {32, 48 + 6});

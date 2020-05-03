@@ -27,7 +27,6 @@ sfVector2i pos)
     }
 }
 
-
 static void game_display(game_menu_t *game, csfml_t *general)
 {
     sfRenderWindow_clear(general->window, sfBlack);
