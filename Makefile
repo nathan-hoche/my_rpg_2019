@@ -66,8 +66,7 @@ SRC	=	main.c \
 		inventory/stat/stat_player.c \
 		inventory/stat/free_stats.c \
 		cinematics/intro/intro.c \
-		cinematics/outro/put_outro.c \
-		cinematics/outro/set_outro.c
+		cinematics/outro/put_outro.c
 
 NAME	=		my_rpg
 

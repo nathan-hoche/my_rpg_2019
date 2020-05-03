@@ -60,9 +60,6 @@
 #define PARTICULE_FIRE_2 "src/particles/fire_32x19.png"
 
 #define INTRO_BACKGROUND "src/intro.png"
-#define OUTRO_BACKGROUND "src/outro.jpg"
-#define MEMORY_PIC "src/memory.png"
-#define ENDING_PIC "src/ending.jpg"
 
 #define DEFAULT_FX_LEVEL (60)
 #define DEFAULT_MUSIC_LEVEL (60)
@@ -189,7 +186,7 @@ fight_scene_t *fight, csfml_t *general);
 void fight_button_hover(fight_button_t *button);
 void fight_button_no_hover(fight_button_t *button);
 void fight_button_clicked(fight_button_t *button);
-int check_end(fight_scene_t *fight);
+int check_end(fight_scene_t *fight, game_menu_t *game, csfml_t *general);
 
 //-> INVENTORY_SYSTEM <-/////////////////////////
 
@@ -242,9 +239,8 @@ void free_stats(stats_panel_t *stats);
 void initialize_texts(stats_panel_t *stats, csfml_t *general);
 void set_stats_pos(inventory_t *inventory, csfml_t *general);
 
-void set_outro(sfRenderWindow *window, game_menu_t *game);
 void display_intro(sfRenderWindow *window, game_menu_t *game);
-void display_outro(sfRenderWindow *window, game_menu_t *game);
+void display_outro(sfRenderWindow *window, outro_t *outro);
 void begin_cinematics(intro_t *intro, csfml_t *general, \
 outro_t *outro);
 

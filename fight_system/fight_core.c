@@ -84,7 +84,7 @@ void fight_core(csfml_t *general, game_menu_t *game, npc_t *npc)
         while (sfRenderWindow_pollEvent(general->window, &general->event) && \
         active != 0 && general->act_scene != ID_CLOSE)
             active = fight_event(general);
-        if (check_end(&fight) == 1)
+        if (check_end(&fight, game, general) == 1)
             active = 0;
     }
     fight_destroy(&fight);

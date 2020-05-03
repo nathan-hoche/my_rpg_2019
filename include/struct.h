@@ -24,12 +24,7 @@ typedef struct stats_panel_s {
 }stats_panel_t;
 
 typedef struct outro_s {
-    sfTexture *outro_tx;
-    sfTexture *memory_tx;
-    sfTexture *ending_tx;
-    sfSprite *outro_sp;
-    sfSprite *memory_sp;
-    sfSprite *ending_sp;
+    sfText *ending_txt;
     int on_outro;
 }outro_t;
 

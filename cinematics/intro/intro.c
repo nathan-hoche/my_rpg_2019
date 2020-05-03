@@ -56,13 +56,10 @@ void begin_cinematics(intro_t *intro, csfml_t *general, \
 outro_t *outro)
 {
     intro->on_intro = 1;
+    outro->on_outro = 1;
     intro->intro_tx = make_texture(INTRO_BACKGROUND);
     intro->intro_sp = make_sprite(intro->intro_tx);
-    outro->outro_tx = make_texture(OUTRO_BACKGROUND);
-    outro->memory_tx = make_texture(MEMORY_PIC);
-    outro->ending_tx = make_texture(ENDING_PIC);
-    outro->outro_sp = make_sprite(outro->outro_tx);
-    outro->memory_sp = make_sprite(outro->memory_tx);
-    outro->ending_sp = make_sprite(outro->ending_tx);
+    outro->ending_txt = make_text(general->font_itim, "Game over", \
+    (sfVector2f) {600, 400}, 150);
     sfRenderWindow_setView(general->window, general->views.default_view);
 }
