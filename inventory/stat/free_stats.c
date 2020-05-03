@@ -11,6 +11,7 @@
 
 void free_stats(stats_panel_t *stats)
 {
+    free(stats->stat);
     sfText_destroy(stats->speed_val);
     sfText_destroy(stats->def_val);
     sfText_destroy(stats->att_val);
@@ -18,5 +19,4 @@ void free_stats(stats_panel_t *stats)
     sfText_destroy(stats->def_txt);
     sfText_destroy(stats->att_txt);
     sfRectangleShape_destroy(stats->status);
-    free(stats->stat);
 }

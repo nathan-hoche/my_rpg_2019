@@ -47,7 +47,7 @@ static void put_obj_name(inventory_t *inventory, FILE *fp, csfml_t *general)
     size_t len = 0;
     __ssize_t read;
 
-    inventory->stats.stat = malloc(sizeof(int) * STAT_DATA);
+    inventory->stats.stat = malloc(sizeof(int) * (STAT_DATA + 1));
     inventory->stats.stat[0] = 0;
     inventory->stats.stat[1] = 0;
     inventory->stats.stat[2] = 0;
@@ -85,10 +85,12 @@ int initialize_inventory(csfml_t *general, game_menu_t *game)
 {
     FILE *fp;
 
+    game->inventory.obj_name = NULL;
+    game->inventory.stats.stat = NULL;
     fp = fopen(CONFIG_INVENTORY_FILE, "r");
     if (!fp)
         return (84);
-    game->inventory.obj_id = malloc(sizeof(int) * INVENTORY_ID_SIZE);
+    game->inventory.obj_id = malloc(sizeof(int) * (INVENTORY_ID_SIZE + 1));
     if (!game->inventory.obj_id)
         return (84);
     game->inventory.obj_id = put_obj_id(game->inventory.obj_id, fp);

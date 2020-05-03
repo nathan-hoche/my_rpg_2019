@@ -25,5 +25,6 @@ void free_inventory(inventory_t *inventory)
     sfTexture_destroy(inventory->tx_bar);
     for (int i = 0; inventory->obj_name[i] != NULL; i++)
         free(inventory->obj_name[i]);
+    free(inventory->obj_name);
     free(inventory->obj_id);
 }

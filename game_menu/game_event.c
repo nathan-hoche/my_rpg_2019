@@ -9,7 +9,16 @@
 #include "my.h"
 #include "struct.h"
 
-static void check_interraction(csfml_t *general, game_menu_t *game, \
+static void talk_management(csfml_t *general, game_menu_t *game, \
+npc_t *npc, int id)
+{
+    if (npc->talks_index == 1 && npc->talk_01 != NULL) {
+        action_npc_focus_player(&general->player, npc);
+        game->on_msg = id + 1;
+    }
+}
+
+static void check_interraction_with_npc(csfml_t *general, game_menu_t *game, \
 npc_t *npc, int id)
 {
     int testo = 0;
@@ -23,13 +32,9 @@ npc_t *npc, int id)
         testo = 1;
     if (testo == 1) {
         action_npc_focus_player(&general->player, npc);
-        if (npc->is_fighter == 1) {
+        if (npc->is_fighter == 1)
             game->on_fight = id + 1;
-        }
-        else if (npc->talks != NULL) {
-            action_npc_focus_player(&general->player, npc);
-            game->on_msg = id + 1;
-        }
+        talk_management(general, game, npc, id);
     }
 }
 
@@ -37,8 +42,8 @@ static void manage_key_interraction(csfml_t *general, game_menu_t *game)
 {
     if (game->inter_lock == 0)
         game->inter = 1;
-    for (int i = 0; i < 2; i++)
-        check_interraction(general, game, &game->npc[i], i);
+    for (int i = 0; i < NB_NPC; i++)
+        check_interraction_with_npc(general, game, &game->npc[i], i);
 }
 
 void game_event(csfml_t *general, game_menu_t *game)

@@ -29,7 +29,7 @@ static char **init_map(game_scene_t *scene, char *filepath)
 {
     FILE *fp;
     int size = file_size(filepath);
-    char **map = malloc(sizeof(char *) * size);
+    char **map = malloc(sizeof(char *) * (size));
     size_t len = 0;
     int read = 0;
 
@@ -50,9 +50,14 @@ static char **init_map(game_scene_t *scene, char *filepath)
 void init_game_scene(game_scene_t *scene)
 {
     scene->starting_pos = (sfVector2f) {16 + 32 * 43, 16 + 32 * 28};
+    scene->map_layer01 = NULL;
+    scene->map_layer02 = NULL;
     scene->map_layer01 = init_map(scene, MAP_L01_FILE);
     scene->map_layer02 = init_map(scene, MAP_L02_FILE);
+    scene->view_dist = NULL;
     scene->view_dist = malloc(sizeof(int *) * 2);
+    scene->view_dist[0] = NULL;
+    scene->view_dist[1] = NULL;
     scene->view_dist[0] = malloc(sizeof(int) * 2);
     scene->view_dist[1] = malloc(sizeof(int) * 2);
 }

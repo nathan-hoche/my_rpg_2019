@@ -134,7 +134,8 @@ typedef struct npc_s {
     char is_fighter;
     fight_npc_t fighting;
     char talks_index;
-    char ***talks;
+    char **talk_01;
+    char **talk_02;
     int (*action_patern) (game_menu_t *game, csfml_t *general, struct npc_s *);
     char index_action;
     char param_patern;
