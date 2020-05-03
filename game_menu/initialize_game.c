@@ -31,7 +31,7 @@ void game_music(music_t *music)
 void game_events_messages(game_menu_t *game, csfml_t *general)
 {
     game->step_one_txt = NULL;
-    
+
     game->step_one_txt = malloc(sizeof(char *) * 2);
     game->step_one_txt[0] = my_strdup("I should go and see what's going on \n\
     this village before i continue...");
