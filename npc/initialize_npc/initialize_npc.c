@@ -13,7 +13,7 @@ static void set_good_npc_01(npc_t *npc, npc_texture_t *npc_txtr)
 {
     sfVector2f npc_pos;
 
-    npc->pos_px = (sfVector2f) {(20 * 32) + 16, (20 * 32) + 10};
+    npc->pos_px = (sfVector2f) {(20 * 32) + 16, (19 * 32) + 10};
     npc->tx_rect = (sfIntRect) {0, 0, 64, 64};
     npc->sp = make_sprite(npc_txtr->villager_01);
     sfSprite_setTextureRect(npc->sp, npc->tx_rect);
@@ -57,7 +57,7 @@ static void set_good_npc_02(npc_t *npc, npc_texture_t *npc_txtr)
     npc->index_action = 0;
     npc->state = 1;
     npc->action_patern = NULL;
-    npc->action_patern = NULL;
+    npc->action_patern = &partern_npc_02;
     npc->talks_index = 1;
     npc->talk_01 = NULL;
     npc->talk_01 =  malloc(sizeof(char *) * 3);
@@ -66,11 +66,11 @@ static void set_good_npc_02(npc_t *npc, npc_texture_t *npc_txtr)
     npc->talk_01[2] = NULL;
 }
 
-/* static void set_good_npc_02(npc_t *npc, npc_texture_t *npc_txtr)
+static void set_good_npc_03(npc_t *npc, npc_texture_t *npc_txtr)
 {
     sfVector2f npc_pos;
 
-    npc->pos_px = (sfVector2f) {(34 * 32) + 16, (21 * 32) + 10};
+    npc->pos_px = (sfVector2f) {(37 * 32) + 16, (30 * 32) + 10};
     npc->tx_rect = (sfIntRect) {0, 0, 64, 64};
     npc->sp = make_sprite(npc_txtr->villager_03);
     sfSprite_setTextureRect(npc->sp, npc->tx_rect);
@@ -91,9 +91,9 @@ static void set_good_npc_02(npc_t *npc, npc_texture_t *npc_txtr)
     npc->talk_01 = NULL;
     npc->talk_01 =  malloc(sizeof(char *) * 3);
     npc->talk_01[0] = my_strdup("They killed my goats while I looked on ! \n ... I have nothing left to lose ...");
-    npc->talk_01[2] = my_strdup("... and don t go east into the forest, \n the brigants are still there ");
-    npc->talk_01[3] = NULL;
-} */
+    npc->talk_01[1] = my_strdup("... and don t go east into the forest, \n the brigants are still there ");
+    npc->talk_01[2] = NULL;
+}
 
 static void set_bad_npc_01(npc_t *npc, npc_texture_t *npc_txtr)
 {
@@ -142,5 +142,6 @@ void initialize_npc(game_menu_t *game)
     game->npc = malloc(sizeof(npc_t) * NB_NPC);
     set_good_npc_01(&game->npc[0], &game->texture_npc);
     set_good_npc_02(&game->npc[1], &game->texture_npc);
-    set_bad_npc_01(&game->npc[2], &game->texture_npc);
+    set_good_npc_03(&game->npc[2], &game->texture_npc);
+    set_bad_npc_01(&game->npc[3], &game->texture_npc);
 }

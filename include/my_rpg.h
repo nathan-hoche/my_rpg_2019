@@ -98,7 +98,7 @@
 
 #define STAT_DATA (3)
 
-#define NB_NPC (3)
+#define NB_NPC (4)
 
 void game_menu(csfml_t *page);
 
