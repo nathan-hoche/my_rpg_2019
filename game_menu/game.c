@@ -44,6 +44,8 @@ static void game_display(game_menu_t *game, csfml_t *general)
     display_inventory(general, game);
     if (game->intro.on_intro == 1)
         display_intro(general->window, game);
+    if (game->outro.on_outro == 1)
+        display_outro(general->window, game);
     sfRenderWindow_display(general->window);
 }
 
@@ -67,7 +69,7 @@ static void game_initialize(game_menu_t *game, csfml_t *general)
     initialize_inventory(&game->inventory);
     game->on_fight = 0;
     begin_intro(&game->intro);
-    begin_outro(&game->outro);
+    begin_outro(general , &game->outro);
 }
 
 void game_menu(csfml_t *general)

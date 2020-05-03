@@ -15,8 +15,10 @@
 typedef struct outro_s {
     sfTexture *outro_tx;
     sfTexture *memory_tx;
+    sfTexture *ending_tx;
     sfSprite *outro_sp;
     sfSprite *memory_sp;
+    sfSprite *ending_sp;
     int on_outro;
 }outro_t;
 
@@ -104,7 +106,6 @@ typedef struct game_scene_s {
 
 typedef struct game_menu_s {
     int on_fight;
-    int on_outro;
     sfClock *cam_clock;
     game_scene_t game_scene;
     sfTexture *texture_tile;

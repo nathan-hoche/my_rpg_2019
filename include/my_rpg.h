@@ -52,6 +52,7 @@
 #define INTRO_BACKGROUND "src/intro.png"
 #define OUTRO_BACKGROUND "src/outro.jpg"
 #define MEMORY_PIC "src/memory.png"
+#define ENDING_PIC "src/ending.jpg"
 
 #define DEFAULT_FX_LEVEL (60)
 #define DEFAULT_MUSIC_LEVEL (60)
@@ -141,7 +142,8 @@ void set_inventory_pos(csfml_t *page, inventory_t *inventory);
 void display_inventory(csfml_t *general, game_menu_t *game);
 
 void begin_intro(intro_t *intro);
-void begin_outro(outro_t *outro);
+void begin_outro(csfml_t *general, outro_t *outro);
+void set_outro(sfRenderWindow *window, game_menu_t *game);
 void display_intro(sfRenderWindow *window, game_menu_t *game);
 void display_outro(sfRenderWindow *window, game_menu_t *game);
 #endif /* !MY_RPG_H_ */

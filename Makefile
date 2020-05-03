@@ -34,7 +34,8 @@ SRC	=	main.c \
 		inventory/free_inventory.c	\
 		inventory/display_inventory.c \
 		cinematics/intro/intro.c \
-		cinematics/outro/outro.c
+		cinematics/outro/put_outro.c \
+		cinematics/outro/set_outro.c
 
 NAME	=		my_rpg
 
