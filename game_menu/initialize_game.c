@@ -68,5 +68,5 @@ void initialize_game_core(game_menu_t *game, csfml_t *general)
     game->inter = 0;
     game->inter_lock = 0;
     initialize_entity(game, general);
-    game->adventure_step = 0;
+    game->adventure_step = 1;
 }

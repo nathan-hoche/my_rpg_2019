@@ -166,6 +166,7 @@ typedef struct npc_texture_s {
 
 typedef struct game_menu_s {
     char adventure_step;
+    int test;
     int on_msg;
     int on_fight;
     char inter;

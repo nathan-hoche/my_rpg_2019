@@ -9,6 +9,12 @@
 #include "my.h"
 #include "struct.h"
 
+static void manage_adventure_step(game_menu_t *game, csfml_t *general)
+{
+    if (game->adventure_step == 1 && game->on_msg == 3)
+        game->adventure_step = 2;
+}
+
 static void change_music(int detect_pos[4], music_t *music, \
 sfVector2i pos)
 {
@@ -36,12 +42,16 @@ static void game_display(game_menu_t *game, csfml_t *general)
     display_player_with_entities(general, game);
     message_management(game, general);
     fight_management(game, general);
-    manage_npc_actions(general, game);
+    manage_adventure_step(game, general);
     if (game->on_fight == 0)
         camera_view(game, general);
     display_inventory(general, game);
     change_music((int [4]) {0, 32, 0, 19}, &general->music, \
     general->player.pos_cart);
+    manage_npc_actions(general, game);
+
+    printf("%d, %d\n", general->player.pos_cart.x, general->player.pos_cart.y);
+
     sfRenderWindow_display(general->window);
 }
 
@@ -52,6 +62,9 @@ void game_menu(csfml_t *general)
     sfMusic_stop(general->music.menu);
     sfMusic_play(general->music.beach);
     initialize_game_core(&game, general);
+
+    general->player.stats.atk = 100; // A RM
+
     while (general->act_scene == ID_GAME) {
         while (sfRenderWindow_pollEvent(general->window, &general->event))
             game_event(general, &game);

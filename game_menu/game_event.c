@@ -34,7 +34,8 @@ npc_t *npc, int id)
         action_npc_focus_player(&general->player, npc);
         if (npc->is_fighter == 1)
             game->on_fight = id + 1;
-        talk_management(general, game, npc, id);
+        else
+            talk_management(general, game, npc, id);
     }
 }
 
