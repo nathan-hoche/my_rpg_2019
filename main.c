@@ -44,6 +44,7 @@ static void main_initialization(csfml_t *page)
     (page->icon.icon_img);
     sfRenderWindow_setIcon(page->window, 128, 128, \
     page->icon.icon_uint);
+    sfRenderWindow_setTitle(page->window, "Lost Rpg");
     init_player(&page->player);
     init_music(&page->music);
 }
