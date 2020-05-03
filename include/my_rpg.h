@@ -105,7 +105,7 @@
 
 #define STAT_DATA (3)
 
-#define NB_NPC (4)
+#define NB_NPC (5)
 
 void game_menu(csfml_t *page);
 
@@ -223,8 +223,10 @@ int action_wait_npc(npc_t *npc, player_t *player, float seconds);
 void action_npc_focus_player(player_t *player, npc_t *npc);
 int action_dir_npc(npc_t *npc, player_t *player, int dir);
 
-int partern_npc_01(game_menu_t *game, csfml_t *general, npc_t *npc);
-int partern_npc_02(game_menu_t *game, csfml_t *general, npc_t *npc);
+int patern_npc_01(game_menu_t *game, csfml_t *general, npc_t *npc);
+int patern_npc_02(game_menu_t *game, csfml_t *general, npc_t *npc);
+int patern_npc_04(game_menu_t *game, csfml_t *general, npc_t *npc);
+int patern_npc_05(game_menu_t *game, csfml_t *general, npc_t *npc);
 
 /////////////////////////////////////////////////
 

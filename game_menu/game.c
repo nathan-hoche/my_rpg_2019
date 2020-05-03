@@ -9,6 +9,12 @@
 #include "my.h"
 #include "struct.h"
 
+static void manage_adventure_step(game_menu_t *game, csfml_t *general)
+{
+    if (game->adventure_step == 1 && game->on_msg == 3)
+        game->adventure_step = 2;
+}
+
 static void change_music(int detect_pos[4], music_t *music, \
 sfVector2i pos)
 {
@@ -34,11 +40,12 @@ static void game_display(game_menu_t *game, csfml_t *general)
     display_map_core(game, general);
     player_core(general, game);
     display_player_with_entities(general, game);
+    display_flame_particule(&game->small_flame, &game->big_flame, \
+    general->window);
     message_management(game, general);
     fight_management(game, general);
     manage_npc_actions(general, game);
-    display_flame_particule(&game->small_flame, &game->big_flame, \
-    general->window);
+    manage_adventure_step(game, general);
     if (game->on_fight == 0)
         camera_view(game, general);
     display_inventory(general, game);

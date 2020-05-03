@@ -17,7 +17,7 @@ static int is_collide_npc(int x, int y, game_menu_t *game, player_t *player)
         if (x == game->npc[i].traj_cart.x && y == game->npc[i].traj_cart.y)
             return (1);
     }
-    if (x == 46) {
+    if (game->adventure_step == 1 && x == 46) {
         game->on_msg = -2;
         return (1);
     }

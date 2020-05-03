@@ -60,6 +60,8 @@ SRC	=	main.c \
 		npc/manage_npc_actions.c \
 		npc/action_patern/patern_npc_01.c \
 		npc/action_patern/patern_npc_02.c \
+		npc/action_patern/patern_npc_04.c \
+		npc/action_patern/patern_npc_05.c \
 		message_box/action_message.c \
 		message_box/init_message_box.c \
 		message_box/display_message_box.c \
