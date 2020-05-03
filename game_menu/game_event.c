@@ -15,16 +15,18 @@ npc_t *npc, int id)
     int testo = 0;
 
     if (general->player.pos_view.x == npc->pos_cart.x &&
-    general->player.pos_view.y == npc->pos_cart.y) {
+    general->player.pos_view.y == npc->pos_cart.y)
         testo = 1;
-    }
     if (general->player.dir_view == 3 && \
     (general->player.pos_view.x == npc->pos_cart.x &&
-    general->player.pos_view.y == npc->pos_cart.y - 1)) {
+    general->player.pos_view.y == npc->pos_cart.y - 1))
         testo = 1;
-    }
     if (testo == 1) {
-        if (npc->talk_1 != NULL) {
+        action_npc_focus_player(&general->player, npc);
+        if (npc->is_fighter == 1) {
+            game->on_fight = id + 1;
+        }
+        else if (npc->talk_1 != NULL) {
             action_npc_focus_player(&general->player, npc);
             game->on_msg = id + 1;
         }
@@ -35,7 +37,6 @@ static void manage_key_interraction(csfml_t *general, game_menu_t *game)
 {
     if (game->inter_lock == 0)
         game->inter = 1;
-    game->on_fight = 2;
     for (int i = 0; i < 2; i++)
         check_interraction(general, game, &game->npc[i], i);
 }

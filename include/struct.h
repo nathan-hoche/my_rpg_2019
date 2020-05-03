@@ -96,6 +96,15 @@ typedef struct pause_menu_s {
 typedef struct game_menu_s game_menu_t;
 typedef struct npc_s npc_t;
 
+typedef struct entity_s
+{
+    sfTexture *txtr;
+    sfIntRect rect;
+    sfSprite *sp;
+    sfVector2i coord_cart;
+    sfClock *clock;
+}entity_t;
+
 typedef struct stats_s {
     char *name;
     int hp;
@@ -145,10 +154,12 @@ typedef struct meassge_box_s {
 }message_box_t;
 
 typedef struct game_menu_s {
+    char adventure_step;
     int on_msg;
     int on_fight;
     char inter;
     char inter_lock;
+    int force_msg;
     sfClock *cam_clock;
     game_scene_t game_scene;
     sfTexture *texture_tile;
@@ -158,6 +169,7 @@ typedef struct game_menu_s {
     sfSprite *back_grass;
     inventory_t inventory;
     npc_t *npc;
+    entity_t *entity;
 }game_menu_t;
 
 

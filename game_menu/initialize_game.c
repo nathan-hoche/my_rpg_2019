@@ -25,6 +25,18 @@ static void initialize_music(csfml_t *gen)
     sfMusic_setVolume(gen->music.fight, gen->settings.music_lvl);
 }
 
+static void initialize_entity(game_menu_t *game, csfml_t *general)
+{
+    game->entity = malloc(sizeof(entity_t) * 1);
+    game->entity[0].txtr = sfTexture_createFromFile("src/fire_32x21.png", NULL);
+    game->entity[0].rect = (sfIntRect) {0, 0, 21, 32};
+    game->entity[0].sp = make_sprite(game->entity[0].txtr);
+    sfSprite_setOrigin(game->entity[0].sp, (sfVector2f) {-7, 21}); //13
+    sfSprite_setTextureRect(game->entity[0].sp, game->entity[0].rect);
+    sfVector2f pos = {32 * 34, 32 * 29};
+    sfSprite_setPosition(game->entity[0].sp, pos);
+}
+
 void initialize_game_core(game_menu_t *game, csfml_t *general)
 {
     game->game_scene.map_layer01_file = MAP_L01_FILE;
@@ -46,5 +58,6 @@ void initialize_game_core(game_menu_t *game, csfml_t *general)
     game->on_fight = 0;
     game->inter = 0;
     game->inter_lock = 0;
-    game->inventory.status = 0;
+    initialize_entity(game, general);
+    game->adventure_step = 0;
 }

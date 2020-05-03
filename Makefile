@@ -18,6 +18,7 @@ SRC	=	main.c \
 		game_menu/message_management.c \
 		game_menu/game_event.c \
 		game_menu/display_optimizer.c \
+		game_menu/fight_management_steps.c \
 		start_menu/start.c \
 		start_menu/init_start.c \
 		start_menu/buttons_actions.c \
