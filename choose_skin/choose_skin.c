@@ -36,7 +36,7 @@ static void skin_display(skin_menu_t *skin, sfRenderWindow *window)
 }
 
 static void skin_initialize(skin_menu_t *skin, player_t *player, \
-sfFont *font)
+sfFont *font, music_t *music)
 {
     skin->back.tx_back = make_texture("src/space.png");
     skin->back.sp_back = make_sprite(skin->back.tx_back);
@@ -52,7 +52,7 @@ sfFont *font)
     sfSprite_setScale(skin->female, (sfVector2f) {4, 4});
 }
 
-static void skin_destroy(skin_menu_t *skin)
+static void skin_destroy(skin_menu_t *skin, csfml_t *page)
 {
     sfSprite_destroy(skin->back.sp_back);
     sfSprite_destroy(skin->male);
@@ -65,12 +65,12 @@ void skin(csfml_t *page)
     skin_menu_t skin;
     int active = 1;
 
-    skin_initialize(&skin, &page->player, page->font_itim);
+    skin_initialize(&skin, &page->player, page->font_itim, &page->music);
     while (active != 0) {
         skin_display(&skin, page->window);
         while (sfRenderWindow_pollEvent(page->window, &page->event) \
         && active != 0)
             active = skin_event(page);
     }
-    skin_destroy(&skin);
+    skin_destroy(&skin, page);
 }

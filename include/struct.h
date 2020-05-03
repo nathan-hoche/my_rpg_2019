@@ -308,6 +308,8 @@ typedef struct views_s {
 typedef struct music_s {
     sfMusic *menu;
     sfMusic *fight;
+    sfMusic *beach;
+    sfMusic *adven;
     sfSoundBuffer *sound_but_buf;
     sfSound *sound_but;
 }music_t;

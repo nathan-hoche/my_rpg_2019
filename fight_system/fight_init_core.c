@@ -62,8 +62,6 @@ static void init_buttons(fight_scene_t *fight, csfml_t *general)
 {
     sfIntRect rect_but_atk = {342, 0, 342, 80};
     sfIntRect rect_but_def = {0, 0, 342, 80};
-    sfVector2f pos_txt_atk = {1000 + 62, 820};
-    sfVector2f pos_txt_def = {570 + 65, 820};
 
     fight->button_atk.size = (sfVector2f) {342, 80};
     fight->button_def.size = (sfVector2f) {342, 80};
@@ -77,9 +75,10 @@ static void init_buttons(fight_scene_t *fight, csfml_t *general)
     sfSprite_setPosition(fight->button_atk.sp, fight->button_atk.pos);
     sfSprite_setPosition(fight->button_def.sp, fight->button_def.pos);
     fight->button_atk.txt = make_text(general->font_itim, "ATTACK", \
-        pos_txt_atk, 60);
+    (sfVector2f) {1000 + 62, 820}, 60);
     fight->button_def.txt = make_text(general->font_itim, "DEFEND", \
-        pos_txt_def, 60);
+    (sfVector2f) {570 + 65, 820}, 60);
+    fight->button_atk.state = 0;
 }
 
 void fight_initialize(fight_scene_t *fight, csfml_t *general, npc_t *npc)
@@ -103,6 +102,5 @@ void fight_initialize(fight_scene_t *fight, csfml_t *general, npc_t *npc)
     fight->fx_sword_atk.sound = sfSound_create();
     sfSound_setBuffer(fight->fx_sword_atk.sound, fight->fx_sword_atk.buf);
     sfSound_setVolume(fight->fx_sword_atk.sound, general->settings.fx_lvl);
-    fight->button_atk.state = 0;
     fight->button_def.state = 0;
 }

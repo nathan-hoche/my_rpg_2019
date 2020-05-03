@@ -18,11 +18,14 @@ static void initialize_view(csfml_t *gen)
     sfRenderWindow_setView(gen->window, gen->views.actual_view);
 }
 
-static void initialize_music(csfml_t *gen)
+void game_music(music_t *music)
 {
-    gen->music.fight = sfMusic_createFromFile(MUSIC_FIGHT);
-    sfMusic_setLoop(gen->music.fight, sfTrue);
-    sfMusic_setVolume(gen->music.fight, gen->settings.music_lvl);
+    music->fight = sfMusic_createFromFile(MUSIC_FIGHT);
+    sfMusic_setLoop(music->fight, sfTrue);
+    sfMusic_setVolume(music->fight, DEFAULT_MUSIC_LEVEL);
+    music->adven = sfMusic_createFromFile(MUSIC_ADVEN);
+    sfMusic_setLoop(music->adven, sfTrue);
+    sfMusic_setVolume(music->adven, DEFAULT_MUSIC_LEVEL);
 }
 
 void initialize_game_core(game_menu_t *game, csfml_t *general)
@@ -42,7 +45,6 @@ void initialize_game_core(game_menu_t *game, csfml_t *general)
     initialize_npc(game);
     init_message_box(game, general);
     initialize_view(general);
-    initialize_music(general);
     game->on_fight = 0;
     game->inter = 0;
     game->inter_lock = 0;
