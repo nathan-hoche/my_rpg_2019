@@ -126,7 +126,6 @@ typedef struct stats_s {
 
 typedef struct fight_npc_s {
     char **message_before;
-    int (*inter_fight) (game_menu_t *game, csfml_t *general, npc_t *);
     char **message_after;
 }fight_npc_t;
 
@@ -149,7 +148,6 @@ typedef struct npc_s {
     char **talk_02;
     int (*action_patern) (game_menu_t *game, csfml_t *general, npc_t *npc);
     char index_action;
-    char param_patern;
 }npc_t;
 
 typedef struct game_scene_s {
