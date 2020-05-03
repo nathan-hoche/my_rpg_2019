@@ -9,7 +9,7 @@
 #include "my.h"
 #include "struct.h"
 
-static void set_good_npc(npc_t *npc)
+static void set_sbire_npc(npc_t *npc)
 {
     sfVector2f npc_pos;
 

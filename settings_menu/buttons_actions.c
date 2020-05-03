@@ -32,6 +32,9 @@ int action_plus_music(csfml_t *page)
     if (page->settings.music_lvl != 100)
         page->settings.music_lvl += 10;
     sfMusic_setVolume(page->music.menu, page->settings.music_lvl);
+    sfMusic_setVolume(page->music.beach, page->settings.music_lvl);
+    sfMusic_setVolume(page->music.adven, page->settings.music_lvl);
+    sfMusic_setVolume(page->music.fight, page->settings.music_lvl);
     sfSound_play(page->music.sound_but);
     return (0);
 }
@@ -41,6 +44,9 @@ int action_minus_music(csfml_t *page)
     if (page->settings.music_lvl != 0)
         page->settings.music_lvl -= 10;
     sfMusic_setVolume(page->music.menu, page->settings.music_lvl);
+    sfMusic_setVolume(page->music.beach, page->settings.music_lvl);
+    sfMusic_setVolume(page->music.adven, page->settings.music_lvl);
+    sfMusic_setVolume(page->music.fight, page->settings.music_lvl);
     sfSound_play(page->music.sound_but);
     return (0);
 }

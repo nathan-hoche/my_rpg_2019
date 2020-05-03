@@ -18,23 +18,34 @@ static void initialize_view(csfml_t *gen)
     sfRenderWindow_setView(gen->window, gen->views.actual_view);
 }
 
-static void initialize_music(csfml_t *gen)
+void game_music(music_t *music)
 {
-    gen->music.fight = sfMusic_createFromFile(MUSIC_FIGHT);
-    sfMusic_setLoop(gen->music.fight, sfTrue);
-    sfMusic_setVolume(gen->music.fight, gen->settings.music_lvl);
+    music->fight = sfMusic_createFromFile(MUSIC_FIGHT);
+    sfMusic_setLoop(music->fight, sfTrue);
+    sfMusic_setVolume(music->fight, DEFAULT_MUSIC_LEVEL);
+    music->adven = sfMusic_createFromFile(MUSIC_ADVEN);
+    sfMusic_setLoop(music->adven, sfTrue);
+    sfMusic_setVolume(music->adven, DEFAULT_MUSIC_LEVEL);
 }
 
 static void initialize_entity(game_menu_t *game, csfml_t *general)
 {
-    game->entity = malloc(sizeof(entity_t) * 1);
+    sfVector2f pos = {32 * 34, 32 * 29};
+
+    game->entity = malloc(sizeof(entity_t) * 2);
     game->entity[0].txtr = sfTexture_createFromFile("src/fire_32x21.png", NULL);
     game->entity[0].rect = (sfIntRect) {0, 0, 21, 32};
     game->entity[0].sp = make_sprite(game->entity[0].txtr);
-    sfSprite_setOrigin(game->entity[0].sp, (sfVector2f) {-7, 21}); //13
+    sfSprite_setOrigin(game->entity[0].sp, (sfVector2f) {-7, 21});
     sfSprite_setTextureRect(game->entity[0].sp, game->entity[0].rect);
-    sfVector2f pos = {32 * 34, 32 * 29};
     sfSprite_setPosition(game->entity[0].sp, pos);
+    game->entity[1].txtr = sfTexture_createFromFile("src/fire_32x19.png", NULL);
+    game->entity[1].rect = (sfIntRect) {0, 0, 21, 32};
+    game->entity[1].sp = make_sprite(game->entity[0].txtr);
+    sfSprite_setOrigin(game->entity[1].sp, (sfVector2f) {-7, 21});
+    sfSprite_setTextureRect(game->entity[1].sp, game->entity[1].rect);
+    pos = (sfVector2f) {32 * 34, 32 * 29};
+    sfSprite_setPosition(game->entity[1].sp, pos);
 }
 
 void initialize_game_core(game_menu_t *game, csfml_t *general)
@@ -54,7 +65,6 @@ void initialize_game_core(game_menu_t *game, csfml_t *general)
     initialize_npc(game);
     init_message_box(game, general);
     initialize_view(general);
-    initialize_music(general);
     game->on_fight = 0;
     game->inter = 0;
     game->inter_lock = 0;

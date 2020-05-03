@@ -46,7 +46,7 @@ char **map)
         (is_collide(map[player->pos_cart.y][player->pos_cart.x - 1]) == 1 || \
         is_collide_npc(player->pos_cart.x - 1, player->pos_cart.y, \
         game, player) == 1))
-        return (1); 
+        return (1);
     return (0);
 }
 

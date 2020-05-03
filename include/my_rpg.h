@@ -20,6 +20,8 @@
 #define PLAYER_TEXTURE_2 "src/female.png"
 
 #define MUSIC_MENU "src/menu.ogg"
+#define MUSIC_BEACH "src/beach.ogg"
+#define MUSIC_ADVEN "src/adventure.ogg"
 #define MUSIC_MENU_PLAY (1)
 #define CLICK_SOUND "src/click.ogg"
 
@@ -108,6 +110,7 @@ void init_player(player_t *player);
 void init_game_player(player_t *player, game_scene_t *game_scene);
 void init_destroy(player_t *player);
 void game_event(csfml_t *general, game_menu_t *game);
+void game_music(music_t *music);
 void display_player_with_entities(csfml_t *general, game_menu_t *game);
 void initialize_game_core(game_menu_t *game, csfml_t *general);
 int message_management(game_menu_t *game, csfml_t *general);
@@ -122,6 +125,11 @@ int button_obj_is_hover(button_t *button, sfRenderWindow *window);
 void settings_initialize(settings_menu_t *set, csfml_t *page);
 void free_game_ressources(game_menu_t *game);
 int **display_optimization(char **map, player_t *playr, int **view_dist);
+int manage_before_fight(game_menu_t *game, csfml_t *general, \
+npc_t *npc, int step);
+int manage_after_fight(game_menu_t *game, csfml_t *general, \
+npc_t *npc, int step);
+int fight_controller(game_menu_t *game, csfml_t *general, npc_t *npc);
 
 int manage_after_fight(game_menu_t *game, csfml_t *general, \
 npc_t *npc, int step);
@@ -160,7 +168,7 @@ void display_infos_areas(fight_scene_t *fight, sfRenderWindow *window);
 void turn_core(fight_scene_t *fight, sfRenderWindow *window);
 void initialize_areas(csfml_t *general, fight_scene_t *fight);
 void display_stats_valors(info_area_t *area, stats_t *player, stats_t *enemy);
-void fight_attack_animation(fighter_t *striker, fighter_t *target, 
+void fight_attack_animation(fighter_t *striker, fighter_t *target, \
 fight_scene_t *fight, csfml_t *general);
 void fight_button_hover(fight_button_t *button);
 void fight_button_no_hover(fight_button_t *button);

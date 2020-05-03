@@ -122,7 +122,6 @@ typedef struct fight_npc_s {
 typedef struct npc_s {
     char state;
     char dir;
-    sfTexture *tx;
     sfSprite *sp;
     stats_t stats;
     sfVector2i pos_cart;
@@ -153,13 +152,20 @@ typedef struct meassge_box_s {
     sfText *one;
 }message_box_t;
 
+typedef struct texture_npc_s {
+    sfTexture *sbire;
+    sfTexture *boss;
+    sfTexture *villager_01;
+    sfTexture *villager_02;
+    sfTexture *villager_03;
+}texture_npc_t;
+
 typedef struct game_menu_s {
     char adventure_step;
     int on_msg;
     int on_fight;
     char inter;
     char inter_lock;
-    int force_msg;
     sfClock *cam_clock;
     game_scene_t game_scene;
     sfTexture *texture_tile;
@@ -170,6 +176,7 @@ typedef struct game_menu_s {
     inventory_t inventory;
     npc_t *npc;
     entity_t *entity;
+    texture_npc_t texture_npc;
 }game_menu_t;
 
 
@@ -320,6 +327,8 @@ typedef struct views_s {
 typedef struct music_s {
     sfMusic *menu;
     sfMusic *fight;
+    sfMusic *beach;
+    sfMusic *adven;
     sfSoundBuffer *sound_but_buf;
     sfSound *sound_but;
 }music_t;

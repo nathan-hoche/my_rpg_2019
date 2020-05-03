@@ -39,6 +39,24 @@ static void adventure_step(game_menu_t *game, csfml_t *general)
     }
 }
 
+static void change_music(int detect_pos[4], music_t *music, \
+sfVector2i pos)
+{
+    if (detect_pos[0] < pos.x && detect_pos[1] > pos.x && \
+    detect_pos[2] < pos.y && detect_pos[3] > pos.y && \
+    sfMusic_getStatus(music->beach) == sfPaused) {
+        if (sfMusic_getStatus(music->adven) == sfPlaying)
+            sfMusic_pause(music->adven);
+        sfMusic_play(music->beach);
+    } else if ((detect_pos[0] > pos.x || detect_pos[1] < pos.x || \
+    detect_pos[2] > pos.y || detect_pos[3] < pos.y) && \
+    sfMusic_getStatus(music->beach) == sfPlaying) {
+        if (sfMusic_getStatus(music->beach) == sfPlaying)
+            sfMusic_pause(music->beach);
+        sfMusic_play(music->adven);
+    }
+}
+
 static void game_display(game_menu_t *game, csfml_t *general)
 {
     sfRenderWindow_clear(general->window, sfBlack);
@@ -50,13 +68,14 @@ static void game_display(game_menu_t *game, csfml_t *general)
     if (test(&general->player, &game->npc[0], 2, 3))
         puts("SEE");
     //printf("%d, %d\n", general->player.pos_cart.x, general->player.pos_cart.y);
-
     message_management(game, general);
     fight_management(game, general);
     sfRenderWindow_drawSprite(general->window, game->entity[0].sp, NULL);
     if (game->on_fight == 0)
         camera_view(game, general);
     display_inventory(general, game);
+    change_music((int [4]) {0, 32, 0, 19}, &general->music, \
+    general->player.pos_cart);
     sfRenderWindow_display(general->window);
 }
 
@@ -64,6 +83,8 @@ void game_menu(csfml_t *general)
 {
     game_menu_t game;
 
+    sfMusic_stop(general->music.menu);
+    sfMusic_play(general->music.beach);
     initialize_game_core(&game, general);
     while (general->act_scene == ID_GAME) {
         while (sfRenderWindow_pollEvent(general->window, &general->event))

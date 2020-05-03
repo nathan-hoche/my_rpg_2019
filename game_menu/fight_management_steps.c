@@ -13,6 +13,7 @@ int fight_controller(game_menu_t *game, csfml_t *general, npc_t *npc)
 {
     fight_core(general, game, npc);
     sfMusic_stop(general->music.fight);
+    sfMusic_play(general->music.adven);
     return (1);
 }
 
@@ -21,12 +22,20 @@ int before_fight(game_menu_t *game, csfml_t *general, npc_t *npc)
     if (npc->fighting.message_before == NULL) {
         game->on_msg = 0;
         sfMusic_play(general->music.fight);
+        if (sfMusic_getStatus(general->music.adven) == sfPlaying)
+            sfMusic_pause(general->music.adven);
+        else if (sfMusic_getStatus(general->music.beach) == sfPlaying)
+            sfMusic_pause(general->music.beach);
         return (1);
     }
     else if (game->inter == 1 && \
     action_message(npc->fighting.message_before, game, general) == 1) {
         game->on_msg = 0;
         sfMusic_play(general->music.fight);
+        if (sfMusic_getStatus(general->music.adven) == sfPlaying)
+            sfMusic_pause(general->music.adven);
+        else if (sfMusic_getStatus(general->music.beach) == sfPlaying)
+            sfMusic_pause(general->music.beach);
         return (1);
     }
     return (0);

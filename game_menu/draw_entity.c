@@ -25,11 +25,10 @@ void display_player_with_entities(csfml_t *general, game_menu_t *game)
 {
     int pos_en = -1;
 
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 2; i++)
         if (game->npc[i].state != 0 && \
         is_behind_npc(&general->player, &game->npc[i]) == 1)
             pos_en = i;
-    }
     for (int i = 0; i < 2; i++) {
         if (i != pos_en)
             sfRenderWindow_drawSprite(general->window, game->npc[i].sp, NULL);

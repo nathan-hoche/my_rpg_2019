@@ -78,6 +78,9 @@ csfml_t *general)
     inventory->stats.stat[0] += my_getnbr(temp[1]);
     inventory->stats.stat[1] += my_getnbr(temp[2]);
     inventory->stats.stat[2] += my_getnbr(temp[3]);
+    general->player.stats.atk = inventory->stats.stat[0];
+    general->player.stats.armor = inventory->stats.stat[1];
+    general->player.stats.speed = inventory->stats.stat[2];
     free(temp);
     return (buf);
 }

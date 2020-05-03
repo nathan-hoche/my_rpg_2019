@@ -13,13 +13,19 @@
 static void init_music(music_t *music)
 {
     music->menu = sfMusic_createFromFile(MUSIC_MENU);
+    music->beach = sfMusic_createFromFile(MUSIC_BEACH);
     music->sound_but = sfSound_create();
     music->sound_but_buf = sfSoundBuffer_createFromFile(CLICK_SOUND);
     sfSound_setBuffer(music->sound_but, music->sound_but_buf);
     sfSound_setVolume(music->sound_but, DEFAULT_FX_LEVEL);
     sfMusic_setLoop(music->menu, sfTrue);
+    sfMusic_setLoop(music->beach, sfTrue);
     sfMusic_play(music->menu);
+    sfMusic_play(music->beach);
     sfMusic_setVolume(music->menu, DEFAULT_MUSIC_LEVEL);
+    sfSound_setVolume(music->sound_but, DEFAULT_FX_LEVEL);
+    sfMusic_setVolume(music->beach, DEFAULT_MUSIC_LEVEL);
+    game_music(music);
 }
 
 static void main_initialization(csfml_t *page)
@@ -40,6 +46,9 @@ static void main_initialization(csfml_t *page)
 static void main_destroy(csfml_t *page)
 {
     sfMusic_destroy(page->music.menu);
+    sfMusic_destroy(page->music.beach);
+    sfMusic_destroy(page->music.fight);
+    sfMusic_destroy(page->music.adven);
     sfSoundBuffer_destroy(page->music.sound_but_buf);
     sfSound_destroy(page->music.sound_but);
     sfRenderWindow_close(page->window);

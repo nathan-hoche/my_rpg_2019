@@ -21,12 +21,14 @@ static int event_message(game_menu_t *game, csfml_t *general)
     static char flag = 0;
     int check = 0;
     char **step_one = NULL;
-    
 
     if (game->on_msg == -2) {
         step_one = malloc(sizeof(char *) * 2);
-        step_one[0] = my_strdup("Je devrais peut etre voir ce qu il \n se passe dans le village avant \n de continuer.");
+        step_one[0] = my_strdup("I should go and see what's going on \n\
+this village before i continue...");
         step_one[1] = NULL;
+        general->player.player_rect.top = 64;
+        sfSprite_setTextureRect(general->player.player, general->player.player_rect);
         if (flag == 0) {
             check = action_message(step_one, game, general);
             flag = 1;
