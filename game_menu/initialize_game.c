@@ -28,27 +28,6 @@ void game_music(music_t *music)
     sfMusic_setVolume(music->adven, DEFAULT_MUSIC_LEVEL);
 }
 
-static void initialize_entity(game_menu_t *game, csfml_t *general)
-{
-    sfVector2f pos = {32 * 34, 32 * 29};
-
-    game->entity = NULL;
-    game->entity = malloc(sizeof(entity_t) * 2);
-    game->entity[0].txtr = sfTexture_createFromFile("src/particles/fire_32x21.png", NULL);
-    game->entity[0].rect = (sfIntRect) {0, 0, 21, 32};
-    game->entity[0].sp = make_sprite(game->entity[0].txtr);
-    sfSprite_setOrigin(game->entity[0].sp, (sfVector2f) {-7, 21});
-    sfSprite_setTextureRect(game->entity[0].sp, game->entity[0].rect);
-    sfSprite_setPosition(game->entity[0].sp, pos);
-    game->entity[1].txtr = sfTexture_createFromFile("src/particles/fire_32x19.png", NULL);
-    game->entity[1].rect = (sfIntRect) {0, 0, 21, 32};
-    game->entity[1].sp = make_sprite(game->entity[0].txtr);
-    sfSprite_setOrigin(game->entity[1].sp, (sfVector2f) {-7, 21});
-    sfSprite_setTextureRect(game->entity[1].sp, game->entity[1].rect);
-    pos = (sfVector2f) {32 * 34, 32 * 29};
-    sfSprite_setPosition(game->entity[1].sp, pos);
-}
-
 void initialize_game_core(game_menu_t *game, csfml_t *general)
 {
     game->game_scene.map_layer01_file = MAP_L01_FILE;

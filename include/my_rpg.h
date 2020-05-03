@@ -56,6 +56,9 @@
 
 #define FIGHT_SOUND_SWORD "src/sounds/sound_sword.ogg"
 
+#define PARTICULE_FIRE_1 "src/particles/fire_32x21.png"
+#define PARTICULE_FIRE_2 "src/particles/fire_32x19.png"
+
 #define DEFAULT_FX_LEVEL (60)
 #define DEFAULT_MUSIC_LEVEL (60)
 
@@ -142,6 +145,9 @@ int after_fight(game_menu_t *game, csfml_t *general, npc_t *npc);
 int before_fight(game_menu_t *game, csfml_t *general, npc_t *npc);
 int fight_controller(game_menu_t *game, csfml_t *general, npc_t *npc);
 
+void initialize_entity(game_menu_t *game, csfml_t *general);
+void entity_animation(game_menu_t *game);
+void destroy_entity(game_menu_t *game);
 
 //-> SETTINGS_MENU <-////////////////////////////
 
@@ -213,8 +219,8 @@ int action_wait_npc(npc_t *npc, player_t *player, float seconds);
 void action_npc_focus_player(player_t *player, npc_t *npc);
 int action_dir_npc(npc_t *npc, player_t *player, int dir);
 
-int partern_npc_01(game_menu_t *game, csfml_t *general,npc_t *npc);
-int partern_npc_02(game_menu_t *game, csfml_t *general,npc_t *npc);
+int partern_npc_01(game_menu_t *game, csfml_t *general, npc_t *npc);
+int partern_npc_02(game_menu_t *game, csfml_t *general, npc_t *npc);
 
 /////////////////////////////////////////////////
 
