@@ -14,14 +14,15 @@ static void set_dialogs(npc_t *npc, npc_texture_t *npc_txtr)
     npc->talks_index = 1;
     npc->talk_01 = NULL;
     npc->talk_01 = malloc(sizeof(char *) * 2);
-    npc->talk_01[0] = my_strdup("What strenght ! Don't come near me !");
+    npc->talk_01[0] = my_strdup(" . . . ");
     npc->talk_01[1] = NULL;
-    npc->action_patern = &patern_npc_05;
+    npc->action_patern = NULL;
     npc->index_action = 0;
     npc->fighting.message_before = NULL;
     npc->fighting.message_before = malloc(sizeof(char *) * 2);
     npc->fighting.message_before[0] = \
-    my_strdup("What are you doing here ?! I'm gonna get you out of here !");
+    my_strdup(" Little worm, who are you ? I going \nto steal the gold \
+    from your cadaver");
     npc->fighting.message_before[1] = NULL;
     npc->fighting.message_after = NULL;
     npc->fighting.message_after = malloc(sizeof(char *) * 2);

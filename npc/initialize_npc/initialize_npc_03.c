@@ -38,10 +38,9 @@ void set_good_npc_03(npc_t *npc, npc_texture_t *npc_txtr)
     npc->action_patern = NULL;
     npc->talks_index = 1;
     npc->talk_01 = NULL;
-    npc->talk_01 =  malloc(sizeof(char *) * 3);
-    npc->talk_01[0] = my_strdup("They killed my goats while I looked on ! \
-    \n ... I have nothing left to lose ...");
-    npc->talk_01[1] = my_strdup("... and don`t go east into the forest, \
-    \nthe brigants are still there ");
+    npc->talk_01 =  malloc(sizeof(char *) * 5);
+    npc->talk_01[0] = my_strdup("Who are you ? I ve never seen you before.\n\
+    Life is very sad in this world, \nbrigands have struck again");
+    npc->talk_01[1] = my_strdup("if only someone could protect us ...");
     npc->talk_01[2] = NULL;
 }

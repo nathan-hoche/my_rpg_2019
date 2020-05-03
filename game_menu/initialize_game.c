@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_rpg_2019
 ** File description:
-** loop the game
+** initialize game
 */
 
 #include "my_rpg.h"
