@@ -9,7 +9,7 @@
 #include "my.h"
 #include "struct.h"
 
-int partern_npc_01(game_menu_t *game, csfml_t *general,npc_t *npc)
+int partern_npc_01(game_menu_t *game, csfml_t *general, npc_t *npc)
 {
     switch (npc->index_action) {
         case 0:

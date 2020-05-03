@@ -23,6 +23,22 @@ typedef struct stats_panel_s {
     int *stat;
 }stats_panel_t;
 
+typedef struct outro_s {
+    sfTexture *outro_tx;
+    sfTexture *memory_tx;
+    sfTexture *ending_tx;
+    sfSprite *outro_sp;
+    sfSprite *memory_sp;
+    sfSprite *ending_sp;
+    int on_outro;
+}outro_t;
+
+typedef struct intro_s {
+    sfTexture *intro_tx;
+    sfSprite *intro_sp;
+    int on_intro;
+}intro_t;
+
 typedef struct items_s {
     sfTexture *sword_tx;
     sfSprite *sword_sp;
@@ -182,6 +198,8 @@ typedef struct game_menu_s {
     entity_t small_flame;
     entity_t big_flame;
     npc_texture_t texture_npc;
+    intro_t intro;
+    outro_t outro;
 }game_menu_t;
 
 

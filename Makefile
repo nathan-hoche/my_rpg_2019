@@ -39,8 +39,8 @@ SRC	=	main.c \
 		fight_system/fight_attack_animation.c \
 		fight_system/fight_buttons_effects.c \
 		fight_system/fight_end.c \
-		player/player_core.c\
-		player/player_view.c\
+		player/player_core.c \
+		player/player_view.c \
 		player/init_destroy.c \
 		player/player_collision.c \
 		player/player_animation.c \
@@ -64,7 +64,10 @@ SRC	=	main.c \
 		message_box/init_message_box.c \
 		message_box/display_message_box.c \
 		inventory/stat/stat_player.c \
-		inventory/stat/free_stats.c
+		inventory/stat/free_stats.c \
+		cinematics/intro/intro.c \
+		cinematics/outro/put_outro.c \
+		cinematics/outro/set_outro.c
 
 NAME	=		my_rpg
 

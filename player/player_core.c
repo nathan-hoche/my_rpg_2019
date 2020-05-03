@@ -34,7 +34,8 @@ static int player_key_orientation(player_t *player, game_menu_t *game, char i)
     int way[4] = {192, 128, 0, 64};
 
     if (player->on_move == 0 && game->on_fight == 0 && \
-    sfKeyboard_isKeyPressed(key[i]) == 1 && game->on_msg == 0) {
+    sfKeyboard_isKeyPressed(key[i]) == 1 && game->on_msg == 0 && \
+    game->intro.on_intro == 0) {
         set_view_direction(player, i);
         player->player_rect.top = way[i];
         if (player_collision_core(key[i], player, game) == 1) {

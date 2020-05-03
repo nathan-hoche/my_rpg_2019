@@ -49,7 +49,7 @@ static char **init_map(game_scene_t *scene, char *filepath)
 
 void init_game_scene(game_scene_t *scene)
 {
-    scene->starting_pos = (sfVector2f) {16 + 32 * 43, 16 + 32 * 28};
+    scene->starting_pos = (sfVector2f) {16 + 32 * 17, 16 + 32 * 9};
     scene->map_layer01 = NULL;
     scene->map_layer02 = NULL;
     scene->map_layer01 = init_map(scene, MAP_L01_FILE);

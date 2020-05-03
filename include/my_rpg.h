@@ -59,6 +59,11 @@
 #define PARTICULE_FIRE_1 "src/particles/fire_32x21.png"
 #define PARTICULE_FIRE_2 "src/particles/fire_32x19.png"
 
+#define INTRO_BACKGROUND "src/intro.png"
+#define OUTRO_BACKGROUND "src/outro.jpg"
+#define MEMORY_PIC "src/memory.png"
+#define ENDING_PIC "src/ending.jpg"
+
 #define DEFAULT_FX_LEVEL (60)
 #define DEFAULT_MUSIC_LEVEL (60)
 
@@ -236,5 +241,11 @@ void display_status(csfml_t *general, stats_panel_t *stats);
 void free_stats(stats_panel_t *stats);
 void initialize_texts(stats_panel_t *stats, csfml_t *general);
 void set_stats_pos(inventory_t *inventory, csfml_t *general);
+
+void set_outro(sfRenderWindow *window, game_menu_t *game);
+void display_intro(sfRenderWindow *window, game_menu_t *game);
+void display_outro(sfRenderWindow *window, game_menu_t *game);
+void begin_cinematics(intro_t *intro, csfml_t *general, \
+outro_t *outro);
 
 #endif /* !MY_RPG_H_ */

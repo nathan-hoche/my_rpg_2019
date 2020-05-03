@@ -44,6 +44,8 @@ static void game_display(game_menu_t *game, csfml_t *general)
     display_inventory(general, game);
     change_music((int [4]) {0, 32, 0, 19}, &general->music, \
     general->player.pos_cart);
+    if (game->intro.on_intro == 1)
+        display_intro(general->window, game);
     sfRenderWindow_display(general->window);
 }
 

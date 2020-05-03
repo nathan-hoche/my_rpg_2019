@@ -49,4 +49,5 @@ void initialize_game_core(game_menu_t *game, csfml_t *general)
     initialize_entity(&game->small_flame, &game->big_flame, \
     general);
     game->adventure_step = 0;
+    begin_cinematics(&game->intro, general, &game->outro);
 }
