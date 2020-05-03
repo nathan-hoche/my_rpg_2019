@@ -47,7 +47,9 @@ static void put_obj_name(inventory_t *inventory, FILE *fp, csfml_t *general)
     size_t len = 0;
     __ssize_t read;
 
-    inventory->stats.stat = malloc(sizeof(int) * STAT_DATA);
+    inventory->obj_name = NULL;
+    inventory->stats.stat = NULL;
+    inventory->stats.stat = malloc(sizeof(int) * (STAT_DATA + 1));
     inventory->stats.stat[0] = 0;
     inventory->stats.stat[1] = 0;
     inventory->stats.stat[2] = 0;
