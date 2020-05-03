@@ -237,7 +237,6 @@ void action_npc_focus_player(player_t *player, npc_t *npc);
 int patern_npc_01(game_menu_t *game, csfml_t *general, npc_t *npc);
 int patern_npc_02(game_menu_t *game, csfml_t *general, npc_t *npc);
 int patern_npc_04(game_menu_t *game, csfml_t *general, npc_t *npc);
-int patern_npc_05(game_menu_t *game, csfml_t *general, npc_t *npc);
 
 void set_good_npc_01(npc_t *npc, npc_texture_t *npc_txtr);
 void set_good_npc_02(npc_t *npc, npc_texture_t *npc_txtr);
