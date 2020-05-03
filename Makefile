@@ -51,7 +51,12 @@ SRC	=	main.c \
 		inventory/set_items.c \
 		inventory/free_inventory.c	\
 		inventory/display_inventory.c \
-		npc/initialize_npc/initialize_npc.c \
+		npc/initialize_npc/initialize_npc_core.c \
+		npc/initialize_npc/initialize_npc_01.c \
+		npc/initialize_npc/initialize_npc_02.c \
+		npc/initialize_npc/initialize_npc_03.c \
+		npc/initialize_npc/initialize_npc_04.c \
+		npc/initialize_npc/initialize_npc_05.c \
 		npc/collision.c \
 		npc/action_move_npc.c \
 		npc/action_wait_npc.c \

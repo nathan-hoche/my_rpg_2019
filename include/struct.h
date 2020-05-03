@@ -195,6 +195,7 @@ typedef struct game_menu_s {
     npc_texture_t texture_npc;
     intro_t intro;
     outro_t outro;
+    char **step_one_txt;
 }game_menu_t;
 
 

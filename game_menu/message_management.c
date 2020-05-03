@@ -22,34 +22,25 @@ static int start_message(game_menu_t *game, csfml_t *general, npc_t *npc)
     return (0);
 }
 
+
+
 static int event_message(game_menu_t *game, csfml_t *general)
 {
     static char flag = 0;
     int check = 0;
-    char **step_one = NULL;
 
     if (game->on_msg == -2) {
-        step_one = malloc(sizeof(char *) * 2);
-        step_one[0] = my_strdup("I should go and see what's going on \n\
-this village before i continue...");
-        step_one[1] = NULL;
         general->player.player_rect.top = 64;
         sfSprite_setTextureRect(general->player.player, general->player.player_rect);
         if (flag == 0) {
-            check = action_message(step_one, game, general);
+            check = action_message(game->step_one_txt, game, general);
             flag = 1;
         } else if (check == 0 && (game->inter == 1 || flag == 1) && \
-        action_message(step_one, game, general) == 1) {
+        action_message(game->step_one_txt, game, general) == 1) {
             game->on_msg = 0;
-            free(step_one[0]);
-            free(step_one[1]);
-            free(step_one);
             flag = 0;
             return (1);
         }
-        free(step_one[0]);
-        free(step_one[1]);
-        free(step_one);
     }
     flag = 2;
     return (0);

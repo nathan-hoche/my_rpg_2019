@@ -28,6 +28,16 @@ void game_music(music_t *music)
     sfMusic_setVolume(music->adven, DEFAULT_MUSIC_LEVEL);
 }
 
+void game_events_messages(game_menu_t *game, csfml_t *general)
+{
+    game->step_one_txt = NULL;
+    
+    game->step_one_txt = malloc(sizeof(char *) * 2);
+    game->step_one_txt[0] = my_strdup("I should go and see what's going on \n\
+    this village before i continue...");
+    game->step_one_txt[1] = NULL;
+}
+
 void initialize_game_core(game_menu_t *game, csfml_t *general)
 {
     game->game_scene.map_layer01_file = MAP_L01_FILE;
@@ -46,8 +56,8 @@ void initialize_game_core(game_menu_t *game, csfml_t *general)
     game->on_fight = 0;
     game->inter = 0;
     game->inter_lock = 0;
-    initialize_entity(&game->small_flame, &game->big_flame, \
-    general);
+    initialize_entity(&game->small_flame, &game->big_flame, general);
     begin_cinematics(&game->intro, general, &game->outro);
+    game_events_messages(game, general);
     game->adventure_step = 1;
 }

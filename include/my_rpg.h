@@ -107,6 +107,12 @@
 
 #define NB_NPC (5)
 
+#define NPC_01 "src/npc/npc_03.png"
+#define NPC_02 "src/npc/npc_02.png"
+#define NPC_03 "src/npc/npc_04.png"
+#define NPC_04 "src/npc/npc_01.png"
+#define NPC_05 "src/npc/npc_05.png"
+
 void game_menu(csfml_t *page);
 
 void start_menu(csfml_t *page);
@@ -227,6 +233,12 @@ int patern_npc_01(game_menu_t *game, csfml_t *general, npc_t *npc);
 int patern_npc_02(game_menu_t *game, csfml_t *general, npc_t *npc);
 int patern_npc_04(game_menu_t *game, csfml_t *general, npc_t *npc);
 int patern_npc_05(game_menu_t *game, csfml_t *general, npc_t *npc);
+
+void set_good_npc_01(npc_t *npc, npc_texture_t *npc_txtr);
+void set_good_npc_02(npc_t *npc, npc_texture_t *npc_txtr);
+void set_good_npc_03(npc_t *npc, npc_texture_t *npc_txtr);
+void set_bad_npc_01(npc_t *npc, npc_texture_t *npc_txtr);
+void set_bad_npc_02(npc_t *npc, npc_texture_t *npc_txtr);
 
 /////////////////////////////////////////////////
 
