@@ -32,6 +32,7 @@ static void initialize_entity(game_menu_t *game, csfml_t *general)
 {
     sfVector2f pos = {32 * 34, 32 * 29};
 
+    game->entity = NULL;
     game->entity = malloc(sizeof(entity_t) * 2);
     game->entity[0].txtr = sfTexture_createFromFile("src/particles/fire_32x21.png", NULL);
     game->entity[0].rect = (sfIntRect) {0, 0, 21, 32};
@@ -58,10 +59,8 @@ void initialize_game_core(game_menu_t *game, csfml_t *general)
     game->tile = make_sprite(game->texture_tile);
     game->grass = make_texture(MAP_GROUND_1);
     game->back_grass = make_sprite(game->grass);
-    initialize_view(general);
     initialize_inventory(general, game);
     initialize_graphical_stats(&game->inventory, general);
-    initialize_texts(&game->inventory.stats, general);
     initialize_npc(game);
     init_message_box(game, general);
     initialize_view(general);
