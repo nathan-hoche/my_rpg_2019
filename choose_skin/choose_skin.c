@@ -38,7 +38,7 @@ static void skin_display(skin_menu_t *skin, sfRenderWindow *window)
 static void skin_initialize(skin_menu_t *skin, player_t *player, \
 sfFont *font, music_t *music)
 {
-    skin->back.tx_back = make_texture("src/space.png");
+    skin->back.tx_back = make_texture(BACKGROUND_1);
     skin->back.sp_back = make_sprite(skin->back.tx_back);
     skin->title = make_text(font, "Choose your skin!", \
     (sfVector2f) {640, 40} , 80);

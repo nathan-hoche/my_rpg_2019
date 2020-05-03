@@ -16,31 +16,31 @@
 #include <stdio.h>
 #include "struct.h"
 
-#define PLAYER_TEXTURE_1 "src/male.png"
-#define PLAYER_TEXTURE_2 "src/female.png"
+#define PLAYER_TEXTURE_1 "src/player/male.png"
+#define PLAYER_TEXTURE_2 "src/player/female.png"
 
-#define MUSIC_MENU "src/menu.ogg"
-#define MUSIC_BEACH "src/beach.ogg"
-#define MUSIC_ADVEN "src/adventure.ogg"
+#define MUSIC_MENU "src/sounds/menu.ogg"
+#define MUSIC_BEACH "src/sounds/beach.ogg"
+#define MUSIC_ADVEN "src/sounds/adventure.ogg"
 #define MUSIC_MENU_PLAY (1)
-#define CLICK_SOUND "src/click.ogg"
+#define CLICK_SOUND "src/sounds/click.ogg"
 
-#define BUT_1_TXTR "src/button.png"
+#define BUT_1_TXTR "src/buttons/button.png"
 #define BUT_1_SIZ_X (285)
 #define BUT_1_SIZ_Y (110)
 
-#define BUT_2_TXTR "src/button_set.png"
+#define BUT_2_TXTR "src/buttons/button_set.png"
 
 #define FONT_1 "src/font_itim.ttf"
-#define BACKGROUND_1 "src/space.png"
-#define BACKGROUND_2 "src/island.jpg"
+#define BACKGROUND_1 "src/backs/space.png"
+#define BACKGROUND_2 "src/backs/island.jpg"
 
 #define MAP_SP_SHEET "src/tile.png"
 
 #define MAP_L01_FILE "map/map_layer01.txt"
 #define MAP_L02_FILE "map/map_layer02.txt"
 
-#define MAP_GROUND_1 "src/water.jpg"
+#define MAP_GROUND_1 "src/backs/water.jpg"
 
 #define CONFIG_INVENTORY_FILE "src/config.txt"
 
@@ -50,9 +50,9 @@
 #define HELMET_FILE "src/items/armor/helmet_start.png"
 #define ARMOR_FILE "src/items/armor/bust_start.png"
 #define PANTS_FILE "src/items/armor/pants_start.png"
-#define FIGHT_BACK_1 "src/fight/background.png"
+#define FIGHT_BACK_1 "src/backs/fight_back.png"
 
-#define FIGHT_SOUND_SWORD "src/fight/sound_sword.ogg"
+#define FIGHT_SOUND_SWORD "src/sounds/sound_sword.ogg"
 
 #define DEFAULT_FX_LEVEL (60)
 #define DEFAULT_MUSIC_LEVEL (60)
@@ -93,8 +93,8 @@
 
 #define END_NPC_ACT (1)
 
-#define FIGHT_BUT_TEXTR "src/fight/buttons.png"
-#define MUSIC_FIGHT "src/battle.ogg"
+#define FIGHT_BUT_TEXTR "src/buttons/fight_buttons.png"
+#define MUSIC_FIGHT "src/sounds/battle.ogg"
 
 #define STAT_DATA (3)
 

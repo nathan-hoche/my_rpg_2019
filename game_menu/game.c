@@ -9,36 +9,6 @@
 #include "my.h"
 #include "struct.h"
 
-int test(player_t *player, npc_t *npc, int dir, int dist)
-{
-    if (player->pos_cart.x == npc->pos_cart.x && 
-    player->pos_cart.y >= npc->pos_cart.y - dist && player->pos_cart.y < npc->pos_cart.y)
-        return (1);
-    return (0);
-/* 
-    if (player->pos_cart.x <= npc->pos_cart.x && 
-    player->pos_cart.y == npc->pos_cart.y - dist)
-        return (1);
-
-    if (player->pos_cart.x == npc->pos_cart.x && 
-    player->pos_cart.y <= npc->pos_cart.y + dist)
-        return (1); */
-}
-
-static void adventure_step(game_menu_t *game, csfml_t *general)
-{
-    char *test[] = {"LOL", "OMG", NULL};
-
-    if (general->player.pos_traj.x == 46) {
-        game->on_msg = -1;
-        general->player.player_rect.top = 64;
-        if (action_message(test, game, general) == 1) {
-            general->player.pos_traj.x = general->player.pos_cart.x;
-            game->on_msg = 0;
-        }
-    }
-}
-
 static void change_music(int detect_pos[4], music_t *music, \
 sfVector2i pos)
 {
@@ -64,10 +34,6 @@ static void game_display(game_menu_t *game, csfml_t *general)
     display_map_core(game, general);
     player_core(general, game);
     display_player_with_entities(general, game);
-    adventure_step(game, general);
-    if (test(&general->player, &game->npc[0], 2, 3))
-        puts("SEE");
-    //printf("%d, %d\n", general->player.pos_cart.x, general->player.pos_cart.y);
     message_management(game, general);
     fight_management(game, general);
     sfRenderWindow_drawSprite(general->window, game->entity[0].sp, NULL);

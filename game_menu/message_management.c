@@ -52,12 +52,10 @@ this village before i continue...");
 int message_management(game_menu_t *game, csfml_t *general)
 {
     if (game->inter == 1 && game->on_fight == 0 && game->on_msg >= -1 \
-    && game->on_msg != 0) {
+    && game->on_msg != 0)
         start_message(game, general, &game->npc[game->on_msg - 1]);
-    }
-    else if (game->on_msg <= -2 && game->on_fight == 0) {
+    else if (game->on_msg <= -2 && game->on_fight == 0)
         event_message(game, general);
-    }
     display_message_box(game, general);
     return (0);
 }

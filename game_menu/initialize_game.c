@@ -33,13 +33,13 @@ static void initialize_entity(game_menu_t *game, csfml_t *general)
     sfVector2f pos = {32 * 34, 32 * 29};
 
     game->entity = malloc(sizeof(entity_t) * 2);
-    game->entity[0].txtr = sfTexture_createFromFile("src/fire_32x21.png", NULL);
+    game->entity[0].txtr = sfTexture_createFromFile("src/particles/fire_32x21.png", NULL);
     game->entity[0].rect = (sfIntRect) {0, 0, 21, 32};
     game->entity[0].sp = make_sprite(game->entity[0].txtr);
     sfSprite_setOrigin(game->entity[0].sp, (sfVector2f) {-7, 21});
     sfSprite_setTextureRect(game->entity[0].sp, game->entity[0].rect);
     sfSprite_setPosition(game->entity[0].sp, pos);
-    game->entity[1].txtr = sfTexture_createFromFile("src/fire_32x19.png", NULL);
+    game->entity[1].txtr = sfTexture_createFromFile("src/particles/fire_32x19.png", NULL);
     game->entity[1].rect = (sfIntRect) {0, 0, 21, 32};
     game->entity[1].sp = make_sprite(game->entity[0].txtr);
     sfSprite_setOrigin(game->entity[1].sp, (sfVector2f) {-7, 21});
