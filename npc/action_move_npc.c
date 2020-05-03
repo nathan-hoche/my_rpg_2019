@@ -11,27 +11,11 @@
 
 static void update_npc_pos(npc_t *npc, int dir)
 {
+    int change[4][2] = {{0, -1}, {1, 0}, {0, 1}, {-1, 0}};
+
     npc_gps(npc);
-    switch (dir) {
-        case 1:
-            npc->traj_cart.x = npc->pos_cart.x;
-            npc->traj_cart.y = npc->pos_cart.y - 1;
-            break;
-        case 2:
-            npc->traj_cart.x = npc->pos_cart.x + 1;
-            npc->traj_cart.y = npc->pos_cart.y;
-            break;
-        case 3:
-            npc->traj_cart.x = npc->pos_cart.x;
-            npc->traj_cart.y = npc->pos_cart.y + 1;
-            break;
-        case 4:
-            npc->traj_cart.x = npc->pos_cart.x - 1;
-            npc->traj_cart.y = npc->pos_cart.y;
-            break;
-        default:
-            break;
-    }
+    npc->traj_cart.x = npc->pos_cart.x + change[dir - 1][0];
+    npc->traj_cart.y = npc->pos_cart.y + change[dir - 1][1];
 }
 
 static int handle_npc_move(npc_t *npc, int dir)

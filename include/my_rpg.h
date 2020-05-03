@@ -93,7 +93,6 @@
 
 #define END_NPC_ACT (1)
 
-#define NPC_01_TXTR "src/npc/npc_01.png"
 #define FIGHT_BUT_TEXTR "src/fight/buttons.png"
 #define MUSIC_FIGHT "src/battle.ogg"
 

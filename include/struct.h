@@ -152,13 +152,13 @@ typedef struct meassge_box_s {
     sfText *one;
 }message_box_t;
 
-typedef struct texture_npc_s {
+typedef struct npc_texture_s {
     sfTexture *sbire;
     sfTexture *boss;
     sfTexture *villager_01;
     sfTexture *villager_02;
     sfTexture *villager_03;
-}texture_npc_t;
+}npc_texture_t;
 
 typedef struct game_menu_s {
     char adventure_step;
@@ -176,7 +176,7 @@ typedef struct game_menu_s {
     inventory_t inventory;
     npc_t *npc;
     entity_t *entity;
-    texture_npc_t texture_npc;
+    npc_texture_t texture_npc;
 }game_menu_t;
 
 

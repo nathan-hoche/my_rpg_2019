@@ -51,9 +51,8 @@ void game_event(csfml_t *general, game_menu_t *game)
         pause_menu(general);
     }
     if (general->event.key.code == sfKeyE && \
-    general->event.type == sfEvtKeyPressed) {
+    general->event.type == sfEvtKeyPressed)
         manage_key_interraction(general, game);
-    }
     else if (general->event.key.code == sfKeyE && \
     general->event.type == sfEvtKeyReleased) {
         game->inter = 0;

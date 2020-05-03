@@ -30,8 +30,6 @@ static void slash_animation(fight_scene_t *fight, csfml_t *general)
             sound = 0;
         }
     }
-    sfRenderWindow_drawSprite(general->window, \
-    fight->attacks.sword_slash, NULL);
 }
 
 static void damage_stats(fighter_t *striker, fighter_t *target, \
@@ -58,7 +56,7 @@ fight_scene_t *fight)
     sfSprite_setPosition(fight->attacks.sword_slash, pos_target);
 }
 
-static void waiting_time(fight_scene_t *fight)
+static void waiting_time(fighter_t *target, fight_scene_t *fight)
 {
     static char init = 0;
     sfTime timer;
@@ -83,18 +81,15 @@ static void waiting_time(fight_scene_t *fight)
 void fight_attack_animation(fighter_t *striker, fighter_t *target, \
 fight_scene_t *fight, csfml_t *general)
 {
-    switch (fight->atk_step) {
-        case 1 :
-            initialize_slash_pos(target, fight);
-            break;
-        case 2 :
-            slash_animation(fight, general);
-            break;
-        case 3 :
-            damage_stats(striker, target, fight);
-            break;
-        case 4 :
-            waiting_time(fight);
-            break;
-    }
+    static void (*function[4])() = {initialize_slash_pos, \
+    slash_animation, damage_stats, waiting_time};
+
+    if (fight->atk_step == 3)
+        function[2](striker, target, fight);
+    else if (fight->atk_step == 2) {
+        function[1](fight, general);
+        sfRenderWindow_drawSprite(general->window, \
+        fight->attacks.sword_slash, NULL);
+    } else
+        function[fight->atk_step - 1](target, fight);
 }

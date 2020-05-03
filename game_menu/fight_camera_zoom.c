@@ -23,7 +23,7 @@ int camera_fight_zoom(game_menu_t *game, csfml_t *general)
 
     if (times[0] == 1)
         game->cam_clock = sfClock_create();
-    times[0] = 2;
+    times[0] = 0;
     time = sfClock_getElapsedTime(game->cam_clock);
     if (time.microseconds >= 70) {
         camera_effects(general);
@@ -36,7 +36,6 @@ int camera_fight_zoom(game_menu_t *game, csfml_t *general)
         sfClock_destroy(game->cam_clock);
         general->views.actual_view = \
             sfView_copy(general->views.default_player_view);
-        return (1);
     }
-    return (0);
+    return (times[0]);
 }

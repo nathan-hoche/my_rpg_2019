@@ -16,8 +16,7 @@ static int settings_event(csfml_t *page, settings_menu_t *set)
     if (page->event.type == sfEvtClosed) {
         page->act_scene = ID_CLOSE;
         return (0);
-    }
-    else if (page->event.key.code == sfKeyEscape && \
+    } else if (page->event.key.code == sfKeyEscape && \
     page->event.type == sfEvtKeyPressed) {
         sfSound_play(page->music.sound_but);
         return (0);

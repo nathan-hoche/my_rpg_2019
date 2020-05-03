@@ -41,7 +41,7 @@ static char **init_map(game_scene_t *scene, char *filepath)
         read = getline(&map[i], &len, fp);
         if (read != -1 && map[i][read - 1] == '\n')
             map[i][read - 1] = '\0';
-        if (read == -1)
+        else if (read == -1)
             map[i] = NULL;
     }
     return (map);

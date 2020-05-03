@@ -20,25 +20,11 @@ static void set_view_direction(player_t *player, int i)
 
 static void update_player_pos(player_t *player, int i)
 {
-    switch (i) {
-        case 0:
-            player->pos_traj.x = player->pos_cart.x;
-            player->pos_traj.y = player->pos_cart.y - 1;
-            break;
-        case 1:
-            player->pos_traj.x = player->pos_cart.x + 1;
-            player->pos_traj.y = player->pos_cart.y;
-            break;
-        case 2:
-            player->pos_traj.x = player->pos_cart.x;
-            player->pos_traj.y = player->pos_cart.y + 1;
-            break;
-        case 3:
-            player->pos_traj.x = player->pos_cart.x - 1;
-            player->pos_traj.y = player->pos_cart.y;
-            break;
-        default:
-            break;
+    int change[4][2] = {{0, -1}, {1, 0}, {0, 1}, {-1, 0}};
+
+    if (i < 4 && i >= 0) {
+        player->pos_traj.x = player->pos_cart.x + change[i][0];
+        player->pos_traj.y = player->pos_cart.y + change[i][1];
     }
 }
 
@@ -64,10 +50,9 @@ static int player_key_orientation(player_t *player, game_menu_t *game, char i)
 
 void player_key_analysis(sfEvent event, player_t *player, game_menu_t *game)
 {
-    for (char i = 0; player->on_move == 0 && i != 4; i++) {
+    for (char i = 0; player->on_move == 0 && i != 4; i++)
         if (player_key_orientation(player, game, i))
             return;
-    }
 }
 
 void player_core(csfml_t *general, game_menu_t *game)

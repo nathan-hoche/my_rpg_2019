@@ -54,12 +54,10 @@ sfBool clicked)
             display_buttons(fight, window);
             sfRenderWindow_display(window);
             sfSleep(test);
-        } else {
+        } else
             fight_button_hover(&fight->button_def);
-        }
-    } else {
+    } else
         fight_button_no_hover(&fight->button_def);
-    }
 }
 
 static void buttons_management(fight_scene_t *fight, sfRenderWindow *window)
@@ -88,8 +86,7 @@ void turn_core(fight_scene_t *fight, sfRenderWindow *window)
         if (ai_choice == 1) {
             fight->enemy.def = sfTrue;
             fight->turn_state = 0;
-        } else {
+        } else
             fight->atk_step = 1;
-        }
     }
 }

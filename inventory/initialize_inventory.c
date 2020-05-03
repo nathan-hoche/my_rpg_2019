@@ -54,9 +54,8 @@ static void put_obj_name(inventory_t *inventory, FILE *fp, csfml_t *general)
     read = getline(&buf, &len, fp);
     for (int i = 0; read != -1; i++) {
         read = getline(&line, &len, fp);
-        if (read != -1) {
+        if (read != -1)
             buf = initialize_stats(inventory, buf, line, general);
-        }
     }
     initialize_texts(&inventory->stats, general);
     inventory->obj_name = my_str_to_word_array(buf, '\n');
