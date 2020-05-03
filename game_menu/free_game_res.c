@@ -11,10 +11,10 @@
 
 void free_game_ressources(game_menu_t *game)
 {
-    sfTexture_destroy(game->grass);
-    sfTexture_destroy(game->texture_tile);
-    sfSprite_destroy(game->tile);
-    sfSprite_destroy(game->back_grass);
     free_inventory(&game->inventory);
     free_stats(&game->inventory.stats);
+    sfSprite_destroy(game->tile);
+    sfSprite_destroy(game->back_grass);
+    sfTexture_destroy(game->grass);
+    sfTexture_destroy(game->texture_tile);
 }

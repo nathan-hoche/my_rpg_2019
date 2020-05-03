@@ -25,15 +25,13 @@ void display_player_with_entities(csfml_t *general, game_menu_t *game)
 {
     int pos_en = -1;
 
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < NB_NPC; i++)
         if (game->npc[i].state != 0 && \
         is_behind_npc(&general->player, &game->npc[i]) == 1)
             pos_en = i;
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < NB_NPC; i++) {
         if (i != pos_en)
             sfRenderWindow_drawSprite(general->window, game->npc[i].sp, NULL);
-        if (game->on_msg == 0 && game->on_fight == 0)
-            manage_npc_actions(&game->npc[i], &general->player);
     }
     sfRenderWindow_drawSprite(general->window, general->player.player, NULL);
     if (pos_en != -1)

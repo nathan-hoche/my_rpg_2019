@@ -50,15 +50,18 @@ SRC	=	main.c \
 		inventory/set_items.c \
 		inventory/free_inventory.c	\
 		inventory/display_inventory.c \
+		npc/initialize_npc/initialize_npc.c \
+		npc/collision.c \
 		npc/action_move_npc.c \
 		npc/action_wait_npc.c \
 		npc/action_focus_npc.c \
+		npc/action_dir_npc.c \
 		npc/manage_npc_actions.c \
+		npc/action_patern/patern_npc_01.c \
+		npc/action_patern/patern_npc_02.c \
 		message_box/action_message.c \
 		message_box/init_message_box.c \
 		message_box/display_message_box.c \
-		npc/initialize_npc.c \
-		npc/collision.c \
 		inventory/stat/stat_player.c \
 		inventory/stat/free_stats.c
 
