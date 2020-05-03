@@ -24,7 +24,6 @@ static int htp_event(csfml_t *page, htp_menu_t *htp)
         page->event.type == sfEvtMouseButtonPressed) {
         if (button_is_hover(htp->pos_but, page->size_button, \
         page->window) == 1) {
-            page->act_scene = ID_START_MENU;
             sfSound_play(page->music.sound_but);
             return (0);
         }

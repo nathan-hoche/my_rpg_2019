@@ -44,9 +44,9 @@ static void init_fight_player(fight_scene_t *fight, csfml_t *general)
 static void init_attacks(fight_scene_t *fight, csfml_t *general)
 {
     fight->attacks.txtr_shield = \
-        sfTexture_createFromFile("src/fight/shield.png", NULL);
+        sfTexture_createFromFile(FIGHT_SHIELD, NULL);
     fight->attacks.txtr_sword = \
-        sfTexture_createFromFile("src/fight/cut.png", NULL);
+        sfTexture_createFromFile(FIGHT_SLASH, NULL);
     fight->attacks.sword_slash = sfSprite_create();
     fight->attacks.sword_slash = make_sprite(fight->attacks.txtr_sword);
     fight->attacks.sword_slash_rect = (sfIntRect) {0, 0, 192, 192};

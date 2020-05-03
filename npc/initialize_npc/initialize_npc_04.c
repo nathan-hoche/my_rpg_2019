@@ -26,14 +26,8 @@ static void set_sprite(npc_t *npc, npc_texture_t *npc_txtr)
     npc->traj_cart.y = npc->pos_cart.y;
 }
 
-void set_bad_npc_01(npc_t *npc, npc_texture_t *npc_txtr)
+static void set_dialog(npc_t *npc, npc_texture_t *npc_txtr)
 {
-    set_sprite(npc, npc_txtr);
-    npc->tmp_move = -1;
-    npc->is_fighter = 1;
-    npc->stats = (stats_t) {NULL, 15, 2, 12, 1};
-    npc->state = 1;
-    npc->talks_index = 1;
     npc->talk_01 = NULL;
     npc->talk_01 = malloc(sizeof(char *) * 2);
     npc->talk_01[0] = my_strdup("What strenght ! Don't come near me !");
@@ -42,10 +36,22 @@ void set_bad_npc_01(npc_t *npc, npc_texture_t *npc_txtr)
     npc->index_action = 0;
     npc->fighting.message_before = NULL;
     npc->fighting.message_before =  malloc(sizeof(char *) * 2);
-    npc->fighting.message_before[0] = my_strdup("What are you doing here ?! \nI'm gonna get you out of here !");
+    npc->fighting.message_before[0] = my_strdup("What are you doing here ?! \
+    \nI'm gonna get you out of here !");
     npc->fighting.message_before[1] = NULL;
     npc->fighting.message_after = NULL;
     npc->fighting.message_after = malloc(sizeof(char *) * 2);
     npc->fighting.message_after[0] = my_strdup("Oh ...\nmy head ...");
     npc->fighting.message_after[1] = NULL;
+}
+
+void set_bad_npc_01(npc_t *npc, npc_texture_t *npc_txtr)
+{
+    set_sprite(npc, npc_txtr);
+    set_dialog(npc, npc_txtr);
+    npc->tmp_move = -1;
+    npc->is_fighter = 1;
+    npc->stats = (stats_t) {NULL, 15, 2, 12, 1};
+    npc->state = 1;
+    npc->talks_index = 1;
 }

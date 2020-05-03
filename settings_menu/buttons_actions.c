@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_rpg_2019
 ** File description:
-** settings menu
+** buttons actions
 */
 
 #include "my_rpg.h"
@@ -51,7 +51,7 @@ int action_minus_music(csfml_t *page)
     return (0);
 }
 
-int action_return(csfml_t *page)
+int action_returning(csfml_t *page)
 {
     sfSound_play(page->music.sound_but);
     return (1);

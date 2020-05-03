@@ -16,9 +16,8 @@ int patern_npc_04(game_menu_t *game, csfml_t *general, npc_t *npc)
     if (game->adventure_step == 2 && npc->is_fighter == 1 && \
     general->player.pos_cart.x >= npc->pos_cart.x - 3)
         action_npc_focus_player(&general->player, npc);
-    if (move == 0 && npc->is_fighter == 0) {
+    if (move == 0 && npc->is_fighter == 0)
         if (action_move_npc(npc, &general->player, 3, 2))
             move = 1;
-    }
     return (0);
 }

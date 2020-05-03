@@ -11,18 +11,14 @@
 
 static int start_message(game_menu_t *game, csfml_t *general, npc_t *npc)
 {
-    if (npc->talks_index == 1) {
+    if (npc->talks_index == 1)
         if (action_message(npc->talk_01, game, general) == 1)
             game->on_msg = 0;
-    }
-    if (npc->talks_index == 2) {
+    if (npc->talks_index == 2)
         if (action_message(npc->talk_02, game, general) == 1)
             game->on_msg = 0;
-    }
     return (0);
 }
-
-
 
 static int event_message(game_menu_t *game, csfml_t *general)
 {
@@ -31,7 +27,8 @@ static int event_message(game_menu_t *game, csfml_t *general)
 
     if (game->on_msg == -2) {
         general->player.player_rect.top = 64;
-        sfSprite_setTextureRect(general->player.player, general->player.player_rect);
+        sfSprite_setTextureRect(general->player.player, \
+        general->player.player_rect);
         if (flag == 0) {
             check = action_message(game->step_one_txt, game, general);
             flag = 1;

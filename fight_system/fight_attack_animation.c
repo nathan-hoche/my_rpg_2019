@@ -35,11 +35,10 @@ static void slash_animation(fight_scene_t *fight, csfml_t *general)
 static void damage_stats(fighter_t *striker, fighter_t *target, \
 fight_scene_t *fight)
 {
-    if (target->def == sfTrue) {
+    if (target->def == sfTrue)
         target->stats.hp -= (int) striker->stats.atk * 0.3;
-    } else {
+    else
         target->stats.hp -= (int) striker->stats.atk;
-    }
     fight->atk_step = 4;
 }
 

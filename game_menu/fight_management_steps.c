@@ -27,8 +27,7 @@ int before_fight(game_menu_t *game, csfml_t *general, npc_t *npc)
         else if (sfMusic_getStatus(general->music.beach) == sfPlaying)
             sfMusic_pause(general->music.beach);
         return (1);
-    }
-    else if (game->inter == 1 && \
+    } else if (game->inter == 1 && \
     action_message(npc->fighting.message_before, game, general) == 1) {
         game->on_msg = 0;
         sfMusic_play(general->music.fight);

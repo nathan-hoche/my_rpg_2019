@@ -14,9 +14,7 @@ static int fight_event(csfml_t *general)
     if (general->event.type == sfEvtClosed) {
         general->act_scene = ID_CLOSE;
         return (0);
-    } else if (general->event.type == sfEvtKeyPressed && \
-    general->event.key.code == sfKeyEscape)
-        return (0);
+    }
     return (1);
 }
 
@@ -43,13 +41,12 @@ static void defence_mode(fight_scene_t *fight, sfRenderWindow *window)
 static void fight_attacks(fight_scene_t *fight, csfml_t *general)
 {
     if (fight->atk_step != 0) {
-        if (fight->turn_state == 0) {
+        if (fight->turn_state == 0)
             fight_attack_animation(&fight->player, &fight->enemy, \
             fight, general);
-        } else {
+        else
             fight_attack_animation(&fight->enemy, &fight->player, \
             fight, general);
-        }
     }
 }
 

@@ -23,7 +23,7 @@ static void set_sprite(npc_t *npc, npc_texture_t *npc_txtr)
     npc->pos_cart.x = npc_pos.x / 32;
     npc->pos_cart.y = npc_pos.y / 32;
     npc->traj_cart.x = npc->pos_cart.x;
-    npc->traj_cart.y = npc->pos_cart.y; 
+    npc->traj_cart.y = npc->pos_cart.y;
 }
 
 void set_good_npc_01(npc_t *npc, npc_texture_t *npc_txtr)
@@ -39,6 +39,6 @@ void set_good_npc_01(npc_t *npc, npc_texture_t *npc_txtr)
     npc->talk_01 = NULL;
     npc->talk_01 = malloc(sizeof(char *) * 2);
     npc->talk_01[0] = \
-    my_strdup("Brigands have ravaged everything ! \nMy crops are ruined !");
+    my_strdup("Brigands have ravaged everything !\nMy crops are ruined !");
     npc->talk_01[1] = NULL;
 }

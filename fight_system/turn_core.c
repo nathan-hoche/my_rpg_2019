@@ -31,12 +31,10 @@ sfBool clicked)
             display_buttons(fight, window);
             sfRenderWindow_display(window);
             sfSleep(test);
-        } else {
+        } else
             fight_button_hover(&fight->button_atk);
-        }
-    } else {
+    } else
         fight_button_no_hover(&fight->button_atk);
-    }
 }
 
 static void check_button_defence(fight_scene_t *fight, sfRenderWindow *window, \

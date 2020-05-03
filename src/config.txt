@@ -1,6 +1,6 @@
 obj_id:1:2:3:4:5:
 name:
-Sword:1:0:20:
+Sword:4:0:20:
 Shield:0:1:15:
 Helmet:0:2:10:
 Armor:0:2:10:

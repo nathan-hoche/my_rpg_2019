@@ -61,7 +61,6 @@ SRC	=	main.c \
 		npc/action_move_npc.c \
 		npc/action_wait_npc.c \
 		npc/action_focus_npc.c \
-		npc/action_dir_npc.c \
 		npc/manage_npc_actions.c \
 		npc/action_patern/patern_npc_01.c \
 		npc/action_patern/patern_npc_02.c \
@@ -91,7 +90,7 @@ DEMAKE_LIB	=	make -C ./lib/my/ fclean
 
 all:	$(OBJ)
 		$(MAKE_LIB)
-		gcc $(OBJ) -o $(NAME) $(LDFLAGS) $(CSFMLF) -g3
+		gcc $(OBJ) -o $(NAME) $(LDFLAGS) $(CSFMLF)
 
 clean:
 		$(DEMAKE_LIB)
