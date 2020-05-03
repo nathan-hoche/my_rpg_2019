@@ -39,6 +39,11 @@ static void main_initialization(csfml_t *page)
     page->settings.music_lvl = DEFAULT_MUSIC_LEVEL;
     page->font_itim = sfFont_createFromFile(FONT_1);
     page->act_scene = 1;
+    page->icon.icon_img = sfImage_createFromFile(ICON_WINDOW);
+    page->icon.icon_uint = sfImage_getPixelsPtr\
+    (page->icon.icon_img);
+    sfRenderWindow_setIcon(page->window, 128, 128, \
+    page->icon.icon_uint);
     init_player(&page->player);
     init_music(&page->music);
 }
@@ -48,6 +53,7 @@ static void main_destroy(csfml_t *page)
     sfMusic_destroy(page->music.menu);
     sfMusic_destroy(page->music.beach);
     sfMusic_destroy(page->music.fight);
+    sfImage_destroy(page->icon.icon_img);
     sfMusic_destroy(page->music.adven);
     sfSoundBuffer_destroy(page->music.sound_but_buf);
     sfSound_destroy(page->music.sound_but);

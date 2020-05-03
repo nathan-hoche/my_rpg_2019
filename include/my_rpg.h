@@ -16,6 +16,8 @@
 #include <stdio.h>
 #include "struct.h"
 
+#define ICON_WINDOW "src/icon.png"
+
 #define PLAYER_TEXTURE_1 "src/player/male.png"
 #define PLAYER_TEXTURE_2 "src/player/female.png"
 

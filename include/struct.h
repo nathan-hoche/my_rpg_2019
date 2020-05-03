@@ -328,6 +328,11 @@ typedef struct views_s {
     sfView *actual_view;
 }views_t;
 
+typedef struct icon_s {
+    sfImage *icon_img;
+    const sfUint8 *icon_uint;
+}icon_t;
+
 typedef struct music_s {
     sfMusic *menu;
     sfMusic *fight;
@@ -350,6 +355,7 @@ typedef struct csfml_s {
     int act_scene;
     settings_t settings;
     music_t music;
+    icon_t icon;
 }csfml_t;
 
 #endif /* !SCENE_H_ */
