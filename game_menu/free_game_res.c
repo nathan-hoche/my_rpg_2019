@@ -11,7 +11,7 @@
 
 void free_game_ressources(game_menu_t *game)
 {
-    destroy_entity(game);
+    destroy_entity(&game->small_flame, &game->big_flame);
     free_inventory(&game->inventory);
     free_stats(&game->inventory.stats);
     sfSprite_destroy(game->tile);

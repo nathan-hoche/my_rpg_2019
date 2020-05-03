@@ -145,9 +145,11 @@ int after_fight(game_menu_t *game, csfml_t *general, npc_t *npc);
 int before_fight(game_menu_t *game, csfml_t *general, npc_t *npc);
 int fight_controller(game_menu_t *game, csfml_t *general, npc_t *npc);
 
-void initialize_entity(game_menu_t *game, csfml_t *general);
-void entity_animation(game_menu_t *game);
-void destroy_entity(game_menu_t *game);
+void initialize_entity(entity_t *small_flame, entity_t *big_flame, \
+csfml_t *general);
+void display_flame_particule(entity_t *small_flame, entity_t *big_flame, \
+sfRenderWindow *window);
+void destroy_entity(entity_t *small_flame, entity_t *big_flame);
 
 //-> SETTINGS_MENU <-////////////////////////////
 

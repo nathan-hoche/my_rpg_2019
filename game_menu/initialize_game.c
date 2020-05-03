@@ -46,6 +46,7 @@ void initialize_game_core(game_menu_t *game, csfml_t *general)
     game->on_fight = 0;
     game->inter = 0;
     game->inter_lock = 0;
-    initialize_entity(game, general);
+    initialize_entity(&game->small_flame, &game->big_flame, \
+    general);
     game->adventure_step = 0;
 }

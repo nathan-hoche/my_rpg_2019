@@ -179,7 +179,8 @@ typedef struct game_menu_s {
     sfSprite *back_grass;
     inventory_t inventory;
     npc_t *npc;
-    entity_t *entity;
+    entity_t small_flame;
+    entity_t big_flame;
     npc_texture_t texture_npc;
 }game_menu_t;
 

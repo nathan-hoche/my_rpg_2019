@@ -37,6 +37,8 @@ static void game_display(game_menu_t *game, csfml_t *general)
     message_management(game, general);
     fight_management(game, general);
     manage_npc_actions(general, game);
+    display_flame_particule(&game->small_flame, &game->big_flame, \
+    general->window);
     if (game->on_fight == 0)
         camera_view(game, general);
     display_inventory(general, game);
