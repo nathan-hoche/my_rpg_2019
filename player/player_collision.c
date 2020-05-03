@@ -15,7 +15,7 @@ static int is_collide_npc(int x, int y, game_menu_t *game, player_t *player)
             return (1);
         if (x == game->npc[i].traj_cart.x && y == game->npc[i].traj_cart.y)
             return (1);
-    } 
+    }
     return (0);
 }
 
@@ -42,7 +42,7 @@ char **map)
         (is_collide(map[player->pos_cart.y][player->pos_cart.x - 1]) == 1 || \
         is_collide_npc(player->pos_cart.x - 1, player->pos_cart.y, \
         game, player) == 1))
-        return (1); 
+        return (1);
     return (0);
 }
 

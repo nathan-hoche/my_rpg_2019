@@ -125,6 +125,11 @@ int button_obj_is_hover(button_t *button, sfRenderWindow *window);
 void settings_initialize(settings_menu_t *set, csfml_t *page);
 void free_game_ressources(game_menu_t *game);
 int **display_optimization(char **map, player_t *playr, int **view_dist);
+int manage_before_fight(game_menu_t *game, csfml_t *general, \
+npc_t *npc, int step);
+int manage_after_fight(game_menu_t *game, csfml_t *general, \
+npc_t *npc, int step);
+int fight_controller(game_menu_t *game, csfml_t *general, npc_t *npc);
 
 //-> SETTINGS_MENU <-////////////////////////////
 
