@@ -67,6 +67,7 @@ static void game_initialize(game_menu_t *game, csfml_t *general)
     initialize_inventory(&game->inventory);
     game->on_fight = 0;
     begin_intro(&game->intro);
+    begin_outro(&game->outro);
 }
 
 void game_menu(csfml_t *general)

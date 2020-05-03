@@ -12,6 +12,14 @@
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
 
+typedef struct outro_s {
+    sfTexture *outro_tx;
+    sfTexture *memory_tx;
+    sfSprite *outro_sp;
+    sfSprite *memory_sp;
+    int on_outro;
+}outro_t;
+
 typedef struct intro_s {
     sfTexture *intro_tx;
     sfSprite *intro_sp;
@@ -105,6 +113,7 @@ typedef struct game_menu_s {
     sfSprite *back_grass;
     inventory_t inventory;
     intro_t intro;
+    outro_t outro;
 }game_menu_t;
 
 //-> START SCENE <-//////////////////////////////
