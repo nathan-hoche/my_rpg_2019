@@ -52,6 +52,6 @@ void set_bad_npc_02(npc_t *npc, npc_texture_t *npc_txtr)
     set_dialogs(npc, npc_txtr);
     npc->tmp_move = -1;
     npc->is_fighter = 1;
-    npc->stats = (stats_t) {NULL, 15, 2, 12, 1};
+    npc->stats = (stats_t) {NULL, 20, 3, SPEED_BOSS, 2};
     npc->state = 1;
 }

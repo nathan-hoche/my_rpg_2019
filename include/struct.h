@@ -24,6 +24,8 @@ typedef struct stats_panel_s {
 }stats_panel_t;
 
 typedef struct outro_s {
+    sfTexture *endgame_tx;
+    sfSprite *endgame_sp;
     sfText *ending_txt;
     int on_outro;
 }outro_t;
@@ -82,7 +84,6 @@ typedef struct button_s {
     int (* action)(csfml_t *);
     void (* hover)(struct button_s *, csfml_t *);
 }button_t;
-
 
 //-> SCENE TAB <-////////////////////////////////
 
@@ -266,6 +267,7 @@ typedef struct fight_scene_s {
     sfClock *clock_atk;
     sound_t fx_sword_atk;
     sfTexture *tx_buttons;
+    int type_enemy;
 }fight_scene_t;
 
 

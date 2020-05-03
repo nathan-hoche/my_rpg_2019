@@ -59,6 +59,8 @@ outro_t *outro)
     outro->on_outro = 1;
     intro->intro_tx = make_texture(INTRO_BACKGROUND);
     intro->intro_sp = make_sprite(intro->intro_tx);
+    outro->endgame_tx = make_texture(END_GAME);
+    outro->endgame_sp = make_sprite(outro->endgame_tx);
     outro->ending_txt = make_text(general->font_itim, "Game over", \
     (sfVector2f) {600, 400}, 150);
     sfRenderWindow_setView(general->window, general->views.default_view);

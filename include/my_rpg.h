@@ -63,6 +63,9 @@
 #define PARTICULE_FIRE_2 "src/particles/fire_32x19.png"
 
 #define INTRO_BACKGROUND "src/intro.png"
+#define END_GAME "src/memory.png"
+
+#define SPEED_BOSS (80)
 
 #define DEFAULT_FX_LEVEL (60)
 #define DEFAULT_MUSIC_LEVEL (60)
@@ -259,5 +262,6 @@ void display_intro(sfRenderWindow *window, game_menu_t *game);
 void display_outro(sfRenderWindow *window, outro_t *outro);
 void begin_cinematics(intro_t *intro, csfml_t *general, \
 outro_t *outro);
+void display_end_game(sfRenderWindow *window, outro_t *outro);
 
 #endif /* !MY_RPG_H_ */

@@ -22,6 +22,10 @@ npc_t *npc)
     fight->enemy.stats.armor = npc->stats.armor;
     fight->enemy.stats.speed = npc->stats.speed;
     fight->enemy.def = sfFalse;
+    if (npc->stats.speed == SPEED_BOSS)
+        fight->type_enemy = 1;
+    else
+        fight->type_enemy = 0;
     sfSprite_setOrigin(fight->enemy.sp, (sfVector2f) {32, 48});
 }
 
