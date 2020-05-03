@@ -36,7 +36,6 @@ static void game_display(game_menu_t *game, csfml_t *general)
     display_player_with_entities(general, game);
     message_management(game, general);
     fight_management(game, general);
-    sfRenderWindow_drawSprite(general->window, game->entity[0].sp, NULL);
     manage_npc_actions(general, game);
     if (game->on_fight == 0)
         camera_view(game, general);
