@@ -131,10 +131,13 @@ typedef struct npc_s {
     sfClock *move;
     sfClock *anim;
     int tmp_move;
-    char index_action;
     char is_fighter;
     fight_npc_t fighting;
-    char **talk_1;
+    char talks_index;
+    char ***talks;
+    int (*action_patern) (game_menu_t *game, csfml_t *general, struct npc_s *);
+    char index_action;
+    char param_patern;
 }npc_t;
 
 typedef struct game_scene_s {

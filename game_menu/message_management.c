@@ -11,7 +11,7 @@
 
 static int start_message(game_menu_t *game, csfml_t *general, npc_t *npc)
 {
-    if (action_message(game->npc[1].talk_1, game, general) == 1)
+    if (action_message(npc->talks[npc->talks_index], game, general) == 1)
         game->on_msg = 0;
     return (0);
 }

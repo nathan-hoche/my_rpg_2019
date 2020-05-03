@@ -26,7 +26,7 @@ npc_t *npc, int id)
         if (npc->is_fighter == 1) {
             game->on_fight = id + 1;
         }
-        else if (npc->talk_1 != NULL) {
+        else if (npc->talks != NULL) {
             action_npc_focus_player(&general->player, npc);
             game->on_msg = id + 1;
         }
